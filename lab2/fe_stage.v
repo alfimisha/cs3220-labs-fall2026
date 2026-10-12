@@ -180,7 +180,7 @@ assign out = PHT[rd_sel][1];
 
 endmodule
 // Task 4: Branch Target Buffer
-//Hint: what is the signal need for BHT update?
+//Hint: what is the signal need for BHT update? ya
 
 module BTB (
   input wire clk,
