@@ -204,13 +204,16 @@
 // please update the following define with your own values
 
   `define BHR_WIDTH 8
-  `define PHT_BITS 8
+  `define PHT_BITS 10
+  `define PHT_USE_BHR 1   // 1 = gshare index, 0 = PC only
   `define counter_WIDTH 2
+  `define PHT_MODULE PHT   // PHT = 2 bit counters, PHT_1BIT = 1 bit (task 8)
 
   `define PHT_WIDTH 10
 
   `define BTB_WIDTH 1
-  `define BTB_BITS 1
+  `define BTB_BITS 8   // log2(BTB entries).
+  `define BTB_TAG_BITS (`DBITS - `BTB_BITS - 2)
 
 
 

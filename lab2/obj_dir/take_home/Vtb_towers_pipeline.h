@@ -1,0 +1,75 @@
+// Verilated -*- C++ -*-
+// DESCRIPTION: Verilator output: Design internal header
+// See Vtb_towers.h for the primary calling header
+
+#ifndef VERILATED_VTB_TOWERS_PIPELINE_H_
+#define VERILATED_VTB_TOWERS_PIPELINE_H_  // guard
+
+#include "verilated.h"
+class Vtb_towers_AGEX_STAGE;
+class Vtb_towers_WB_STAGE;
+
+
+class Vtb_towers__Syms;
+
+class alignas(VL_CACHE_LINE_BYTES) Vtb_towers_pipeline final : public VerilatedModule {
+  public:
+    // CELLS
+    Vtb_towers_AGEX_STAGE* my_AGEX_stage;
+    Vtb_towers_WB_STAGE* my_WB_stage;
+
+    // DESIGN SPECIFIC STATE
+    VL_IN8(__PVT__clk,0,0);
+    VL_IN8(__PVT__reset,0,0);
+    CData/*0:0*/ __PVT__my_FE_stage__DOT__valid_FE;
+    CData/*0:0*/ __PVT__my_FE_stage__DOT__stall_pipe_FE;
+    CData/*0:0*/ __PVT__my_FE_stage__DOT__pht_prediction_FE;
+    CData/*7:0*/ __PVT__my_FE_stage__DOT__bhr_fe;
+    CData/*0:0*/ __PVT__my_FE_stage__DOT__btb_hit;
+    CData/*0:0*/ __PVT__my_FE_stage__DOT__is_btb_valid;
+    CData/*5:0*/ __PVT__my_DE_stage__DOT__op_I_DE;
+    CData/*3:0*/ __PVT__my_DE_stage__DOT__type_I_DE;
+    CData/*2:0*/ __PVT__my_DE_stage__DOT__type_immediate_DE;
+    CData/*0:0*/ __PVT__my_DE_stage__DOT__wr_reg_DE;
+    CData/*0:0*/ __PVT__my_DE_stage__DOT__use_rs1_DE;
+    CData/*0:0*/ __PVT__my_DE_stage__DOT__use_rs2_DE;
+    CData/*0:0*/ __Vdlyvset__my_MEM_stage__DOT__dmem__v0;
+    SData/*9:0*/ __PVT__my_FE_stage__DOT__pht_idx_fe;
+    SData/*13:0*/ __Vdlyvdim0__my_MEM_stage__DOT__dmem__v0;
+    IData/*31:0*/ __PVT__cycle_count;
+    VlWide<6>/*171:0*/ __PVT__my_FE_stage__DOT__FE_latch;
+    IData/*31:0*/ __PVT__my_FE_stage__DOT__PC_FE_latch;
+    IData/*31:0*/ __PVT__my_FE_stage__DOT__inst_count_FE;
+    IData/*31:0*/ __PVT__my_FE_stage__DOT__inst_count_AGEX;
+    IData/*31:0*/ __PVT__my_FE_stage__DOT__pcplus_FE;
+    IData/*31:0*/ __PVT__my_FE_stage__DOT__target_btb_pred;
+    IData/*31:0*/ __PVT__my_FE_stage__DOT__pht__DOT__i;
+    IData/*31:0*/ __PVT__my_FE_stage__DOT__btb__DOT__unnamedblk1__DOT__i;
+    VlWide<9>/*283:0*/ __PVT__my_DE_stage__DOT__DE_latch;
+    IData/*31:0*/ __PVT__my_DE_stage__DOT__in_use_regs;
+    IData/*31:0*/ my_DE_stage__DOT____VdfgExtracted_hee942bf4__0;
+    VlWide<6>/*172:0*/ __PVT__my_MEM_stage__DOT__MEM_latch;
+    VlWide<6>/*171:0*/ __Vdly__my_FE_stage__DOT__FE_latch;
+    IData/*31:0*/ __Vdlyvval__my_MEM_stage__DOT__dmem__v0;
+    VlUnpacked<IData/*31:0*/, 16384> __PVT__my_FE_stage__DOT__imem;
+    VlUnpacked<CData/*1:0*/, 1024> __PVT__my_FE_stage__DOT__pht__DOT__PHT;
+    VlUnpacked<IData/*31:0*/, 256> __PVT__my_FE_stage__DOT__btb__DOT__btb_target;
+    VlUnpacked<IData/*21:0*/, 256> __PVT__my_FE_stage__DOT__btb__DOT__btb_tag;
+    VlUnpacked<CData/*0:0*/, 256> __PVT__my_FE_stage__DOT__btb__DOT__btb_valid;
+    VlUnpacked<IData/*31:0*/, 32> __PVT__my_DE_stage__DOT__regs;
+    VlUnpacked<IData/*31:0*/, 16384> __PVT__my_MEM_stage__DOT__dmem;
+
+    // INTERNAL VARIABLES
+    Vtb_towers__Syms* const vlSymsp;
+
+    // CONSTRUCTORS
+    Vtb_towers_pipeline(Vtb_towers__Syms* symsp, const char* v__name);
+    ~Vtb_towers_pipeline();
+    VL_UNCOPYABLE(Vtb_towers_pipeline);
+
+    // INTERNAL METHODS
+    void __Vconfigure(bool first);
+};
+
+
+#endif  // guard

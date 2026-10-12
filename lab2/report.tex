@@ -1,0 +1,112 @@
+\documentclass[10pt]{article}
+\usepackage[margin=0.9in]{geometry}
+\usepackage{booktabs}
+\usepackage{xcolor}
+\setlength{\parskip}{4pt}
+\setlength{\parindent}{0pt}
+\newcommand{\todo}[1]{\textcolor{red}{[TODO: #1]}}
+
+\title{\vspace{-1.5em}CS 3220 Lab 2 Report: Branch Predictor Experiments}
+\author{\todo{name}}
+\date{}
+
+\begin{document}
+\maketitle
+\vspace{-2em}
+
+\section*{Setup}
+
+The predictor has three parts: a branch history register (BHR), a pattern
+history table (PHT) of 2-bit counters, and a direct-mapped branch target
+buffer (BTB). Fetch predicts taken only when the BTB hits \emph{and} the PHT
+counter says taken. Otherwise it predicts PC+4. The BTB is written every time
+a branch or jump resolves, and it always stores the taken target.
+
+Accuracy is the number of correct next-PC predictions divided by the number
+of resolved branches and jumps, as printed by the supplied simulator.
+
+\section*{Task 7: Predictor sizes}
+
+All runs use \texttt{towers.mem} (99{,}635 branches and jumps). The PHT index
+is PC XOR an 8-bit BHR in every run. Only the table sizes change.
+
+\begin{center}
+\begin{tabular}{lrrrr}
+\toprule
+Config & BTB entries & PHT entries & Accuracy & CPI \\
+\midrule
+Baseline      & 16  & 256  & 33.85\% & 1.68 \\
+PHT alone     & 16  & 1024 & 33.85\% & 1.68 \\
+BTB alone     & 256 & 256  & 64.44\% & 1.38 \\
+BTB and PHT   & 256 & 1024 & 98.40\% & 1.05 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{PHT alone} does not help. Without a BTB hit, fetch has no target, so
+a better direction guess cannot be used.
+
+\textbf{BTB alone} nearly doubles the accuracy. With 16 entries the branches
+in Towers keep replacing each other in the BTB. With 256 entries they stop.
+
+\textbf{BTB and PHT} together reach 98\%. Once the BTB hits, the direction
+guess is what limits accuracy. With 256 counters, different branches share
+counters and undo each other's training. With 1024 counters they mostly do
+not.
+
+The submitted code uses the ``BTB and PHT'' configuration (98.40\%), which is
+above the 50\% target.
+
+\section*{Task 8: One-bit versus two-bit counters}
+
+Both runs use \texttt{counter.mem} with 256 PC-indexed PHT entries and a
+64-entry direct-mapped BTB. Only the counter width changes.
+
+\begin{center}
+\begin{tabular}{lrrr}
+\toprule
+Counter & Branches & Correct & Accuracy \\
+\midrule
+2-bit saturating & 8{,}411 & 6{,}192 & 73.62\% \\
+1-bit            & 8{,}411 & 4{,}116 & 48.94\% \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The benchmark is a short inner loop whose branch goes taken, taken, not
+taken, over and over, inside an outer loop whose branch is taken 31 times out
+of 32.
+
+\textbf{2-bit} counters get the inner branch right two times out of three.
+The counter sits at ``taken''. The one not-taken outcome moves it down a
+single step, which is not enough to flip the prediction, so only the loop
+exit is missed.
+
+\textbf{1-bit} counters get the inner branch right one time out of three. The
+bit always holds the last outcome, so the loop exit is missed, and then the
+first iteration of the next pass is missed too, because the bit now says
+``not taken''. Each loop exit costs two mispredictions instead of one.
+
+The outer branch is predicted almost perfectly in both runs. Per call that
+gives about $64 + 31$ correct out of 128 for 2-bit (74\%) and $32 + 31$ out
+of 128 for 1-bit (49\%), which matches the measurements.
+
+\section*{Task 9: Direct-mapped versus two-way BTB}
+
+Both runs use \texttt{btb.mem} with a 16-entry BTB. Only the BTB organisation
+changes.
+
+\begin{center}
+\begin{tabular}{lrrr}
+\toprule
+BTB & Branches & Correct & Accuracy \\
+\midrule
+Direct-mapped, 16 entries   & \todo{run} & \todo{run} & \todo{run} \\
+Two-way, 16 entries (8 sets) & \todo{run} & \todo{run} & \todo{run} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\todo{state the other settings used and explain the effect of conflicts}
+
+\end{document}

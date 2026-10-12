@@ -59,7 +59,8 @@ module FE_STAGE(
   wire branch_resolved; //has the branch finished do we know the otucome
   wire branch_taken; //was the branch taken or not
 
-  assign pht_idx_fe = (PC_FE_latch[9:2] ^ bhr_fe);
+  // PHT_USE_BHR 1 = gshare (pc xor history), 0 = plain pc indexed
+  assign pht_idx_fe = PC_FE_latch[`PHT_BITS+1:2] ^ (`PHT_USE_BHR ? bhr_fe : 0);
 
   BHR bhr(
     .clk(clk), 
@@ -68,7 +69,8 @@ module FE_STAGE(
     .wr_data(branch_taken), 
     .out(bhr_fe)
   );
-  PHT pht(
+  // PHT_MODULE picks PHT (2 bit) or PHT_1BIT (task 8), same ports so same wires
+  `PHT_MODULE pht(
     .clk(clk), 
     .reset(reset), 
     .rd_sel(pht_idx_fe), //for reading from here 
@@ -258,14 +260,15 @@ module BTB (
 ); 
 //TODO: complete the BTB logic and its update
 
-reg [31:0] btb_target [0:15];
-reg [25:0] btb_tag [0:15];
-reg btb_valid [0:15];
-wire [3:0]  rd_index = rd_sel[5:2];
-wire [25:0] rd_tag   = rd_sel[31:6];
 
-wire [3:0]  wr_index = wr_sel[5:2];
-wire [25:0] wr_tag   = wr_sel[31:6];
+reg [31:0] btb_target [0:(1 << `BTB_BITS)-1];
+reg [`BTB_TAG_BITS-1:0] btb_tag [0:(1 << `BTB_BITS)-1];
+reg btb_valid [0:(1 << `BTB_BITS)-1];
+wire [`BTB_BITS-1:0]  rd_index = rd_sel[`BTB_BITS+1:2];
+wire [`BTB_TAG_BITS-1:0] rd_tag   = rd_sel[31:`BTB_BITS+2];
+
+wire [`BTB_BITS-1:0]  wr_index = wr_sel[`BTB_BITS+1:2];
+wire [`BTB_TAG_BITS-1:0] wr_tag   = wr_sel[31:`BTB_BITS+2];
 
 // read is combinational: hit shows up the same cycle rd_sel is driven
 assign outs_valid = rd_ena && btb_valid[rd_index] && (btb_tag[rd_index] == rd_tag);
@@ -273,7 +276,7 @@ assign out_data   = outs_valid ? btb_target[rd_index] : 0;
 
 always @(posedge clk) begin
   if (reset) begin
-    for (int i = 0; i < 16; i= i + 1) begin
+    for (int i = 0; i < (1 << `BTB_BITS); i= i + 1) begin
       btb_target[i] <= 0;
       btb_tag[i] <= 0;
       btb_valid[i] <= 0;
@@ -287,4 +290,39 @@ always @(posedge clk) begin
   end
 end
 
+endmodule
+
+// pht with teh one bit saturating counter instead of the 2bit one. 
+module PHT_1BIT (
+  input wire clk,
+  input wire reset,
+  input wire [`PHT_BITS-1:0] rd_sel,
+  output wire out,
+  input wire [`PHT_BITS-1:0] wr_sel,
+  input wire wr_data,
+  input wire wr_ena
+);
+
+integer i;
+reg PHT [0:(1 << `PHT_BITS)-1];
+
+always @(posedge clk) begin
+  if (reset) begin
+    for (i = 0; i < (1 << `PHT_BITS); i = i + 1) begin
+      PHT[i] <= 1'b0;
+    end
+  end else if (wr_ena) begin
+    if (wr_data == 1'b1) begin
+      if (PHT[wr_sel] != 1'b1) begin
+        PHT[wr_sel] <= PHT[wr_sel] + 1'b1;
+      end
+    end else begin
+      if (PHT[wr_sel] != 1'b0) begin
+        PHT[wr_sel] <= PHT[wr_sel] - 1'b1;
+      end
+    end
+  end
+  
+end
+assign out = PHT[rd_sel];
 endmodule
