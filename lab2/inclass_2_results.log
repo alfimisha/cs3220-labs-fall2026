@@ -1,0 +1,44 @@
+TESTING: task4/btb
+Passed!
+TESTING: task5/add
+Cycles=276
+Passed!
+TESTING: task5/beq
+Cycles=113
+Passed!
+TESTING: task5/bge
+Cycles=120
+Passed!
+TESTING: task5/bgeu
+Cycles=128
+Passed!
+TESTING: task5/blt
+Cycles=116
+Passed!
+TESTING: task5/bltu
+Cycles=128
+Passed!
+TESTING: task5/bne
+Cycles=116
+Passed!
+TESTING: task5/jal
+Cycles=73
+Passed!
+TESTING: task5/jalr
+Cycles=228
+Passed!
+TESTING: task5/lw
+Cycles=221
+Passed!
+TESTING: task5/predict
+PredictedBranches=54
+Cycles=423
+Passed!
+TESTING: task6/towers
+Branches=992 Correct=371
+Accuracy=37.399194%
+Cycles=18574
+Passed!
+Total number of tests: 13
+Number of passed tests: 13
+Number of failed tests: 0

@@ -8,6 +8,6 @@ module majority3 (
     output vote
 );
 
-    assign vote = 1'b0;
+    assign vote = (x & y) | (y & z) | (x & z);
 
 endmodule

@@ -205,9 +205,9 @@
 
   `define BHR_WIDTH 8
   `define PHT_BITS 8
-  `define counter_WIDTH 1
+  `define counter_WIDTH 2
 
-  `define PHT_WIDTH 1
+  `define PHT_WIDTH 10
 
   `define BTB_WIDTH 1
   `define BTB_BITS 1
@@ -217,14 +217,14 @@
 /** Task 3: extend FE/DE latches for the PHT index and predicted direction,
  *  and AGEX-to-FE feedback for the resolved branch update. */
 
- `define FE_latch_WIDTH  (1 + `INSTBITS+`DBITS+ `DBITS + `DBITS)
-  `define DE_latch_WIDTH  (1 + `INSTBITS+`DBITS+`DBITS+ `IOPBITS + `DBITS + `DBITS + `DBITS + `DBITS + 1 + 1 + 1 + 1 + 1 + `REGNOBITS)
+  `define FE_latch_WIDTH  (1 + `INSTBITS + `DBITS + `DBITS + `DBITS + `PHT_BITS + 1 + `DBITS)
+  `define DE_latch_WIDTH  (1 + `INSTBITS + `DBITS + `DBITS + `IOPBITS + `DBITS + `DBITS + `DBITS + `DBITS + 1 + 1 + 1 + 1 + 1 + `REGNOBITS + `PHT_BITS + 1 + `DBITS)
 
   `define AGEX_latch_WIDTH        (1 + `INSTBITS + `DBITS + `IOPBITS + `DBITS + `DBITS + `DBITS + 1 + 1 + `REGNOBITS + 1)
   `define MEM_latch_WIDTH    (1 + `INSTBITS+`DBITS+ `IOPBITS + `DBITS + `DBITS + `DBITS + 1 + `REGNOBITS) 
 
   `define from_DE_to_FE_WIDTH  (1) 
-  `define from_AGEX_to_FE_WIDTH (1 + `DBITS )
+  `define from_AGEX_to_FE_WIDTH (1 + `DBITS + 1 + 1 + `PHT_BITS + `DBITS + `DBITS)
   `define from_MEM_to_FE_WIDTH (1)
   `define from_WB_to_FE_WIDTH (1)
 

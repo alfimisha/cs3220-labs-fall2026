@@ -61,6 +61,7 @@ module AGEX_STAGE(
 
   reg [`DBITS-1:0] br_target_AGEX;
   wire br_mispred_AGEX;
+  reg [`DBITS-1:0] aluout_AGEX; //ALUOUT signal
 
 
   // ===== Task 1: unpack the DE latch ============================
@@ -74,6 +75,7 @@ module AGEX_STAGE(
   //   comment.  All six are already declared for you a few lines up.
   //
   // ===========================================================================
+
   wire [`DE_latch_WIDTH - (1 + `INSTBITS + `DBITS + `DBITS + `IOPBITS + `DBITS) - 1 : 0] de_latch_rest;
 
   assign  {
@@ -83,7 +85,12 @@ module AGEX_STAGE(
             pcplus_AGEX,
             op_I_AGEX,
             inst_count_AGEX,
-            de_latch_rest        // <-- Task 1: replace with the six remaining fields
+            regval1_AGEX, 
+            regval2_AGEX, 
+            sxt_imm_AGEX,
+            is_br_AGEX, 
+            wr_reg_AGEX, 
+            wregno_AGEX
             } = from_DE_latch;
 
 
@@ -96,12 +103,37 @@ module AGEX_STAGE(
   //   infers a latch.  Task 7 adds more arms.
   //
   // ===========================================================================
+  
   always @ (*) begin
-    // case (op_I_AGEX)
-    //   default: begin
-    //     aluout_AGEX  = '0;
-    //   end
-    // endcase
+    case (op_I_AGEX)
+      `ADD_I: aluout_AGEX = regval1_AGEX + regval2_AGEX;
+      `ADDI_I: aluout_AGEX = regval1_AGEX + sxt_imm_AGEX;
+      `SUB_I: aluout_AGEX = regval1_AGEX - regval2_AGEX;
+      `AND_I: aluout_AGEX = regval1_AGEX & regval2_AGEX;
+      `OR_I: aluout_AGEX = regval1_AGEX | regval2_AGEX;
+      `XOR_I: aluout_AGEX = regval1_AGEX ^ regval2_AGEX;
+      `SLL_I: aluout_AGEX = regval1_AGEX << regval2_AGEX[4:0];
+      `SRL_I: aluout_AGEX = regval1_AGEX >> regval2_AGEX[4:0];
+      `SRA_I: aluout_AGEX = $signed(regval1_AGEX) >>> regval2_AGEX[4:0];
+      `SLT_I: aluout_AGEX = ($signed(regval1_AGEX) < $signed(regval2_AGEX)) ? 1 : 0;
+      `SLTU_I: aluout_AGEX = (regval1_AGEX < regval2_AGEX) ? 1 : 0;
+      `MUL_I: aluout_AGEX = regval1_AGEX * regval2_AGEX;
+      `ANDI_I: aluout_AGEX = regval1_AGEX & sxt_imm_AGEX;
+      `ORI_I: aluout_AGEX = regval1_AGEX | sxt_imm_AGEX;
+      `XORI_I: aluout_AGEX = regval1_AGEX ^ sxt_imm_AGEX;
+      `SLLI_I: aluout_AGEX = regval1_AGEX << sxt_imm_AGEX[4:0];
+      `SRLI_I: aluout_AGEX = regval1_AGEX >> sxt_imm_AGEX[4:0];
+      `SRAI_I: aluout_AGEX = $signed(regval1_AGEX) >>> sxt_imm_AGEX[4:0];
+      `SLTI_I: aluout_AGEX = ($signed(regval1_AGEX) < $signed(sxt_imm_AGEX)) ? 1 : 0;
+      `SLTIU_I: aluout_AGEX = (regval1_AGEX < sxt_imm_AGEX) ? 1 : 0;
+      `LUI_I: aluout_AGEX = sxt_imm_AGEX;
+      `AUIPC_I: aluout_AGEX = PC_AGEX + sxt_imm_AGEX;
+      `JALR_I: aluout_AGEX = pcplus_AGEX;
+      `JAL_I: aluout_AGEX = pcplus_AGEX;
+      default: begin
+        aluout_AGEX  = '0;
+      end
+    endcase
   end
 
 
@@ -124,7 +156,9 @@ module AGEX_STAGE(
                                 inst_count_AGEX,
                                 // <-- Task 3: replace this padding with the
                                 //     three fields mem_stage.v unpacks next
-                                {(`AGEX_latch_WIDTH - (1 + `INSTBITS + `DBITS + `IOPBITS + `DBITS)){1'b0}}
+                                aluout_AGEX, 
+                                wr_reg_AGEX, 
+                                wregno_AGEX
                                  };
 
   always @ (posedge clk ) begin
@@ -153,21 +187,19 @@ module AGEX_STAGE(
   // ===========================================================================
   always @ (*) begin
     case (op_I_AGEX)
-      `BEQ_I : br_cond_AGEX = 1'b1; // write correct code to check the branch condition.
-      /*
-      `BNE_I : ...
-      `BLT_I : ...
-      `BGE_I : ...
-      `BLTU_I: ..
-      `BGEU_I : ...
-      */
+      `BEQ_I : br_cond_AGEX = regval1_AGEX == regval2_AGEX; // write correct code to check the branch condition.
+      `BNE_I : br_cond_AGEX = regval1_AGEX != regval2_AGEX;
+      `BLT_I : br_cond_AGEX = $signed(regval1_AGEX) < $signed(regval2_AGEX);
+      `BGE_I : br_cond_AGEX = $signed(regval1_AGEX) >= $signed(regval2_AGEX);
+      `BLTU_I: br_cond_AGEX = regval1_AGEX < regval2_AGEX;
+      `BGEU_I: br_cond_AGEX = regval1_AGEX >= regval2_AGEX;
       default : br_cond_AGEX = 1'b0;
     endcase
   end
 
 
   // ===== Task 5: branch target and the redirect =================
-  //
+  //   
   //   br_target_AGEX is "the address that SHOULD be fetched after this
   //   instruction".  The br_mispred_AGEX line below compares that against
   //   pcplus_AGEX, the address FE actually fetched, and calls any difference a
@@ -182,8 +214,16 @@ module AGEX_STAGE(
   // ===========================================================================
 
   always @(*)begin
-    br_target_AGEX = '0;              
-    // if (is_br_AGEX && br_cond_AGEX)
+    br_target_AGEX = pcplus_AGEX;
+    if (op_I_AGEX == `JAL_I) begin
+      br_target_AGEX = PC_AGEX + sxt_imm_AGEX;
+    end
+    else if (op_I_AGEX == `JALR_I) begin
+      br_target_AGEX = (regval1_AGEX + sxt_imm_AGEX) & 32'hFFFFFFFE; 
+    end
+    else if (is_br_AGEX && br_cond_AGEX ) begin
+      br_target_AGEX = PC_AGEX + sxt_imm_AGEX;
+    end
   end
 
   
@@ -191,10 +231,13 @@ module AGEX_STAGE(
                          && (br_target_AGEX != pcplus_AGEX)) ? 1 : 0; // Given to you.  Do not change this line.
 
   // forward signals to the FE stage
-  assign from_AGEX_to_FE = '0;        
+  assign from_AGEX_to_FE = {
+    br_mispred_AGEX, 
+    br_target_AGEX
+  };        
 
   // forward signals to the DE stage
-  assign from_AGEX_to_DE = '0;        
+  assign from_AGEX_to_DE = {br_mispred_AGEX};
 
 
   // ===== Task 7: more ALU arms, and the jump targets =============

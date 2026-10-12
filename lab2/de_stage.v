@@ -30,6 +30,9 @@ module DE_STAGE(
   wire [`DBITS-1:0] inst_count_DE; 
   // TODO Task 3
   wire[`DE_latch_WIDTH-1:0] DE_latch_contents; 
+  wire [`PHT_BITS-1:0] pht_index_DE;
+  wire pht_prediction_DE;
+  wire [`DBITS-1:0] pred_next_pc_DE;
 
  
 
@@ -340,7 +343,10 @@ end
             inst_DE,
             PC_DE, 
             pcplus_DE,
-            inst_count_DE
+            inst_count_DE,
+            pht_index_DE,
+            pht_prediction_DE,
+            pred_next_pc_DE
             }  = from_FE_latch;  
 
 
@@ -363,7 +369,10 @@ end
                                   rd_mem_DE,
                                   wr_mem_DE,
                                   wr_reg_DE,
-                                  rd_DE
+                                  rd_DE,
+                                  pht_index_DE,
+                                  pht_prediction_DE,
+                                  pred_next_pc_DE
                                   }; 
 
   always @ (negedge clk) begin 

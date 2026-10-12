@@ -1,0 +1,48 @@
+// Verilated -*- C++ -*-
+// DESCRIPTION: Verilator output: Design internal header
+// See Vtb_branch_predictor.h for the primary calling header
+
+#ifndef VERILATED_VTB_BRANCH_PREDICTOR_AGEX_STAGE_H_
+#define VERILATED_VTB_BRANCH_PREDICTOR_AGEX_STAGE_H_  // guard
+
+#include "verilated.h"
+
+
+class Vtb_branch_predictor__Syms;
+
+class alignas(VL_CACHE_LINE_BYTES) Vtb_branch_predictor_AGEX_STAGE final : public VerilatedModule {
+  public:
+
+    // DESIGN SPECIFIC STATE
+    VL_IN8(__PVT__clk,0,0);
+    VL_IN8(__PVT__reset,0,0);
+    VL_IN8(__PVT__from_MEM_to_AGEX,0,0);
+    VL_IN8(__PVT__from_WB_to_AGEX,0,0);
+    VL_OUT8(__PVT__from_AGEX_to_DE,0,0);
+    CData/*0:0*/ __PVT__br_cond_AGEX;
+    CData/*0:0*/ __PVT__update_predictor_AGEX;
+    VL_INW(__PVT__from_DE_latch,281,0,9);
+    VL_OUTW(__PVT__AGEX_latch_out,174,0,6);
+    VL_OUTW(__PVT__from_AGEX_to_FE,106,0,4);
+    VlWide<6>/*174:0*/ __PVT__AGEX_latch;
+    IData/*31:0*/ __PVT__aluout_AGEX;
+    IData/*31:0*/ __PVT__memaddr_AGEX;
+    IData/*31:0*/ __PVT__br_target_AGEX;
+    IData/*31:0*/ branch_count;
+    IData/*31:0*/ correct_branch_count;
+    IData/*31:0*/ __VdfgExtracted_h7fcc4370__0;
+
+    // INTERNAL VARIABLES
+    Vtb_branch_predictor__Syms* const vlSymsp;
+
+    // CONSTRUCTORS
+    Vtb_branch_predictor_AGEX_STAGE(Vtb_branch_predictor__Syms* symsp, const char* v__name);
+    ~Vtb_branch_predictor_AGEX_STAGE();
+    VL_UNCOPYABLE(Vtb_branch_predictor_AGEX_STAGE);
+
+    // INTERNAL METHODS
+    void __Vconfigure(bool first);
+};
+
+
+#endif  // guard

@@ -1,0 +1,15 @@
+mkdir -p "obj_dir/task3"
+cp "test/inclass_1/task3/blt.mem" "obj_dir/task3/program.mem"
+-- VERILATE ----------------
+verilator --exe -cc --assert -Wno-fatal --unroll-count 1024 --trace --trace-structs --top-module tb_direction '+define+IDMEMINITFILE="/home/hice1/araj92/cs3220/cs3220-labs-fall2026/lab2/obj_dir/task3/program.mem"' \
+	-I/home/hice1/araj92/cs3220/cs3220-labs-fall2026/lab2 /home/hice1/araj92/cs3220/cs3220-labs-fall2026/lab2/pipeline.v /home/hice1/araj92/cs3220/cs3220-labs-fall2026/lab2/fe_stage.v /home/hice1/araj92/cs3220/cs3220-labs-fall2026/lab2/de_stage.v /home/hice1/araj92/cs3220/cs3220-labs-fall2026/lab2/agex_stage.v /home/hice1/araj92/cs3220/cs3220-labs-fall2026/lab2/mem_stage.v /home/hice1/araj92/cs3220/cs3220-labs-fall2026/lab2/wb_stage.v \
+	test/inclass_1/task3/tb_direction.v /home/hice1/araj92/cs3220/cs3220-labs-fall2026/lab2/test/inclass_1/task3/sim_direction.cpp \
+	--Mdir obj_dir/task3 -CFLAGS '-DDPRINTF'
+-- COMPILE -----------------
+make -j 4 -C obj_dir/task3 -f Vtb_direction.mk
+make[1]: Entering directory '/home/hice1/araj92/cs3220/cs3220-labs-fall2026/lab2/obj_dir/task3'
+make[1]: Nothing to be done for 'default'.
+make[1]: Leaving directory '/home/hice1/araj92/cs3220/cs3220-labs-fall2026/lab2/obj_dir/task3'
+-- RUN ---------------------
+obj_dir/task3/Vtb_direction 
+Passed!

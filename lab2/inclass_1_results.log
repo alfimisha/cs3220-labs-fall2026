@@ -1,0 +1,17 @@
+TESTING: bhr
+Passed!
+TESTING: pht
+Passed!
+TESTING: task3/beq
+Passed!
+TESTING: task3/bne
+Passed!
+TESTING: task3/blt
+Passed!
+TESTING: task3/bgeu
+Passed!
+TESTING: task3/predict
+Passed!
+Total number of tests: 7
+Number of passed tests: 7
+Number of failed tests: 0
