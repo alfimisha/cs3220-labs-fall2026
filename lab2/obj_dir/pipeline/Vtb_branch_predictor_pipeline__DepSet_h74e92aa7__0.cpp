@@ -19,8 +19,8 @@ VL_INLINE_OPT void Vtb_branch_predictor_pipeline___nba_sequent__TOP__tb_branch_p
     IData/*31:0*/ __Vilp;
     IData/*31:0*/ __Vdly__my_FE_stage__DOT__inst_count_FE;
     __Vdly__my_FE_stage__DOT__inst_count_FE = 0;
-    CData/*7:0*/ __Vdly__my_FE_stage__DOT__bhr_FE;
-    __Vdly__my_FE_stage__DOT__bhr_FE = 0;
+    CData/*7:0*/ __Vdly__my_FE_stage__DOT__bhr_fe;
+    __Vdly__my_FE_stage__DOT__bhr_fe = 0;
     CData/*0:0*/ __Vdlyvset__my_FE_stage__DOT__pht__DOT__PHT__v0;
     __Vdlyvset__my_FE_stage__DOT__pht__DOT__PHT__v0 = 0;
     CData/*7:0*/ __Vdlyvdim0__my_FE_stage__DOT__pht__DOT__PHT__v256;
@@ -35,35 +35,41 @@ VL_INLINE_OPT void Vtb_branch_predictor_pipeline___nba_sequent__TOP__tb_branch_p
     __Vdlyvval__my_FE_stage__DOT__pht__DOT__PHT__v257 = 0;
     CData/*0:0*/ __Vdlyvset__my_FE_stage__DOT__pht__DOT__PHT__v257;
     __Vdlyvset__my_FE_stage__DOT__pht__DOT__PHT__v257 = 0;
-    CData/*3:0*/ __Vdlyvdim0__my_FE_stage__DOT__btb__DOT__btb_tag__v0;
-    __Vdlyvdim0__my_FE_stage__DOT__btb__DOT__btb_tag__v0 = 0;
-    IData/*25:0*/ __Vdlyvval__my_FE_stage__DOT__btb__DOT__btb_tag__v0;
-    __Vdlyvval__my_FE_stage__DOT__btb__DOT__btb_tag__v0 = 0;
+    CData/*0:0*/ __Vdlyvset__my_FE_stage__DOT__btb__DOT__btb_target__v0;
+    __Vdlyvset__my_FE_stage__DOT__btb__DOT__btb_target__v0 = 0;
+    CData/*3:0*/ __Vdlyvdim0__my_FE_stage__DOT__btb__DOT__btb_target__v16;
+    __Vdlyvdim0__my_FE_stage__DOT__btb__DOT__btb_target__v16 = 0;
+    IData/*31:0*/ __Vdlyvval__my_FE_stage__DOT__btb__DOT__btb_target__v16;
+    __Vdlyvval__my_FE_stage__DOT__btb__DOT__btb_target__v16 = 0;
+    CData/*0:0*/ __Vdlyvset__my_FE_stage__DOT__btb__DOT__btb_target__v16;
+    __Vdlyvset__my_FE_stage__DOT__btb__DOT__btb_target__v16 = 0;
     CData/*0:0*/ __Vdlyvset__my_FE_stage__DOT__btb__DOT__btb_tag__v0;
     __Vdlyvset__my_FE_stage__DOT__btb__DOT__btb_tag__v0 = 0;
+    CData/*3:0*/ __Vdlyvdim0__my_FE_stage__DOT__btb__DOT__btb_tag__v16;
+    __Vdlyvdim0__my_FE_stage__DOT__btb__DOT__btb_tag__v16 = 0;
+    IData/*25:0*/ __Vdlyvval__my_FE_stage__DOT__btb__DOT__btb_tag__v16;
+    __Vdlyvval__my_FE_stage__DOT__btb__DOT__btb_tag__v16 = 0;
+    CData/*0:0*/ __Vdlyvset__my_FE_stage__DOT__btb__DOT__btb_tag__v16;
+    __Vdlyvset__my_FE_stage__DOT__btb__DOT__btb_tag__v16 = 0;
     CData/*0:0*/ __Vdlyvset__my_FE_stage__DOT__btb__DOT__btb_valid__v0;
     __Vdlyvset__my_FE_stage__DOT__btb__DOT__btb_valid__v0 = 0;
     CData/*3:0*/ __Vdlyvdim0__my_FE_stage__DOT__btb__DOT__btb_valid__v16;
     __Vdlyvdim0__my_FE_stage__DOT__btb__DOT__btb_valid__v16 = 0;
     CData/*0:0*/ __Vdlyvset__my_FE_stage__DOT__btb__DOT__btb_valid__v16;
     __Vdlyvset__my_FE_stage__DOT__btb__DOT__btb_valid__v16 = 0;
-    CData/*3:0*/ __Vdlyvdim0__my_FE_stage__DOT__btb__DOT__btb_target__v0;
-    __Vdlyvdim0__my_FE_stage__DOT__btb__DOT__btb_target__v0 = 0;
-    IData/*31:0*/ __Vdlyvval__my_FE_stage__DOT__btb__DOT__btb_target__v0;
-    __Vdlyvval__my_FE_stage__DOT__btb__DOT__btb_target__v0 = 0;
-    CData/*0:0*/ __Vdlyvset__my_FE_stage__DOT__btb__DOT__btb_target__v0;
-    __Vdlyvset__my_FE_stage__DOT__btb__DOT__btb_target__v0 = 0;
     // Body
+    __Vdly__my_FE_stage__DOT__bhr_fe = vlSelf->__PVT__my_FE_stage__DOT__bhr_fe;
     __Vdly__my_FE_stage__DOT__inst_count_FE = vlSelf->__PVT__my_FE_stage__DOT__inst_count_FE;
     __Vdlyvset__my_FE_stage__DOT__btb__DOT__btb_target__v0 = 0U;
-    __Vdlyvset__my_FE_stage__DOT__btb__DOT__btb_tag__v0 = 0U;
+    __Vdlyvset__my_FE_stage__DOT__btb__DOT__btb_target__v16 = 0U;
     __Vdlyvset__my_FE_stage__DOT__btb__DOT__btb_valid__v0 = 0U;
     __Vdlyvset__my_FE_stage__DOT__btb__DOT__btb_valid__v16 = 0U;
-    __Vdly__my_FE_stage__DOT__bhr_FE = vlSelf->__PVT__my_FE_stage__DOT__bhr_FE;
-    __Vdly__my_FE_stage__DOT__PC_FE_latch = vlSelf->__PVT__my_FE_stage__DOT__PC_FE_latch;
+    __Vdlyvset__my_FE_stage__DOT__btb__DOT__btb_tag__v0 = 0U;
+    __Vdlyvset__my_FE_stage__DOT__btb__DOT__btb_tag__v16 = 0U;
     __Vdlyvset__my_FE_stage__DOT__pht__DOT__PHT__v0 = 0U;
     __Vdlyvset__my_FE_stage__DOT__pht__DOT__PHT__v256 = 0U;
     __Vdlyvset__my_FE_stage__DOT__pht__DOT__PHT__v257 = 0U;
+    __Vdly__my_FE_stage__DOT__PC_FE_latch = vlSelf->__PVT__my_FE_stage__DOT__PC_FE_latch;
     vlSelf->__Vdly__my_FE_stage__DOT__FE_latch[0U] 
         = vlSelf->__PVT__my_FE_stage__DOT__FE_latch[0U];
     vlSelf->__Vdly__my_FE_stage__DOT__FE_latch[1U] 
@@ -79,13 +85,15 @@ VL_INLINE_OPT void Vtb_branch_predictor_pipeline___nba_sequent__TOP__tb_branch_p
     vlSelf->__Vdlyvset__my_MEM_stage__DOT__dmem__v0 = 0U;
     if (vlSymsp->TOP.reset) {
         vlSelf->__PVT__my_FE_stage__DOT__pht__DOT__i = 0x100U;
-        vlSelf->__PVT__my_FE_stage__DOT__btb__DOT__i = 0x10U;
+        vlSelf->__PVT__my_FE_stage__DOT__btb__DOT__unnamedblk1__DOT__i = 0x10U;
         vlSelf->__PVT__cycle_count = 0U;
+        __Vdly__my_FE_stage__DOT__bhr_fe = 0U;
         __Vdly__my_FE_stage__DOT__inst_count_FE = 1U;
+        __Vdlyvset__my_FE_stage__DOT__btb__DOT__btb_target__v0 = 1U;
         __Vdlyvset__my_FE_stage__DOT__btb__DOT__btb_valid__v0 = 1U;
-        __Vdly__my_FE_stage__DOT__bhr_FE = 0U;
-        __Vdly__my_FE_stage__DOT__PC_FE_latch = 0x200U;
+        __Vdlyvset__my_FE_stage__DOT__btb__DOT__btb_tag__v0 = 1U;
         __Vdlyvset__my_FE_stage__DOT__pht__DOT__PHT__v0 = 1U;
+        __Vdly__my_FE_stage__DOT__PC_FE_latch = 0x200U;
         vlSelf->__Vdly__my_FE_stage__DOT__FE_latch[0U] = 0U;
         vlSelf->__Vdly__my_FE_stage__DOT__FE_latch[1U] = 0U;
         vlSelf->__Vdly__my_FE_stage__DOT__FE_latch[2U] = 0U;
@@ -95,24 +103,30 @@ VL_INLINE_OPT void Vtb_branch_predictor_pipeline___nba_sequent__TOP__tb_branch_p
         vlSelf->__PVT__my_DE_stage__DOT__in_use_regs = 0U;
     } else {
         vlSelf->__PVT__cycle_count = ((IData)(1U) + vlSelf->__PVT__cycle_count);
-        if ((1U & (~ (vlSymsp->TOP__tb_branch_predictor__dut__my_AGEX_stage.__PVT__from_AGEX_to_FE[3U] 
-                      >> 0xaU)))) {
-            if ((1U & (~ (IData)(vlSelf->__PVT__my_FE_stage__DOT__stall_pipe_FE)))) {
-                __Vdly__my_FE_stage__DOT__inst_count_FE 
-                    = ((IData)(1U) + vlSelf->__PVT__my_FE_stage__DOT__inst_count_FE);
-            }
-        }
         if ((0x200U & vlSymsp->TOP__tb_branch_predictor__dut__my_AGEX_stage.__PVT__from_AGEX_to_FE[2U])) {
-            __Vdlyvset__my_FE_stage__DOT__btb__DOT__btb_valid__v16 = 1U;
-            __Vdlyvdim0__my_FE_stage__DOT__btb__DOT__btb_valid__v16 
-                = (0xfU & (vlSymsp->TOP__tb_branch_predictor__dut__my_AGEX_stage.__PVT__from_AGEX_to_FE[1U] 
-                           >> 2U));
-            __Vdly__my_FE_stage__DOT__bhr_FE = ((0xfeU 
-                                                 & ((IData)(vlSelf->__PVT__my_FE_stage__DOT__bhr_FE) 
+            __Vdly__my_FE_stage__DOT__bhr_fe = ((0xfeU 
+                                                 & ((IData)(vlSelf->__PVT__my_FE_stage__DOT__bhr_fe) 
                                                     << 1U)) 
                                                 | (1U 
                                                    & (vlSymsp->TOP__tb_branch_predictor__dut__my_AGEX_stage.__PVT__from_AGEX_to_FE[2U] 
                                                       >> 8U)));
+            __Vdlyvval__my_FE_stage__DOT__btb__DOT__btb_target__v16 
+                = vlSymsp->TOP__tb_branch_predictor__dut__my_AGEX_stage.__PVT__from_AGEX_to_FE[0U];
+            __Vdlyvset__my_FE_stage__DOT__btb__DOT__btb_target__v16 = 1U;
+            __Vdlyvdim0__my_FE_stage__DOT__btb__DOT__btb_target__v16 
+                = (0xfU & (vlSymsp->TOP__tb_branch_predictor__dut__my_AGEX_stage.__PVT__from_AGEX_to_FE[1U] 
+                           >> 2U));
+            __Vdlyvset__my_FE_stage__DOT__btb__DOT__btb_valid__v16 = 1U;
+            __Vdlyvdim0__my_FE_stage__DOT__btb__DOT__btb_valid__v16 
+                = (0xfU & (vlSymsp->TOP__tb_branch_predictor__dut__my_AGEX_stage.__PVT__from_AGEX_to_FE[1U] 
+                           >> 2U));
+            __Vdlyvval__my_FE_stage__DOT__btb__DOT__btb_tag__v16 
+                = (vlSymsp->TOP__tb_branch_predictor__dut__my_AGEX_stage.__PVT__from_AGEX_to_FE[1U] 
+                   >> 6U);
+            __Vdlyvset__my_FE_stage__DOT__btb__DOT__btb_tag__v16 = 1U;
+            __Vdlyvdim0__my_FE_stage__DOT__btb__DOT__btb_tag__v16 
+                = (0xfU & (vlSymsp->TOP__tb_branch_predictor__dut__my_AGEX_stage.__PVT__from_AGEX_to_FE[1U] 
+                           >> 2U));
             if ((0x100U & vlSymsp->TOP__tb_branch_predictor__dut__my_AGEX_stage.__PVT__from_AGEX_to_FE[2U])) {
                 if ((3U != vlSelf->__PVT__my_FE_stage__DOT__pht__DOT__PHT
                      [(0xffU & vlSymsp->TOP__tb_branch_predictor__dut__my_AGEX_stage.__PVT__from_AGEX_to_FE[2U])])) {
@@ -132,6 +146,15 @@ VL_INLINE_OPT void Vtb_branch_predictor_pipeline___nba_sequent__TOP__tb_branch_p
                 __Vdlyvset__my_FE_stage__DOT__pht__DOT__PHT__v257 = 1U;
                 __Vdlyvdim0__my_FE_stage__DOT__pht__DOT__PHT__v257 
                     = (0xffU & vlSymsp->TOP__tb_branch_predictor__dut__my_AGEX_stage.__PVT__from_AGEX_to_FE[2U]);
+            }
+        }
+        if ((1U & (~ (vlSymsp->TOP__tb_branch_predictor__dut__my_AGEX_stage.__PVT__from_AGEX_to_FE[3U] 
+                      >> 0xaU)))) {
+            if ((1U & (~ (IData)(vlSelf->__PVT__my_FE_stage__DOT__stall_pipe_FE)))) {
+                __Vdly__my_FE_stage__DOT__inst_count_FE 
+                    = ((IData)(vlSelf->__PVT__my_FE_stage__DOT__btb_hit)
+                        ? ((IData)(1U) + vlSelf->__PVT__my_FE_stage__DOT__inst_count_FE)
+                        : ((IData)(1U) + vlSelf->__PVT__my_FE_stage__DOT__inst_count_FE));
             }
         }
         if ((0x400U & vlSymsp->TOP__tb_branch_predictor__dut__my_AGEX_stage.__PVT__from_AGEX_to_FE[3U])) {
@@ -160,19 +183,32 @@ VL_INLINE_OPT void Vtb_branch_predictor_pipeline___nba_sequent__TOP__tb_branch_p
             vlSelf->__Vdly__my_FE_stage__DOT__FE_latch[5U] 
                 = vlSelf->__PVT__my_FE_stage__DOT__FE_latch[5U];
         } else {
-            __Vdly__my_FE_stage__DOT__PC_FE_latch = vlSelf->__PVT__my_FE_stage__DOT__pred_next_pc_FE;
+            __Vdly__my_FE_stage__DOT__PC_FE_latch = 
+                ((IData)(vlSelf->__PVT__my_FE_stage__DOT__btb_hit)
+                  ? vlSelf->__PVT__my_FE_stage__DOT__target_btb_pred
+                  : vlSelf->__PVT__my_FE_stage__DOT__pcplus_FE);
             vlSelf->__Vdly__my_FE_stage__DOT__FE_latch[0U] 
-                = (IData)((((QData)((IData)(vlSelf->__PVT__my_FE_stage__DOT__pht_index_FE)) 
+                = (IData)((((QData)((IData)(vlSelf->__PVT__my_FE_stage__DOT__pht_idx_fe)) 
                             << 0x21U) | (((QData)((IData)(vlSelf->__PVT__my_FE_stage__DOT__pht_prediction_FE)) 
                                           << 0x20U) 
-                                         | (QData)((IData)(vlSelf->__PVT__my_FE_stage__DOT__pred_next_pc_FE)))));
+                                         | (QData)((IData)(
+                                                           ((IData)(vlSelf->__PVT__my_FE_stage__DOT__btb_hit)
+                                                             ? vlSelf->__PVT__my_FE_stage__DOT__target_btb_pred
+                                                             : 
+                                                            ((IData)(4U) 
+                                                             + vlSelf->__PVT__my_FE_stage__DOT__PC_FE_latch)))))));
             vlSelf->__Vdly__my_FE_stage__DOT__FE_latch[1U] 
                 = ((vlSelf->__PVT__my_FE_stage__DOT__inst_count_FE 
-                    << 9U) | (IData)(((((QData)((IData)(vlSelf->__PVT__my_FE_stage__DOT__pht_index_FE)) 
+                    << 9U) | (IData)(((((QData)((IData)(vlSelf->__PVT__my_FE_stage__DOT__pht_idx_fe)) 
                                         << 0x21U) | 
                                        (((QData)((IData)(vlSelf->__PVT__my_FE_stage__DOT__pht_prediction_FE)) 
                                          << 0x20U) 
-                                        | (QData)((IData)(vlSelf->__PVT__my_FE_stage__DOT__pred_next_pc_FE)))) 
+                                        | (QData)((IData)(
+                                                          ((IData)(vlSelf->__PVT__my_FE_stage__DOT__btb_hit)
+                                                            ? vlSelf->__PVT__my_FE_stage__DOT__target_btb_pred
+                                                            : 
+                                                           ((IData)(4U) 
+                                                            + vlSelf->__PVT__my_FE_stage__DOT__PC_FE_latch)))))) 
                                       >> 0x20U)));
             vlSelf->__Vdly__my_FE_stage__DOT__FE_latch[2U] 
                 = ((vlSelf->__PVT__my_FE_stage__DOT__inst_count_FE 
@@ -193,9 +229,11 @@ VL_INLINE_OPT void Vtb_branch_predictor_pipeline___nba_sequent__TOP__tb_branch_p
                                           >> 0x20U)) 
                                  << 9U));
             vlSelf->__Vdly__my_FE_stage__DOT__FE_latch[5U] 
-                = (0x200U | ((IData)(((((QData)((IData)(vlSelf->__PVT__my_FE_stage__DOT__inst_FE)) 
-                                        << 0x20U) | (QData)((IData)(vlSelf->__PVT__my_FE_stage__DOT__PC_FE_latch))) 
-                                      >> 0x20U)) >> 0x17U));
+                = (((IData)(vlSelf->__PVT__my_FE_stage__DOT__valid_FE) 
+                    << 9U) | ((IData)(((((QData)((IData)(vlSelf->__PVT__my_FE_stage__DOT__inst_FE)) 
+                                         << 0x20U) 
+                                        | (QData)((IData)(vlSelf->__PVT__my_FE_stage__DOT__PC_FE_latch))) 
+                                       >> 0x20U)) >> 0x17U));
         }
         if (((~ (IData)(vlSelf->__PVT__my_FE_stage__DOT__stall_pipe_FE)) 
              & (IData)(vlSelf->__PVT__my_DE_stage__DOT__wr_reg_DE))) {
@@ -215,23 +253,6 @@ VL_INLINE_OPT void Vtb_branch_predictor_pipeline___nba_sequent__TOP__tb_branch_p
                    & vlSelf->__PVT__my_DE_stage__DOT__in_use_regs);
         }
     }
-    if ((1U & (~ (IData)(vlSymsp->TOP.reset)))) {
-        if ((0x200U & vlSymsp->TOP__tb_branch_predictor__dut__my_AGEX_stage.__PVT__from_AGEX_to_FE[2U])) {
-            __Vdlyvval__my_FE_stage__DOT__btb__DOT__btb_target__v0 
-                = vlSymsp->TOP__tb_branch_predictor__dut__my_AGEX_stage.__PVT__from_AGEX_to_FE[0U];
-            __Vdlyvset__my_FE_stage__DOT__btb__DOT__btb_target__v0 = 1U;
-            __Vdlyvdim0__my_FE_stage__DOT__btb__DOT__btb_target__v0 
-                = (0xfU & (vlSymsp->TOP__tb_branch_predictor__dut__my_AGEX_stage.__PVT__from_AGEX_to_FE[1U] 
-                           >> 2U));
-            __Vdlyvval__my_FE_stage__DOT__btb__DOT__btb_tag__v0 
-                = (vlSymsp->TOP__tb_branch_predictor__dut__my_AGEX_stage.__PVT__from_AGEX_to_FE[1U] 
-                   >> 6U);
-            __Vdlyvset__my_FE_stage__DOT__btb__DOT__btb_tag__v0 = 1U;
-            __Vdlyvdim0__my_FE_stage__DOT__btb__DOT__btb_tag__v0 
-                = (0xfU & (vlSymsp->TOP__tb_branch_predictor__dut__my_AGEX_stage.__PVT__from_AGEX_to_FE[1U] 
-                           >> 2U));
-        }
-    }
     if ((0x40U & vlSymsp->TOP__tb_branch_predictor__dut__my_AGEX_stage.__PVT__AGEX_latch[0U])) {
         vlSelf->__Vdlyvval__my_MEM_stage__DOT__dmem__v0 
             = ((vlSymsp->TOP__tb_branch_predictor__dut__my_AGEX_stage.__PVT__AGEX_latch[1U] 
@@ -242,13 +263,28 @@ VL_INLINE_OPT void Vtb_branch_predictor_pipeline___nba_sequent__TOP__tb_branch_p
             = (0x3fffU & (vlSymsp->TOP__tb_branch_predictor__dut__my_AGEX_stage.__PVT__AGEX_latch[1U] 
                           >> 0xaU));
     }
+    vlSelf->__PVT__my_FE_stage__DOT__bhr_fe = __Vdly__my_FE_stage__DOT__bhr_fe;
     if (__Vdlyvset__my_FE_stage__DOT__btb__DOT__btb_target__v0) {
-        vlSelf->__PVT__my_FE_stage__DOT__btb__DOT__btb_target[__Vdlyvdim0__my_FE_stage__DOT__btb__DOT__btb_target__v0] 
-            = __Vdlyvval__my_FE_stage__DOT__btb__DOT__btb_target__v0;
+        vlSelf->__PVT__my_FE_stage__DOT__btb__DOT__btb_target[0U] = 0U;
+        vlSelf->__PVT__my_FE_stage__DOT__btb__DOT__btb_target[1U] = 0U;
+        vlSelf->__PVT__my_FE_stage__DOT__btb__DOT__btb_target[2U] = 0U;
+        vlSelf->__PVT__my_FE_stage__DOT__btb__DOT__btb_target[3U] = 0U;
+        vlSelf->__PVT__my_FE_stage__DOT__btb__DOT__btb_target[4U] = 0U;
+        vlSelf->__PVT__my_FE_stage__DOT__btb__DOT__btb_target[5U] = 0U;
+        vlSelf->__PVT__my_FE_stage__DOT__btb__DOT__btb_target[6U] = 0U;
+        vlSelf->__PVT__my_FE_stage__DOT__btb__DOT__btb_target[7U] = 0U;
+        vlSelf->__PVT__my_FE_stage__DOT__btb__DOT__btb_target[8U] = 0U;
+        vlSelf->__PVT__my_FE_stage__DOT__btb__DOT__btb_target[9U] = 0U;
+        vlSelf->__PVT__my_FE_stage__DOT__btb__DOT__btb_target[0xaU] = 0U;
+        vlSelf->__PVT__my_FE_stage__DOT__btb__DOT__btb_target[0xbU] = 0U;
+        vlSelf->__PVT__my_FE_stage__DOT__btb__DOT__btb_target[0xcU] = 0U;
+        vlSelf->__PVT__my_FE_stage__DOT__btb__DOT__btb_target[0xdU] = 0U;
+        vlSelf->__PVT__my_FE_stage__DOT__btb__DOT__btb_target[0xeU] = 0U;
+        vlSelf->__PVT__my_FE_stage__DOT__btb__DOT__btb_target[0xfU] = 0U;
     }
-    if (__Vdlyvset__my_FE_stage__DOT__btb__DOT__btb_tag__v0) {
-        vlSelf->__PVT__my_FE_stage__DOT__btb__DOT__btb_tag[__Vdlyvdim0__my_FE_stage__DOT__btb__DOT__btb_tag__v0] 
-            = __Vdlyvval__my_FE_stage__DOT__btb__DOT__btb_tag__v0;
+    if (__Vdlyvset__my_FE_stage__DOT__btb__DOT__btb_target__v16) {
+        vlSelf->__PVT__my_FE_stage__DOT__btb__DOT__btb_target[__Vdlyvdim0__my_FE_stage__DOT__btb__DOT__btb_target__v16] 
+            = __Vdlyvval__my_FE_stage__DOT__btb__DOT__btb_target__v16;
     }
     if (__Vdlyvset__my_FE_stage__DOT__btb__DOT__btb_valid__v0) {
         vlSelf->__PVT__my_FE_stage__DOT__btb__DOT__btb_valid[0U] = 0U;
@@ -271,7 +307,28 @@ VL_INLINE_OPT void Vtb_branch_predictor_pipeline___nba_sequent__TOP__tb_branch_p
     if (__Vdlyvset__my_FE_stage__DOT__btb__DOT__btb_valid__v16) {
         vlSelf->__PVT__my_FE_stage__DOT__btb__DOT__btb_valid[__Vdlyvdim0__my_FE_stage__DOT__btb__DOT__btb_valid__v16] = 1U;
     }
-    vlSelf->__PVT__my_FE_stage__DOT__bhr_FE = __Vdly__my_FE_stage__DOT__bhr_FE;
+    if (__Vdlyvset__my_FE_stage__DOT__btb__DOT__btb_tag__v0) {
+        vlSelf->__PVT__my_FE_stage__DOT__btb__DOT__btb_tag[0U] = 0U;
+        vlSelf->__PVT__my_FE_stage__DOT__btb__DOT__btb_tag[1U] = 0U;
+        vlSelf->__PVT__my_FE_stage__DOT__btb__DOT__btb_tag[2U] = 0U;
+        vlSelf->__PVT__my_FE_stage__DOT__btb__DOT__btb_tag[3U] = 0U;
+        vlSelf->__PVT__my_FE_stage__DOT__btb__DOT__btb_tag[4U] = 0U;
+        vlSelf->__PVT__my_FE_stage__DOT__btb__DOT__btb_tag[5U] = 0U;
+        vlSelf->__PVT__my_FE_stage__DOT__btb__DOT__btb_tag[6U] = 0U;
+        vlSelf->__PVT__my_FE_stage__DOT__btb__DOT__btb_tag[7U] = 0U;
+        vlSelf->__PVT__my_FE_stage__DOT__btb__DOT__btb_tag[8U] = 0U;
+        vlSelf->__PVT__my_FE_stage__DOT__btb__DOT__btb_tag[9U] = 0U;
+        vlSelf->__PVT__my_FE_stage__DOT__btb__DOT__btb_tag[0xaU] = 0U;
+        vlSelf->__PVT__my_FE_stage__DOT__btb__DOT__btb_tag[0xbU] = 0U;
+        vlSelf->__PVT__my_FE_stage__DOT__btb__DOT__btb_tag[0xcU] = 0U;
+        vlSelf->__PVT__my_FE_stage__DOT__btb__DOT__btb_tag[0xdU] = 0U;
+        vlSelf->__PVT__my_FE_stage__DOT__btb__DOT__btb_tag[0xeU] = 0U;
+        vlSelf->__PVT__my_FE_stage__DOT__btb__DOT__btb_tag[0xfU] = 0U;
+    }
+    if (__Vdlyvset__my_FE_stage__DOT__btb__DOT__btb_tag__v16) {
+        vlSelf->__PVT__my_FE_stage__DOT__btb__DOT__btb_tag[__Vdlyvdim0__my_FE_stage__DOT__btb__DOT__btb_tag__v16] 
+            = __Vdlyvval__my_FE_stage__DOT__btb__DOT__btb_tag__v16;
+    }
     if (__Vdlyvset__my_FE_stage__DOT__pht__DOT__PHT__v0) {
         __Vilp = 0U;
         while ((__Vilp <= 0xffU)) {
@@ -290,27 +347,37 @@ VL_INLINE_OPT void Vtb_branch_predictor_pipeline___nba_sequent__TOP__tb_branch_p
     vlSelf->__PVT__my_FE_stage__DOT__inst_count_FE 
         = __Vdly__my_FE_stage__DOT__inst_count_FE;
     vlSelf->__PVT__my_FE_stage__DOT__PC_FE_latch = __Vdly__my_FE_stage__DOT__PC_FE_latch;
+    vlSelf->__PVT__my_FE_stage__DOT__pcplus_FE = ((IData)(4U) 
+                                                  + vlSelf->__PVT__my_FE_stage__DOT__PC_FE_latch);
     vlSelf->__PVT__my_FE_stage__DOT__inst_FE = vlSelf->__PVT__my_FE_stage__DOT__imem
         [(0x3fffU & (vlSelf->__PVT__my_FE_stage__DOT__PC_FE_latch 
                      >> 2U))];
-    vlSelf->__PVT__my_FE_stage__DOT__pht_index_FE = 
-        (0xffU & ((vlSelf->__PVT__my_FE_stage__DOT__PC_FE_latch 
-                   >> 2U) ^ (IData)(vlSelf->__PVT__my_FE_stage__DOT__bhr_FE)));
+    vlSelf->__PVT__my_FE_stage__DOT__pht_idx_fe = (0xffU 
+                                                   & ((vlSelf->__PVT__my_FE_stage__DOT__PC_FE_latch 
+                                                       >> 2U) 
+                                                      ^ (IData)(vlSelf->__PVT__my_FE_stage__DOT__bhr_fe)));
+    vlSelf->__PVT__my_FE_stage__DOT__is_btb_valid = 
+        (vlSelf->__PVT__my_FE_stage__DOT__btb__DOT__btb_valid
+         [(0xfU & (vlSelf->__PVT__my_FE_stage__DOT__PC_FE_latch 
+                   >> 2U))] & (vlSelf->__PVT__my_FE_stage__DOT__btb__DOT__btb_tag
+                               [(0xfU & (vlSelf->__PVT__my_FE_stage__DOT__PC_FE_latch 
+                                         >> 2U))] == 
+                               (vlSelf->__PVT__my_FE_stage__DOT__PC_FE_latch 
+                                >> 6U)));
     vlSelf->__PVT__my_FE_stage__DOT__pht_prediction_FE 
         = (1U & (vlSelf->__PVT__my_FE_stage__DOT__pht__DOT__PHT
-                 [vlSelf->__PVT__my_FE_stage__DOT__pht_index_FE] 
+                 [vlSelf->__PVT__my_FE_stage__DOT__pht_idx_fe] 
                  >> 1U));
-    vlSelf->__PVT__my_FE_stage__DOT__pred_next_pc_FE 
-        = (((vlSelf->__PVT__my_FE_stage__DOT__btb__DOT__btb_valid
-             [(0xfU & (vlSelf->__PVT__my_FE_stage__DOT__PC_FE_latch 
-                       >> 2U))] & (vlSelf->__PVT__my_FE_stage__DOT__btb__DOT__btb_tag
-                                   [(0xfU & (vlSelf->__PVT__my_FE_stage__DOT__PC_FE_latch 
-                                             >> 2U))] 
-                                   == (vlSelf->__PVT__my_FE_stage__DOT__PC_FE_latch 
-                                       >> 6U))) & (IData)(vlSelf->__PVT__my_FE_stage__DOT__pht_prediction_FE))
-            ? vlSelf->__PVT__my_FE_stage__DOT__btb__DOT__btb_target
-           [(0xfU & (vlSelf->__PVT__my_FE_stage__DOT__PC_FE_latch 
-                     >> 2U))] : ((IData)(4U) + vlSelf->__PVT__my_FE_stage__DOT__PC_FE_latch));
+    if (vlSelf->__PVT__my_FE_stage__DOT__is_btb_valid) {
+        vlSelf->__PVT__my_FE_stage__DOT__target_btb_pred 
+            = vlSelf->__PVT__my_FE_stage__DOT__btb__DOT__btb_target
+            [(0xfU & (vlSelf->__PVT__my_FE_stage__DOT__PC_FE_latch 
+                      >> 2U))];
+        vlSelf->__PVT__my_FE_stage__DOT__btb_hit = vlSelf->__PVT__my_FE_stage__DOT__pht_prediction_FE;
+    } else {
+        vlSelf->__PVT__my_FE_stage__DOT__target_btb_pred = 0U;
+        vlSelf->__PVT__my_FE_stage__DOT__btb_hit = 0U;
+    }
 }
 
 VL_INLINE_OPT void Vtb_branch_predictor_pipeline___nba_sequent__TOP__tb_branch_predictor__dut__1(Vtb_branch_predictor_pipeline* vlSelf) {

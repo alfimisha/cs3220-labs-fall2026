@@ -26,7 +26,7 @@ VL_ATTR_COLD void Vtb_branch_predictor_AGEX_STAGE___ctor_var_reset(Vtb_branch_pr
     vlSelf->__PVT__aluout_AGEX = VL_RAND_RESET_I(32);
     vlSelf->__PVT__memaddr_AGEX = VL_RAND_RESET_I(32);
     vlSelf->__PVT__br_target_AGEX = VL_RAND_RESET_I(32);
-    vlSelf->__PVT__update_predictor_AGEX = VL_RAND_RESET_I(1);
+    vlSelf->__PVT__branch_resolved_AGEX = VL_RAND_RESET_I(1);
     vlSelf->branch_count = VL_RAND_RESET_I(32);
     vlSelf->correct_branch_count = VL_RAND_RESET_I(32);
     vlSelf->__VdfgExtracted_h7fcc4370__0 = VL_RAND_RESET_I(32);

@@ -25,13 +25,13 @@ class alignas(VL_CACHE_LINE_BYTES) VBTB___024root final : public VerilatedModule
     VL_OUT(out_data,31,0);
     VL_IN(wr_sel,31,0);
     VL_IN(wr_data,31,0);
-    IData/*31:0*/ BTB__DOT__i;
+    IData/*31:0*/ BTB__DOT__unnamedblk1__DOT__i;
     IData/*31:0*/ __VstlIterCount;
     IData/*31:0*/ __VicoIterCount;
     IData/*31:0*/ __VactIterCount;
-    VlUnpacked<CData/*0:0*/, 16> BTB__DOT__btb_valid;
-    VlUnpacked<IData/*25:0*/, 16> BTB__DOT__btb_tag;
     VlUnpacked<IData/*31:0*/, 16> BTB__DOT__btb_target;
+    VlUnpacked<IData/*25:0*/, 16> BTB__DOT__btb_tag;
+    VlUnpacked<CData/*0:0*/, 16> BTB__DOT__btb_valid;
     VlUnpacked<CData/*0:0*/, 2> __Vm_traceActivity;
     VlTriggerVec<1> __VstlTriggered;
     VlTriggerVec<1> __VicoTriggered;

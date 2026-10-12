@@ -20,7 +20,7 @@ class alignas(VL_CACHE_LINE_BYTES) Vtb_branch_predictor_AGEX_STAGE final : publi
     VL_IN8(__PVT__from_WB_to_AGEX,0,0);
     VL_OUT8(__PVT__from_AGEX_to_DE,0,0);
     CData/*0:0*/ __PVT__br_cond_AGEX;
-    CData/*0:0*/ __PVT__update_predictor_AGEX;
+    CData/*0:0*/ __PVT__branch_resolved_AGEX;
     VL_INW(__PVT__from_DE_latch,281,0,9);
     VL_OUTW(__PVT__AGEX_latch_out,174,0,6);
     VL_OUTW(__PVT__from_AGEX_to_FE,106,0,4);

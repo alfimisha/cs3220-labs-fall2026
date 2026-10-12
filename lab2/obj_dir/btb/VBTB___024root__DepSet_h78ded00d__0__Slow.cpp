@@ -51,7 +51,7 @@ VL_ATTR_COLD void VBTB___024root___eval_settle(VBTB___024root* vlSelf) {
 #ifdef VL_DEBUG
                 VBTB___024root___dump_triggers__stl(vlSelf);
 #endif
-                VL_FATAL_MT("/home/hice1/araj92/cs3220/cs3220-labs-fall2026/lab2/fe_stage.v", 249, "", "Settle region did not converge.");
+                VL_FATAL_MT("/home/hice1/araj92/cs3220/cs3220-labs-fall2026/lab2/fe_stage.v", 248, "", "Settle region did not converge.");
             }
             vlSelf->__VstlIterCount = ((IData)(1U) 
                                        + vlSelf->__VstlIterCount);
@@ -147,15 +147,15 @@ VL_ATTR_COLD void VBTB___024root___ctor_var_reset(VBTB___024root* vlSelf) {
     vlSelf->wr_sel = VL_RAND_RESET_I(32);
     vlSelf->wr_data = VL_RAND_RESET_I(32);
     for (int __Vi0 = 0; __Vi0 < 16; ++__Vi0) {
-        vlSelf->BTB__DOT__btb_valid[__Vi0] = VL_RAND_RESET_I(1);
+        vlSelf->BTB__DOT__btb_target[__Vi0] = VL_RAND_RESET_I(32);
     }
     for (int __Vi0 = 0; __Vi0 < 16; ++__Vi0) {
         vlSelf->BTB__DOT__btb_tag[__Vi0] = VL_RAND_RESET_I(26);
     }
     for (int __Vi0 = 0; __Vi0 < 16; ++__Vi0) {
-        vlSelf->BTB__DOT__btb_target[__Vi0] = VL_RAND_RESET_I(32);
+        vlSelf->BTB__DOT__btb_valid[__Vi0] = VL_RAND_RESET_I(1);
     }
-    vlSelf->BTB__DOT__i = VL_RAND_RESET_I(32);
+    vlSelf->BTB__DOT__unnamedblk1__DOT__i = 0;
     vlSelf->__Vtrigprevexpr___TOP__clk__0 = VL_RAND_RESET_I(1);
     for (int __Vi0 = 0; __Vi0 < 2; ++__Vi0) {
         vlSelf->__Vm_traceActivity[__Vi0] = 0;

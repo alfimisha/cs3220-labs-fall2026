@@ -21,10 +21,13 @@ class alignas(VL_CACHE_LINE_BYTES) Vtb_branch_predictor_pipeline final : public 
     // DESIGN SPECIFIC STATE
     VL_IN8(__PVT__clk,0,0);
     VL_IN8(__PVT__reset,0,0);
+    CData/*0:0*/ __PVT__my_FE_stage__DOT__valid_FE;
     CData/*0:0*/ __PVT__my_FE_stage__DOT__stall_pipe_FE;
-    CData/*7:0*/ __PVT__my_FE_stage__DOT__bhr_FE;
-    CData/*7:0*/ __PVT__my_FE_stage__DOT__pht_index_FE;
+    CData/*7:0*/ __PVT__my_FE_stage__DOT__pht_idx_fe;
     CData/*0:0*/ __PVT__my_FE_stage__DOT__pht_prediction_FE;
+    CData/*7:0*/ __PVT__my_FE_stage__DOT__bhr_fe;
+    CData/*0:0*/ __PVT__my_FE_stage__DOT__btb_hit;
+    CData/*0:0*/ __PVT__my_FE_stage__DOT__is_btb_valid;
     CData/*5:0*/ __PVT__my_DE_stage__DOT__op_I_DE;
     CData/*3:0*/ __PVT__my_DE_stage__DOT__type_I_DE;
     CData/*2:0*/ __PVT__my_DE_stage__DOT__type_immediate_DE;
@@ -39,9 +42,10 @@ class alignas(VL_CACHE_LINE_BYTES) Vtb_branch_predictor_pipeline final : public 
     IData/*31:0*/ __PVT__my_FE_stage__DOT__inst_count_FE;
     IData/*31:0*/ __PVT__my_FE_stage__DOT__inst_count_AGEX;
     IData/*31:0*/ __PVT__my_FE_stage__DOT__inst_FE;
-    IData/*31:0*/ __PVT__my_FE_stage__DOT__pred_next_pc_FE;
+    IData/*31:0*/ __PVT__my_FE_stage__DOT__pcplus_FE;
+    IData/*31:0*/ __PVT__my_FE_stage__DOT__target_btb_pred;
     IData/*31:0*/ __PVT__my_FE_stage__DOT__pht__DOT__i;
-    IData/*31:0*/ __PVT__my_FE_stage__DOT__btb__DOT__i;
+    IData/*31:0*/ __PVT__my_FE_stage__DOT__btb__DOT__unnamedblk1__DOT__i;
     VlWide<9>/*281:0*/ __PVT__my_DE_stage__DOT__DE_latch;
     IData/*31:0*/ __PVT__my_DE_stage__DOT__in_use_regs;
     IData/*31:0*/ my_DE_stage__DOT____VdfgExtracted_hee942bf4__0;
@@ -50,9 +54,9 @@ class alignas(VL_CACHE_LINE_BYTES) Vtb_branch_predictor_pipeline final : public 
     IData/*31:0*/ __Vdlyvval__my_MEM_stage__DOT__dmem__v0;
     VlUnpacked<IData/*31:0*/, 16384> __PVT__my_FE_stage__DOT__imem;
     VlUnpacked<CData/*1:0*/, 256> __PVT__my_FE_stage__DOT__pht__DOT__PHT;
-    VlUnpacked<CData/*0:0*/, 16> __PVT__my_FE_stage__DOT__btb__DOT__btb_valid;
-    VlUnpacked<IData/*25:0*/, 16> __PVT__my_FE_stage__DOT__btb__DOT__btb_tag;
     VlUnpacked<IData/*31:0*/, 16> __PVT__my_FE_stage__DOT__btb__DOT__btb_target;
+    VlUnpacked<IData/*25:0*/, 16> __PVT__my_FE_stage__DOT__btb__DOT__btb_tag;
+    VlUnpacked<CData/*0:0*/, 16> __PVT__my_FE_stage__DOT__btb__DOT__btb_valid;
     VlUnpacked<IData/*31:0*/, 32> __PVT__my_DE_stage__DOT__regs;
     VlUnpacked<IData/*31:0*/, 16384> __PVT__my_MEM_stage__DOT__dmem;
 

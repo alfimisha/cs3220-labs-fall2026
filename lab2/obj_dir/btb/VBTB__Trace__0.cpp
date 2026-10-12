@@ -24,22 +24,22 @@ void VBTB___024root__trace_chg_sub_0(VBTB___024root* vlSelf, VerilatedVcd::Buffe
     uint32_t* const oldp VL_ATTR_UNUSED = bufp->oldp(vlSymsp->__Vm_baseCode + 1);
     // Body
     if (VL_UNLIKELY(vlSelf->__Vm_traceActivity[1U])) {
-        bufp->chgBit(oldp+0,(vlSelf->BTB__DOT__btb_valid[0]));
-        bufp->chgBit(oldp+1,(vlSelf->BTB__DOT__btb_valid[1]));
-        bufp->chgBit(oldp+2,(vlSelf->BTB__DOT__btb_valid[2]));
-        bufp->chgBit(oldp+3,(vlSelf->BTB__DOT__btb_valid[3]));
-        bufp->chgBit(oldp+4,(vlSelf->BTB__DOT__btb_valid[4]));
-        bufp->chgBit(oldp+5,(vlSelf->BTB__DOT__btb_valid[5]));
-        bufp->chgBit(oldp+6,(vlSelf->BTB__DOT__btb_valid[6]));
-        bufp->chgBit(oldp+7,(vlSelf->BTB__DOT__btb_valid[7]));
-        bufp->chgBit(oldp+8,(vlSelf->BTB__DOT__btb_valid[8]));
-        bufp->chgBit(oldp+9,(vlSelf->BTB__DOT__btb_valid[9]));
-        bufp->chgBit(oldp+10,(vlSelf->BTB__DOT__btb_valid[10]));
-        bufp->chgBit(oldp+11,(vlSelf->BTB__DOT__btb_valid[11]));
-        bufp->chgBit(oldp+12,(vlSelf->BTB__DOT__btb_valid[12]));
-        bufp->chgBit(oldp+13,(vlSelf->BTB__DOT__btb_valid[13]));
-        bufp->chgBit(oldp+14,(vlSelf->BTB__DOT__btb_valid[14]));
-        bufp->chgBit(oldp+15,(vlSelf->BTB__DOT__btb_valid[15]));
+        bufp->chgIData(oldp+0,(vlSelf->BTB__DOT__btb_target[0]),32);
+        bufp->chgIData(oldp+1,(vlSelf->BTB__DOT__btb_target[1]),32);
+        bufp->chgIData(oldp+2,(vlSelf->BTB__DOT__btb_target[2]),32);
+        bufp->chgIData(oldp+3,(vlSelf->BTB__DOT__btb_target[3]),32);
+        bufp->chgIData(oldp+4,(vlSelf->BTB__DOT__btb_target[4]),32);
+        bufp->chgIData(oldp+5,(vlSelf->BTB__DOT__btb_target[5]),32);
+        bufp->chgIData(oldp+6,(vlSelf->BTB__DOT__btb_target[6]),32);
+        bufp->chgIData(oldp+7,(vlSelf->BTB__DOT__btb_target[7]),32);
+        bufp->chgIData(oldp+8,(vlSelf->BTB__DOT__btb_target[8]),32);
+        bufp->chgIData(oldp+9,(vlSelf->BTB__DOT__btb_target[9]),32);
+        bufp->chgIData(oldp+10,(vlSelf->BTB__DOT__btb_target[10]),32);
+        bufp->chgIData(oldp+11,(vlSelf->BTB__DOT__btb_target[11]),32);
+        bufp->chgIData(oldp+12,(vlSelf->BTB__DOT__btb_target[12]),32);
+        bufp->chgIData(oldp+13,(vlSelf->BTB__DOT__btb_target[13]),32);
+        bufp->chgIData(oldp+14,(vlSelf->BTB__DOT__btb_target[14]),32);
+        bufp->chgIData(oldp+15,(vlSelf->BTB__DOT__btb_target[15]),32);
         bufp->chgIData(oldp+16,(vlSelf->BTB__DOT__btb_tag[0]),26);
         bufp->chgIData(oldp+17,(vlSelf->BTB__DOT__btb_tag[1]),26);
         bufp->chgIData(oldp+18,(vlSelf->BTB__DOT__btb_tag[2]),26);
@@ -56,23 +56,23 @@ void VBTB___024root__trace_chg_sub_0(VBTB___024root* vlSelf, VerilatedVcd::Buffe
         bufp->chgIData(oldp+29,(vlSelf->BTB__DOT__btb_tag[13]),26);
         bufp->chgIData(oldp+30,(vlSelf->BTB__DOT__btb_tag[14]),26);
         bufp->chgIData(oldp+31,(vlSelf->BTB__DOT__btb_tag[15]),26);
-        bufp->chgIData(oldp+32,(vlSelf->BTB__DOT__btb_target[0]),32);
-        bufp->chgIData(oldp+33,(vlSelf->BTB__DOT__btb_target[1]),32);
-        bufp->chgIData(oldp+34,(vlSelf->BTB__DOT__btb_target[2]),32);
-        bufp->chgIData(oldp+35,(vlSelf->BTB__DOT__btb_target[3]),32);
-        bufp->chgIData(oldp+36,(vlSelf->BTB__DOT__btb_target[4]),32);
-        bufp->chgIData(oldp+37,(vlSelf->BTB__DOT__btb_target[5]),32);
-        bufp->chgIData(oldp+38,(vlSelf->BTB__DOT__btb_target[6]),32);
-        bufp->chgIData(oldp+39,(vlSelf->BTB__DOT__btb_target[7]),32);
-        bufp->chgIData(oldp+40,(vlSelf->BTB__DOT__btb_target[8]),32);
-        bufp->chgIData(oldp+41,(vlSelf->BTB__DOT__btb_target[9]),32);
-        bufp->chgIData(oldp+42,(vlSelf->BTB__DOT__btb_target[10]),32);
-        bufp->chgIData(oldp+43,(vlSelf->BTB__DOT__btb_target[11]),32);
-        bufp->chgIData(oldp+44,(vlSelf->BTB__DOT__btb_target[12]),32);
-        bufp->chgIData(oldp+45,(vlSelf->BTB__DOT__btb_target[13]),32);
-        bufp->chgIData(oldp+46,(vlSelf->BTB__DOT__btb_target[14]),32);
-        bufp->chgIData(oldp+47,(vlSelf->BTB__DOT__btb_target[15]),32);
-        bufp->chgIData(oldp+48,(vlSelf->BTB__DOT__i),32);
+        bufp->chgBit(oldp+32,(vlSelf->BTB__DOT__btb_valid[0]));
+        bufp->chgBit(oldp+33,(vlSelf->BTB__DOT__btb_valid[1]));
+        bufp->chgBit(oldp+34,(vlSelf->BTB__DOT__btb_valid[2]));
+        bufp->chgBit(oldp+35,(vlSelf->BTB__DOT__btb_valid[3]));
+        bufp->chgBit(oldp+36,(vlSelf->BTB__DOT__btb_valid[4]));
+        bufp->chgBit(oldp+37,(vlSelf->BTB__DOT__btb_valid[5]));
+        bufp->chgBit(oldp+38,(vlSelf->BTB__DOT__btb_valid[6]));
+        bufp->chgBit(oldp+39,(vlSelf->BTB__DOT__btb_valid[7]));
+        bufp->chgBit(oldp+40,(vlSelf->BTB__DOT__btb_valid[8]));
+        bufp->chgBit(oldp+41,(vlSelf->BTB__DOT__btb_valid[9]));
+        bufp->chgBit(oldp+42,(vlSelf->BTB__DOT__btb_valid[10]));
+        bufp->chgBit(oldp+43,(vlSelf->BTB__DOT__btb_valid[11]));
+        bufp->chgBit(oldp+44,(vlSelf->BTB__DOT__btb_valid[12]));
+        bufp->chgBit(oldp+45,(vlSelf->BTB__DOT__btb_valid[13]));
+        bufp->chgBit(oldp+46,(vlSelf->BTB__DOT__btb_valid[14]));
+        bufp->chgBit(oldp+47,(vlSelf->BTB__DOT__btb_valid[15]));
+        bufp->chgIData(oldp+48,(vlSelf->BTB__DOT__unnamedblk1__DOT__i),32);
     }
     bufp->chgBit(oldp+49,(vlSelf->clk));
     bufp->chgBit(oldp+50,(vlSelf->reset));
@@ -88,6 +88,7 @@ void VBTB___024root__trace_chg_sub_0(VBTB___024root* vlSelf, VerilatedVcd::Buffe
     bufp->chgIData(oldp+59,((vlSelf->rd_sel >> 6U)),26);
     bufp->chgCData(oldp+60,((0xfU & (vlSelf->wr_sel 
                                      >> 2U))),4);
+    bufp->chgIData(oldp+61,((vlSelf->wr_sel >> 6U)),26);
 }
 
 void VBTB___024root__trace_cleanup(void* voidSelf, VerilatedVcd* /*unused*/) {

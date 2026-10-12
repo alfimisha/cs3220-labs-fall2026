@@ -84,21 +84,21 @@ VL_INLINE_OPT void Vtb_direction___024root___nba_sequent__TOP__2(Vtb_direction__
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vtb_direction___024root___nba_sequent__TOP__2\n"); );
     // Body
     vlSelf->branch_flag = (IData)((0U != (0x60000U 
-                                          & vlSymsp->TOP__tb_direction__dut.__PVT__my_DE_stage__DOT__DE_latch[0U])));
-    vlSelf->operand2 = ((vlSymsp->TOP__tb_direction__dut.__PVT__my_DE_stage__DOT__DE_latch[2U] 
-                         << 0xdU) | (vlSymsp->TOP__tb_direction__dut.__PVT__my_DE_stage__DOT__DE_latch[1U] 
-                                     >> 0x13U));
-    vlSelf->operand1 = ((vlSymsp->TOP__tb_direction__dut.__PVT__my_DE_stage__DOT__DE_latch[3U] 
+                                          & vlSymsp->TOP__tb_direction__dut.__PVT__my_DE_stage__DOT__DE_latch[1U])));
+    vlSelf->operand2 = ((vlSymsp->TOP__tb_direction__dut.__PVT__my_DE_stage__DOT__DE_latch[3U] 
                          << 0xdU) | (vlSymsp->TOP__tb_direction__dut.__PVT__my_DE_stage__DOT__DE_latch[2U] 
                                      >> 0x13U));
-    vlSelf->branch_id = ((vlSymsp->TOP__tb_direction__dut.__PVT__my_DE_stage__DOT__DE_latch[4U] 
-                          << 0xdU) | (vlSymsp->TOP__tb_direction__dut.__PVT__my_DE_stage__DOT__DE_latch[3U] 
+    vlSelf->operand1 = ((vlSymsp->TOP__tb_direction__dut.__PVT__my_DE_stage__DOT__DE_latch[4U] 
+                         << 0xdU) | (vlSymsp->TOP__tb_direction__dut.__PVT__my_DE_stage__DOT__DE_latch[3U] 
+                                     >> 0x13U));
+    vlSelf->branch_id = ((vlSymsp->TOP__tb_direction__dut.__PVT__my_DE_stage__DOT__DE_latch[5U] 
+                          << 0xdU) | (vlSymsp->TOP__tb_direction__dut.__PVT__my_DE_stage__DOT__DE_latch[4U] 
                                       >> 0x13U));
-    vlSelf->branch_pc = ((vlSymsp->TOP__tb_direction__dut.__PVT__my_DE_stage__DOT__DE_latch[6U] 
-                          << 7U) | (vlSymsp->TOP__tb_direction__dut.__PVT__my_DE_stage__DOT__DE_latch[5U] 
+    vlSelf->branch_pc = ((vlSymsp->TOP__tb_direction__dut.__PVT__my_DE_stage__DOT__DE_latch[7U] 
+                          << 7U) | (vlSymsp->TOP__tb_direction__dut.__PVT__my_DE_stage__DOT__DE_latch[6U] 
                                     >> 0x19U));
-    vlSelf->inst = ((vlSymsp->TOP__tb_direction__dut.__PVT__my_DE_stage__DOT__DE_latch[7U] 
-                     << 7U) | (vlSymsp->TOP__tb_direction__dut.__PVT__my_DE_stage__DOT__DE_latch[6U] 
+    vlSelf->inst = ((vlSymsp->TOP__tb_direction__dut.__PVT__my_DE_stage__DOT__DE_latch[8U] 
+                     << 7U) | (vlSymsp->TOP__tb_direction__dut.__PVT__my_DE_stage__DOT__DE_latch[7U] 
                                >> 0x19U));
 }
 
@@ -108,17 +108,17 @@ VL_INLINE_OPT void Vtb_direction___024root___nba_sequent__TOP__3(Vtb_direction__
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vtb_direction___024root___nba_sequent__TOP__3\n"); );
     // Body
     vlSelf->actual_pc = vlSymsp->TOP__tb_direction__dut__my_AGEX_stage.__PVT__br_target_AGEX;
-    vlSelf->bhr_data = (1U & (IData)((vlSymsp->TOP__tb_direction__dut__my_AGEX_stage.__PVT__from_AGEX_to_FE 
-                                      >> 8U)));
-    vlSelf->pht_data = (1U & (IData)((vlSymsp->TOP__tb_direction__dut__my_AGEX_stage.__PVT__from_AGEX_to_FE 
-                                      >> 8U)));
-    vlSelf->pht_write = (1U & (IData)((vlSymsp->TOP__tb_direction__dut__my_AGEX_stage.__PVT__from_AGEX_to_FE 
-                                       >> 9U)));
-    vlSelf->bhr_write = (1U & (IData)((vlSymsp->TOP__tb_direction__dut__my_AGEX_stage.__PVT__from_AGEX_to_FE 
-                                       >> 9U)));
-    vlSelf->write_index = (0xffU & (IData)(vlSymsp->TOP__tb_direction__dut__my_AGEX_stage.__PVT__from_AGEX_to_FE));
-    vlSelf->redirect = (1U & (IData)((vlSymsp->TOP__tb_direction__dut__my_AGEX_stage.__PVT__from_AGEX_to_FE 
-                                      >> 0x2aU)));
+    vlSelf->bhr_data = (1U & (vlSymsp->TOP__tb_direction__dut__my_AGEX_stage.__PVT__from_AGEX_to_FE[2U] 
+                              >> 8U));
+    vlSelf->pht_data = (1U & (vlSymsp->TOP__tb_direction__dut__my_AGEX_stage.__PVT__from_AGEX_to_FE[2U] 
+                              >> 8U));
+    vlSelf->pht_write = (1U & (vlSymsp->TOP__tb_direction__dut__my_AGEX_stage.__PVT__from_AGEX_to_FE[2U] 
+                               >> 9U));
+    vlSelf->bhr_write = (1U & (vlSymsp->TOP__tb_direction__dut__my_AGEX_stage.__PVT__from_AGEX_to_FE[2U] 
+                               >> 9U));
+    vlSelf->write_index = (0xffU & vlSymsp->TOP__tb_direction__dut__my_AGEX_stage.__PVT__from_AGEX_to_FE[2U]);
+    vlSelf->redirect = (1U & (vlSymsp->TOP__tb_direction__dut__my_AGEX_stage.__PVT__from_AGEX_to_FE[3U] 
+                              >> 0xaU));
 }
 
 VL_INLINE_OPT void Vtb_direction___024root___nba_sequent__TOP__4(Vtb_direction___024root* vlSelf) {
@@ -130,12 +130,13 @@ VL_INLINE_OPT void Vtb_direction___024root___nba_sequent__TOP__4(Vtb_direction__
 }
 
 void Vtb_direction_pipeline___nba_sequent__TOP__tb_direction__dut__0(Vtb_direction_pipeline* vlSelf);
+void Vtb_direction_AGEX_STAGE___nba_sequent__TOP__tb_direction__dut__my_AGEX_stage__0(Vtb_direction_AGEX_STAGE* vlSelf);
 void Vtb_direction_WB_STAGE___nba_sequent__TOP__tb_direction__dut__my_WB_stage__0(Vtb_direction_WB_STAGE* vlSelf);
 void Vtb_direction_pipeline___nba_sequent__TOP__tb_direction__dut__1(Vtb_direction_pipeline* vlSelf);
-void Vtb_direction_AGEX_STAGE___nba_sequent__TOP__tb_direction__dut__my_AGEX_stage__0(Vtb_direction_AGEX_STAGE* vlSelf);
+void Vtb_direction_AGEX_STAGE___nba_sequent__TOP__tb_direction__dut__my_AGEX_stage__1(Vtb_direction_AGEX_STAGE* vlSelf);
 void Vtb_direction_WB_STAGE___nba_sequent__TOP__tb_direction__dut__my_WB_stage__1(Vtb_direction_WB_STAGE* vlSelf);
 void Vtb_direction_pipeline___nba_sequent__TOP__tb_direction__dut__2(Vtb_direction_pipeline* vlSelf);
-void Vtb_direction_AGEX_STAGE___nba_sequent__TOP__tb_direction__dut__my_AGEX_stage__1(Vtb_direction_AGEX_STAGE* vlSelf);
+void Vtb_direction_AGEX_STAGE___nba_sequent__TOP__tb_direction__dut__my_AGEX_stage__2(Vtb_direction_AGEX_STAGE* vlSelf);
 void Vtb_direction_pipeline___nba_sequent__TOP__tb_direction__dut__3(Vtb_direction_pipeline* vlSelf);
 void Vtb_direction_pipeline___nba_sequent__TOP__tb_direction__dut__4(Vtb_direction_pipeline* vlSelf);
 void Vtb_direction_WB_STAGE___nba_sequent__TOP__tb_direction__dut__my_WB_stage__2(Vtb_direction_WB_STAGE* vlSelf);
@@ -148,15 +149,16 @@ void Vtb_direction___024root___eval_nba(Vtb_direction___024root* vlSelf) {
     if ((1ULL & vlSelf->__VnbaTriggered.word(0U))) {
         Vtb_direction_pipeline___nba_sequent__TOP__tb_direction__dut__0((&vlSymsp->TOP__tb_direction__dut));
         vlSelf->__Vm_traceActivity[1U] = 1U;
+        Vtb_direction_AGEX_STAGE___nba_sequent__TOP__tb_direction__dut__my_AGEX_stage__0((&vlSymsp->TOP__tb_direction__dut__my_AGEX_stage));
         Vtb_direction_WB_STAGE___nba_sequent__TOP__tb_direction__dut__my_WB_stage__0((&vlSymsp->TOP__tb_direction__dut__my_WB_stage));
         Vtb_direction___024root___nba_sequent__TOP__0(vlSelf);
         Vtb_direction_pipeline___nba_sequent__TOP__tb_direction__dut__1((&vlSymsp->TOP__tb_direction__dut));
-        Vtb_direction_AGEX_STAGE___nba_sequent__TOP__tb_direction__dut__my_AGEX_stage__0((&vlSymsp->TOP__tb_direction__dut__my_AGEX_stage));
+        Vtb_direction_AGEX_STAGE___nba_sequent__TOP__tb_direction__dut__my_AGEX_stage__1((&vlSymsp->TOP__tb_direction__dut__my_AGEX_stage));
         Vtb_direction___024root___nba_sequent__TOP__1(vlSelf);
         Vtb_direction_WB_STAGE___nba_sequent__TOP__tb_direction__dut__my_WB_stage__1((&vlSymsp->TOP__tb_direction__dut__my_WB_stage));
         Vtb_direction_pipeline___nba_sequent__TOP__tb_direction__dut__2((&vlSymsp->TOP__tb_direction__dut));
         Vtb_direction___024root___nba_sequent__TOP__2(vlSelf);
-        Vtb_direction_AGEX_STAGE___nba_sequent__TOP__tb_direction__dut__my_AGEX_stage__1((&vlSymsp->TOP__tb_direction__dut__my_AGEX_stage));
+        Vtb_direction_AGEX_STAGE___nba_sequent__TOP__tb_direction__dut__my_AGEX_stage__2((&vlSymsp->TOP__tb_direction__dut__my_AGEX_stage));
         Vtb_direction___024root___nba_sequent__TOP__3(vlSelf);
         Vtb_direction_pipeline___nba_sequent__TOP__tb_direction__dut__3((&vlSymsp->TOP__tb_direction__dut));
         Vtb_direction___024root___nba_sequent__TOP__4(vlSelf);

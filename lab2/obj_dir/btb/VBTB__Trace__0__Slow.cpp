@@ -31,19 +31,21 @@ VL_ATTR_COLD void VBTB___024root__trace_init_sub__TOP__0(VBTB___024root* vlSelf,
     tracep->declBus(c+57,"wr_sel", false,-1, 31,0);
     tracep->declBus(c+58,"wr_data", false,-1, 31,0);
     for (int i = 0; i < 16; ++i) {
-        tracep->declBit(c+1+i*1,"btb_valid", true,(i+0));
+        tracep->declBus(c+1+i*1,"btb_target", true,(i+0), 31,0);
     }
     for (int i = 0; i < 16; ++i) {
         tracep->declBus(c+17+i*1,"btb_tag", true,(i+0), 25,0);
     }
     for (int i = 0; i < 16; ++i) {
-        tracep->declBus(c+33+i*1,"btb_target", true,(i+0), 31,0);
+        tracep->declBit(c+33+i*1,"btb_valid", true,(i+0));
     }
-    tracep->declBus(c+49,"i", false,-1, 31,0);
-    tracep->declBus(c+59,"rd_idx", false,-1, 3,0);
+    tracep->declBus(c+59,"rd_index", false,-1, 3,0);
     tracep->declBus(c+60,"rd_tag", false,-1, 25,0);
-    tracep->declBus(c+61,"wr_idx", false,-1, 3,0);
-    tracep->popNamePrefix(1);
+    tracep->declBus(c+61,"wr_index", false,-1, 3,0);
+    tracep->declBus(c+62,"wr_tag", false,-1, 25,0);
+    tracep->pushNamePrefix("unnamedblk1 ");
+    tracep->declBus(c+49,"i", false,-1, 31,0);
+    tracep->popNamePrefix(2);
 }
 
 VL_ATTR_COLD void VBTB___024root__trace_init_top(VBTB___024root* vlSelf, VerilatedVcd* tracep) {
@@ -86,22 +88,22 @@ VL_ATTR_COLD void VBTB___024root__trace_full_sub_0(VBTB___024root* vlSelf, Veril
     // Init
     uint32_t* const oldp VL_ATTR_UNUSED = bufp->oldp(vlSymsp->__Vm_baseCode);
     // Body
-    bufp->fullBit(oldp+1,(vlSelf->BTB__DOT__btb_valid[0]));
-    bufp->fullBit(oldp+2,(vlSelf->BTB__DOT__btb_valid[1]));
-    bufp->fullBit(oldp+3,(vlSelf->BTB__DOT__btb_valid[2]));
-    bufp->fullBit(oldp+4,(vlSelf->BTB__DOT__btb_valid[3]));
-    bufp->fullBit(oldp+5,(vlSelf->BTB__DOT__btb_valid[4]));
-    bufp->fullBit(oldp+6,(vlSelf->BTB__DOT__btb_valid[5]));
-    bufp->fullBit(oldp+7,(vlSelf->BTB__DOT__btb_valid[6]));
-    bufp->fullBit(oldp+8,(vlSelf->BTB__DOT__btb_valid[7]));
-    bufp->fullBit(oldp+9,(vlSelf->BTB__DOT__btb_valid[8]));
-    bufp->fullBit(oldp+10,(vlSelf->BTB__DOT__btb_valid[9]));
-    bufp->fullBit(oldp+11,(vlSelf->BTB__DOT__btb_valid[10]));
-    bufp->fullBit(oldp+12,(vlSelf->BTB__DOT__btb_valid[11]));
-    bufp->fullBit(oldp+13,(vlSelf->BTB__DOT__btb_valid[12]));
-    bufp->fullBit(oldp+14,(vlSelf->BTB__DOT__btb_valid[13]));
-    bufp->fullBit(oldp+15,(vlSelf->BTB__DOT__btb_valid[14]));
-    bufp->fullBit(oldp+16,(vlSelf->BTB__DOT__btb_valid[15]));
+    bufp->fullIData(oldp+1,(vlSelf->BTB__DOT__btb_target[0]),32);
+    bufp->fullIData(oldp+2,(vlSelf->BTB__DOT__btb_target[1]),32);
+    bufp->fullIData(oldp+3,(vlSelf->BTB__DOT__btb_target[2]),32);
+    bufp->fullIData(oldp+4,(vlSelf->BTB__DOT__btb_target[3]),32);
+    bufp->fullIData(oldp+5,(vlSelf->BTB__DOT__btb_target[4]),32);
+    bufp->fullIData(oldp+6,(vlSelf->BTB__DOT__btb_target[5]),32);
+    bufp->fullIData(oldp+7,(vlSelf->BTB__DOT__btb_target[6]),32);
+    bufp->fullIData(oldp+8,(vlSelf->BTB__DOT__btb_target[7]),32);
+    bufp->fullIData(oldp+9,(vlSelf->BTB__DOT__btb_target[8]),32);
+    bufp->fullIData(oldp+10,(vlSelf->BTB__DOT__btb_target[9]),32);
+    bufp->fullIData(oldp+11,(vlSelf->BTB__DOT__btb_target[10]),32);
+    bufp->fullIData(oldp+12,(vlSelf->BTB__DOT__btb_target[11]),32);
+    bufp->fullIData(oldp+13,(vlSelf->BTB__DOT__btb_target[12]),32);
+    bufp->fullIData(oldp+14,(vlSelf->BTB__DOT__btb_target[13]),32);
+    bufp->fullIData(oldp+15,(vlSelf->BTB__DOT__btb_target[14]),32);
+    bufp->fullIData(oldp+16,(vlSelf->BTB__DOT__btb_target[15]),32);
     bufp->fullIData(oldp+17,(vlSelf->BTB__DOT__btb_tag[0]),26);
     bufp->fullIData(oldp+18,(vlSelf->BTB__DOT__btb_tag[1]),26);
     bufp->fullIData(oldp+19,(vlSelf->BTB__DOT__btb_tag[2]),26);
@@ -118,23 +120,23 @@ VL_ATTR_COLD void VBTB___024root__trace_full_sub_0(VBTB___024root* vlSelf, Veril
     bufp->fullIData(oldp+30,(vlSelf->BTB__DOT__btb_tag[13]),26);
     bufp->fullIData(oldp+31,(vlSelf->BTB__DOT__btb_tag[14]),26);
     bufp->fullIData(oldp+32,(vlSelf->BTB__DOT__btb_tag[15]),26);
-    bufp->fullIData(oldp+33,(vlSelf->BTB__DOT__btb_target[0]),32);
-    bufp->fullIData(oldp+34,(vlSelf->BTB__DOT__btb_target[1]),32);
-    bufp->fullIData(oldp+35,(vlSelf->BTB__DOT__btb_target[2]),32);
-    bufp->fullIData(oldp+36,(vlSelf->BTB__DOT__btb_target[3]),32);
-    bufp->fullIData(oldp+37,(vlSelf->BTB__DOT__btb_target[4]),32);
-    bufp->fullIData(oldp+38,(vlSelf->BTB__DOT__btb_target[5]),32);
-    bufp->fullIData(oldp+39,(vlSelf->BTB__DOT__btb_target[6]),32);
-    bufp->fullIData(oldp+40,(vlSelf->BTB__DOT__btb_target[7]),32);
-    bufp->fullIData(oldp+41,(vlSelf->BTB__DOT__btb_target[8]),32);
-    bufp->fullIData(oldp+42,(vlSelf->BTB__DOT__btb_target[9]),32);
-    bufp->fullIData(oldp+43,(vlSelf->BTB__DOT__btb_target[10]),32);
-    bufp->fullIData(oldp+44,(vlSelf->BTB__DOT__btb_target[11]),32);
-    bufp->fullIData(oldp+45,(vlSelf->BTB__DOT__btb_target[12]),32);
-    bufp->fullIData(oldp+46,(vlSelf->BTB__DOT__btb_target[13]),32);
-    bufp->fullIData(oldp+47,(vlSelf->BTB__DOT__btb_target[14]),32);
-    bufp->fullIData(oldp+48,(vlSelf->BTB__DOT__btb_target[15]),32);
-    bufp->fullIData(oldp+49,(vlSelf->BTB__DOT__i),32);
+    bufp->fullBit(oldp+33,(vlSelf->BTB__DOT__btb_valid[0]));
+    bufp->fullBit(oldp+34,(vlSelf->BTB__DOT__btb_valid[1]));
+    bufp->fullBit(oldp+35,(vlSelf->BTB__DOT__btb_valid[2]));
+    bufp->fullBit(oldp+36,(vlSelf->BTB__DOT__btb_valid[3]));
+    bufp->fullBit(oldp+37,(vlSelf->BTB__DOT__btb_valid[4]));
+    bufp->fullBit(oldp+38,(vlSelf->BTB__DOT__btb_valid[5]));
+    bufp->fullBit(oldp+39,(vlSelf->BTB__DOT__btb_valid[6]));
+    bufp->fullBit(oldp+40,(vlSelf->BTB__DOT__btb_valid[7]));
+    bufp->fullBit(oldp+41,(vlSelf->BTB__DOT__btb_valid[8]));
+    bufp->fullBit(oldp+42,(vlSelf->BTB__DOT__btb_valid[9]));
+    bufp->fullBit(oldp+43,(vlSelf->BTB__DOT__btb_valid[10]));
+    bufp->fullBit(oldp+44,(vlSelf->BTB__DOT__btb_valid[11]));
+    bufp->fullBit(oldp+45,(vlSelf->BTB__DOT__btb_valid[12]));
+    bufp->fullBit(oldp+46,(vlSelf->BTB__DOT__btb_valid[13]));
+    bufp->fullBit(oldp+47,(vlSelf->BTB__DOT__btb_valid[14]));
+    bufp->fullBit(oldp+48,(vlSelf->BTB__DOT__btb_valid[15]));
+    bufp->fullIData(oldp+49,(vlSelf->BTB__DOT__unnamedblk1__DOT__i),32);
     bufp->fullBit(oldp+50,(vlSelf->clk));
     bufp->fullBit(oldp+51,(vlSelf->reset));
     bufp->fullBit(oldp+52,(vlSelf->rd_ena));
@@ -149,4 +151,5 @@ VL_ATTR_COLD void VBTB___024root__trace_full_sub_0(VBTB___024root* vlSelf, Veril
     bufp->fullIData(oldp+60,((vlSelf->rd_sel >> 6U)),26);
     bufp->fullCData(oldp+61,((0xfU & (vlSelf->wr_sel 
                                       >> 2U))),4);
+    bufp->fullIData(oldp+62,((vlSelf->wr_sel >> 6U)),26);
 }

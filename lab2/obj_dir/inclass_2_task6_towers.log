@@ -5,6 +5,12 @@ verilator --exe -cc --assert -Wno-fatal --unroll-count 1024 --trace --trace-stru
 	-I/home/hice1/araj92/cs3220/cs3220-labs-fall2026/lab2 /home/hice1/araj92/cs3220/cs3220-labs-fall2026/lab2/pipeline.v /home/hice1/araj92/cs3220/cs3220-labs-fall2026/lab2/fe_stage.v /home/hice1/araj92/cs3220/cs3220-labs-fall2026/lab2/de_stage.v /home/hice1/araj92/cs3220/cs3220-labs-fall2026/lab2/agex_stage.v /home/hice1/araj92/cs3220/cs3220-labs-fall2026/lab2/mem_stage.v /home/hice1/araj92/cs3220/cs3220-labs-fall2026/lab2/wb_stage.v \
 	test/inclass_2/tb_branch_predictor.v /home/hice1/araj92/cs3220/cs3220-labs-fall2026/lab2/sim_main.cpp \
 	--Mdir obj_dir/pipeline -CFLAGS '-DDPRINTF'
+%Warning-WIDTHEXPAND: /home/hice1/araj92/cs3220/cs3220-labs-fall2026/lab2/fe_stage.v:68:6: Input port connection 'wr_data' expects 32 bits on the pin connection, but pin connection's VARREF 'branch_taken' generates 1 bits.
+                                                                                         : ... In instance tb_branch_predictor.dut.my_FE_stage
+   68 |     .wr_data(branch_taken), 
+      |      ^~~~~~~
+                      ... For warning description see https://verilator.org/warn/WIDTHEXPAND?v=5.015
+                      ... Use "/* verilator lint_off WIDTHEXPAND */" and lint_on around source to disable this message.
 -- COMPILE -----------------
 make -j 4 -C obj_dir/pipeline -f Vtb_branch_predictor.mk
 make[1]: Entering directory '/home/hice1/araj92/cs3220/cs3220-labs-fall2026/lab2/obj_dir/pipeline'

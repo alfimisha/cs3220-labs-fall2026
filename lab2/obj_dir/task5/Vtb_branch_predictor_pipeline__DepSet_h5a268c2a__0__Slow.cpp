@@ -52,12 +52,23 @@ VL_ATTR_COLD void Vtb_branch_predictor_pipeline___stl_sequent__TOP__tb_branch_pr
            (0x7ffU & ((vlSelf->__PVT__my_FE_stage__DOT__FE_latch[5U] 
                        << 3U) | (vlSelf->__PVT__my_FE_stage__DOT__FE_latch[4U] 
                                  >> 0x1dU))));
+    vlSelf->__PVT__my_FE_stage__DOT__pcplus_FE = ((IData)(4U) 
+                                                  + vlSelf->__PVT__my_FE_stage__DOT__PC_FE_latch);
     vlSelf->__PVT__my_FE_stage__DOT__inst_FE = vlSelf->__PVT__my_FE_stage__DOT__imem
         [(0x3fffU & (vlSelf->__PVT__my_FE_stage__DOT__PC_FE_latch 
                      >> 2U))];
-    vlSelf->__PVT__my_FE_stage__DOT__pht_index_FE = 
-        (0xffU & ((vlSelf->__PVT__my_FE_stage__DOT__PC_FE_latch 
-                   >> 2U) ^ (IData)(vlSelf->__PVT__my_FE_stage__DOT__bhr_FE)));
+    vlSelf->__PVT__my_FE_stage__DOT__pht_idx_fe = (0xffU 
+                                                   & ((vlSelf->__PVT__my_FE_stage__DOT__PC_FE_latch 
+                                                       >> 2U) 
+                                                      ^ (IData)(vlSelf->__PVT__my_FE_stage__DOT__bhr_fe)));
+    vlSelf->__PVT__my_FE_stage__DOT__is_btb_valid = 
+        (vlSelf->__PVT__my_FE_stage__DOT__btb__DOT__btb_valid
+         [(0xfU & (vlSelf->__PVT__my_FE_stage__DOT__PC_FE_latch 
+                   >> 2U))] & (vlSelf->__PVT__my_FE_stage__DOT__btb__DOT__btb_tag
+                               [(0xfU & (vlSelf->__PVT__my_FE_stage__DOT__PC_FE_latch 
+                                         >> 2U))] == 
+                               (vlSelf->__PVT__my_FE_stage__DOT__PC_FE_latch 
+                                >> 6U)));
     my_DE_stage__DOT____VdfgTmp_h8d6752e4__0 = (IData)(
                                                        (0x6600U 
                                                         == 
@@ -84,8 +95,13 @@ VL_ATTR_COLD void Vtb_branch_predictor_pipeline___stl_sequent__TOP__tb_branch_pr
                                                          & vlSelf->__PVT__my_FE_stage__DOT__FE_latch[4U])));
     vlSelf->__PVT__my_FE_stage__DOT__pht_prediction_FE 
         = (1U & (vlSelf->__PVT__my_FE_stage__DOT__pht__DOT__PHT
-                 [vlSelf->__PVT__my_FE_stage__DOT__pht_index_FE] 
+                 [vlSelf->__PVT__my_FE_stage__DOT__pht_idx_fe] 
                  >> 1U));
+    vlSelf->__PVT__my_FE_stage__DOT__target_btb_pred 
+        = ((IData)(vlSelf->__PVT__my_FE_stage__DOT__is_btb_valid)
+            ? vlSelf->__PVT__my_FE_stage__DOT__btb__DOT__btb_target
+           [(0xfU & (vlSelf->__PVT__my_FE_stage__DOT__PC_FE_latch 
+                     >> 2U))] : 0U);
     vlSelf->__PVT__my_DE_stage__DOT__op_I_DE = (((IData)(my_DE_stage__DOT____VdfgTmp_h8d6752e4__0) 
                                                  & (0U 
                                                     == 
@@ -346,17 +362,8 @@ VL_ATTR_COLD void Vtb_branch_predictor_pipeline___stl_sequent__TOP__tb_branch_pr
                                                                                 & vlSelf->__PVT__my_FE_stage__DOT__FE_latch[4U])))
                                                                                  ? 0x23U
                                                                                  : 0x25U))))))))))))))))))))))))))))))))));
-    vlSelf->__PVT__my_FE_stage__DOT__pred_next_pc_FE 
-        = (((vlSelf->__PVT__my_FE_stage__DOT__btb__DOT__btb_valid
-             [(0xfU & (vlSelf->__PVT__my_FE_stage__DOT__PC_FE_latch 
-                       >> 2U))] & (vlSelf->__PVT__my_FE_stage__DOT__btb__DOT__btb_tag
-                                   [(0xfU & (vlSelf->__PVT__my_FE_stage__DOT__PC_FE_latch 
-                                             >> 2U))] 
-                                   == (vlSelf->__PVT__my_FE_stage__DOT__PC_FE_latch 
-                                       >> 6U))) & (IData)(vlSelf->__PVT__my_FE_stage__DOT__pht_prediction_FE))
-            ? vlSelf->__PVT__my_FE_stage__DOT__btb__DOT__btb_target
-           [(0xfU & (vlSelf->__PVT__my_FE_stage__DOT__PC_FE_latch 
-                     >> 2U))] : ((IData)(4U) + vlSelf->__PVT__my_FE_stage__DOT__PC_FE_latch));
+    vlSelf->__PVT__my_FE_stage__DOT__btb_hit = ((IData)(vlSelf->__PVT__my_FE_stage__DOT__is_btb_valid) 
+                                                & (IData)(vlSelf->__PVT__my_FE_stage__DOT__pht_prediction_FE));
     vlSelf->__PVT__my_DE_stage__DOT__wr_reg_DE = ((
                                                    (0x22U 
                                                     == (IData)(vlSelf->__PVT__my_DE_stage__DOT__op_I_DE)) 
@@ -440,29 +447,33 @@ VL_ATTR_COLD void Vtb_branch_predictor_pipeline___ctor_var_reset(Vtb_branch_pred
         vlSelf->__PVT__my_FE_stage__DOT__imem[__Vi0] = VL_RAND_RESET_I(32);
     }
     VL_RAND_RESET_W(170, vlSelf->__PVT__my_FE_stage__DOT__FE_latch);
+    vlSelf->__PVT__my_FE_stage__DOT__valid_FE = VL_RAND_RESET_I(1);
     vlSelf->__PVT__my_FE_stage__DOT__PC_FE_latch = VL_RAND_RESET_I(32);
     vlSelf->__PVT__my_FE_stage__DOT__inst_count_FE = VL_RAND_RESET_I(32);
     vlSelf->__PVT__my_FE_stage__DOT__inst_count_AGEX = VL_RAND_RESET_I(32);
     vlSelf->__PVT__my_FE_stage__DOT__inst_FE = VL_RAND_RESET_I(32);
+    vlSelf->__PVT__my_FE_stage__DOT__pcplus_FE = VL_RAND_RESET_I(32);
     vlSelf->__PVT__my_FE_stage__DOT__stall_pipe_FE = VL_RAND_RESET_I(1);
-    vlSelf->__PVT__my_FE_stage__DOT__bhr_FE = VL_RAND_RESET_I(8);
-    vlSelf->__PVT__my_FE_stage__DOT__pht_index_FE = VL_RAND_RESET_I(8);
+    vlSelf->__PVT__my_FE_stage__DOT__pht_idx_fe = VL_RAND_RESET_I(8);
     vlSelf->__PVT__my_FE_stage__DOT__pht_prediction_FE = VL_RAND_RESET_I(1);
-    vlSelf->__PVT__my_FE_stage__DOT__pred_next_pc_FE = VL_RAND_RESET_I(32);
+    vlSelf->__PVT__my_FE_stage__DOT__bhr_fe = VL_RAND_RESET_I(8);
+    vlSelf->__PVT__my_FE_stage__DOT__btb_hit = VL_RAND_RESET_I(1);
+    vlSelf->__PVT__my_FE_stage__DOT__target_btb_pred = VL_RAND_RESET_I(32);
+    vlSelf->__PVT__my_FE_stage__DOT__is_btb_valid = VL_RAND_RESET_I(1);
     vlSelf->__PVT__my_FE_stage__DOT__pht__DOT__i = VL_RAND_RESET_I(32);
     for (int __Vi0 = 0; __Vi0 < 256; ++__Vi0) {
         vlSelf->__PVT__my_FE_stage__DOT__pht__DOT__PHT[__Vi0] = VL_RAND_RESET_I(2);
     }
     for (int __Vi0 = 0; __Vi0 < 16; ++__Vi0) {
-        vlSelf->__PVT__my_FE_stage__DOT__btb__DOT__btb_valid[__Vi0] = VL_RAND_RESET_I(1);
+        vlSelf->__PVT__my_FE_stage__DOT__btb__DOT__btb_target[__Vi0] = VL_RAND_RESET_I(32);
     }
     for (int __Vi0 = 0; __Vi0 < 16; ++__Vi0) {
         vlSelf->__PVT__my_FE_stage__DOT__btb__DOT__btb_tag[__Vi0] = VL_RAND_RESET_I(26);
     }
     for (int __Vi0 = 0; __Vi0 < 16; ++__Vi0) {
-        vlSelf->__PVT__my_FE_stage__DOT__btb__DOT__btb_target[__Vi0] = VL_RAND_RESET_I(32);
+        vlSelf->__PVT__my_FE_stage__DOT__btb__DOT__btb_valid[__Vi0] = VL_RAND_RESET_I(1);
     }
-    vlSelf->__PVT__my_FE_stage__DOT__btb__DOT__i = VL_RAND_RESET_I(32);
+    vlSelf->__PVT__my_FE_stage__DOT__btb__DOT__unnamedblk1__DOT__i = 0;
     VL_RAND_RESET_W(282, vlSelf->__PVT__my_DE_stage__DOT__DE_latch);
     for (int __Vi0 = 0; __Vi0 < 32; ++__Vi0) {
         vlSelf->__PVT__my_DE_stage__DOT__regs[__Vi0] = VL_RAND_RESET_I(32);

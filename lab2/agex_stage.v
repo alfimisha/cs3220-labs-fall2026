@@ -51,6 +51,7 @@ module AGEX_STAGE(
   // TODO Task 3: update BHR and PHT when branches resolve.
   wire [`PHT_BITS-1:0] pht_idx_AGEX;
   wire pht_prediction_AGEX;
+  wire [`DBITS-1:0] pred_pc_AGEX;
   wire branch_resolved_AGEX;
   wire branch_taken_AGEX;
 
@@ -126,18 +127,34 @@ module AGEX_STAGE(
       br_target_AGEX = pcplus_AGEX;        
   end
 
+  // what the btb stores: where it goes if taken, even when it falls through this time
+  wire [`DBITS-1:0] btb_target_AGEX;
+  assign btb_target_AGEX = is_br_AGEX ? (PC_AGEX + sxt_imm_AGEX) : br_target_AGEX;
+
   // Task 5: Finish the logic for the next-PC prediction check.
   //Hint: how you wire it out with the logic in FE stage?
 
   assign br_mispred_AGEX = ((is_br_AGEX || is_jmp_AGEX) 
-                         && (br_target_AGEX != pcplus_AGEX)) ? 1 : 0;
+                         && (br_target_AGEX != pred_pc_AGEX)) ? 1 : 0;
 
 
   // TODO Task 6: Branch counter for the accuracy test
   reg [31:0] branch_count /* verilator public */;
   reg [31:0] correct_branch_count /* verilator public */;
-  
 
+  always @(posedge clk) begin
+    if (reset) begin
+      branch_count <= 0; 
+      correct_branch_count <= 0;
+    end else begin
+      if (is_br_AGEX || is_jmp_AGEX) begin
+        branch_count <= branch_count + 1;
+        if (!br_mispred_AGEX) begin
+          correct_branch_count <= correct_branch_count + 1;
+        end
+      end
+    end
+  end
 
   // Below are the signal transfer between agexand prefetch
     assign  {                     
@@ -158,7 +175,8 @@ module AGEX_STAGE(
                                   wr_reg_AGEX,
                                   wregno_AGEX,
                                   pht_idx_AGEX,
-                                  pht_prediction_AGEX
+                                  pht_prediction_AGEX,
+                                  pred_pc_AGEX
                                   } = from_DE_latch;
     
  
@@ -194,7 +212,9 @@ module AGEX_STAGE(
     br_target_AGEX,
     branch_resolved_AGEX,
     branch_taken_AGEX,
-    pht_idx_AGEX
+    pht_idx_AGEX,
+    PC_AGEX,
+    btb_target_AGEX
   };
 
   // forward signals to DE stage

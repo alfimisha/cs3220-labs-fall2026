@@ -24,7 +24,7 @@ VL_INLINE_OPT void Vtb_branch_predictor_AGEX_STAGE___nba_sequent__TOP__tb_branch
     if (vlSymsp->TOP.reset) {
         __Vdly__branch_count = 0U;
         __Vdly__correct_branch_count = 0U;
-    } else if (vlSelf->__PVT__update_predictor_AGEX) {
+    } else if ((IData)((0U != (0x60000U & vlSymsp->TOP__tb_branch_predictor__dut.__PVT__my_DE_stage__DOT__DE_latch[1U])))) {
         __Vdly__branch_count = ((IData)(1U) + vlSelf->branch_count);
         if ((1U & (~ (IData)(vlSelf->__PVT__from_AGEX_to_DE)))) {
             __Vdly__correct_branch_count = ((IData)(1U) 
@@ -134,13 +134,10 @@ VL_INLINE_OPT void Vtb_branch_predictor_AGEX_STAGE___nba_sequent__TOP__tb_branch
     IData/*31:0*/ __VdfgExtracted_h4e54d416__0;
     __VdfgExtracted_h4e54d416__0 = 0;
     // Body
-    vlSelf->__PVT__update_predictor_AGEX = (IData)(
-                                                   ((vlSymsp->TOP__tb_branch_predictor__dut.__PVT__my_DE_stage__DOT__DE_latch[8U] 
-                                                     >> 0x19U) 
-                                                    & (0U 
-                                                       != 
-                                                       (0x60000U 
-                                                        & vlSymsp->TOP__tb_branch_predictor__dut.__PVT__my_DE_stage__DOT__DE_latch[1U]))));
+    vlSelf->__PVT__branch_resolved_AGEX = (IData)((0U 
+                                                   != 
+                                                   (0x60000U 
+                                                    & vlSymsp->TOP__tb_branch_predictor__dut.__PVT__my_DE_stage__DOT__DE_latch[1U])));
     __VdfgExtracted_h4e54d416__0 = (((vlSymsp->TOP__tb_branch_predictor__dut.__PVT__my_DE_stage__DOT__DE_latch[4U] 
                                       << 0xdU) | (vlSymsp->TOP__tb_branch_predictor__dut.__PVT__my_DE_stage__DOT__DE_latch[3U] 
                                                   >> 0x13U)) 
@@ -672,7 +669,7 @@ VL_INLINE_OPT void Vtb_branch_predictor_AGEX_STAGE___nba_sequent__TOP__tb_branch
                                                    << 7U) 
                                                   | (vlSymsp->TOP__tb_branch_predictor__dut.__PVT__my_DE_stage__DOT__DE_latch[5U] 
                                                      >> 0x19U))))));
-    vlSelf->__PVT__from_AGEX_to_DE = ((IData)(vlSelf->__PVT__update_predictor_AGEX) 
+    vlSelf->__PVT__from_AGEX_to_DE = ((IData)(vlSelf->__PVT__branch_resolved_AGEX) 
                                       & (vlSelf->__PVT__br_target_AGEX 
                                          != vlSymsp->TOP__tb_branch_predictor__dut.__PVT__my_DE_stage__DOT__DE_latch[0U]));
     vlSelf->__PVT__from_AGEX_to_FE[0U] = (IData)((((QData)((IData)(
@@ -701,7 +698,7 @@ VL_INLINE_OPT void Vtb_branch_predictor_AGEX_STAGE___nba_sequent__TOP__tb_branch
                                                   >> 0x20U));
     vlSelf->__PVT__from_AGEX_to_FE[2U] = ((vlSelf->__PVT__br_target_AGEX 
                                            << 0xaU) 
-                                          | (((IData)(vlSelf->__PVT__update_predictor_AGEX) 
+                                          | (((IData)(vlSelf->__PVT__branch_resolved_AGEX) 
                                               << 9U) 
                                              | ((0x100U 
                                                  & ((0x7fff00U 

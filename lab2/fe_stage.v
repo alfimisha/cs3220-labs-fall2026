@@ -77,8 +77,27 @@ module FE_STAGE(
     .wr_data(branch_taken), //this is actually taken or not idk weird signal naming 
     .wr_ena(branch_resolved)
   );
-
+  wire btb_hit;
+  wire [`DBITS-1:0] target_btb_pred;
+  wire is_btb_valid;
   
+  assign btb_hit = is_btb_valid && pht_prediction_FE;
+
+  // the next PC we are guessing for this instr, agex checks it later
+  wire [`DBITS-1:0] pred_pc_FE;
+  assign pred_pc_FE = btb_hit ? target_btb_pred : pcplus_FE;
+
+  BTB btb(
+    .clk(clk), 
+    .reset(reset), 
+    .rd_ena(1), 
+    .rd_sel(PC_FE_latch), 
+    .out_data(target_btb_pred), 
+    .outs_valid(is_btb_valid), 
+    .wr_ena(branch_resolved), 
+    .wr_sel(PC_AGEX), 
+    .wr_data(btb_target_AGEX)
+  );
   
   wire [`FE_latch_WIDTH-1:0] FE_latch_contents;  // the signals that will be FE latch contents 
   
@@ -100,7 +119,8 @@ module FE_STAGE(
                                 pcplus_FE, // please feel free to add more signals such as valid bits etc. 
                                 inst_count_FE, 
                                 pht_idx_fe, 
-                                pht_prediction_FE
+                                pht_prediction_FE,
+                                pred_pc_FE
                                 // if you add more bits here, please increase the width of latch in VX_define.vh 
                                 };
                             
@@ -112,6 +132,8 @@ module FE_STAGE(
   //assign stall_pipe_FE = 1;   // you need
   wire br_mispred_AGEX;  
   wire [`DBITS-1:0] br_target_AGEX;  
+  wire [`DBITS-1:0] PC_AGEX;
+  wire [`DBITS-1:0] btb_target_AGEX;
 
   assign {
     stall_pipe_FE
@@ -122,7 +144,9 @@ module FE_STAGE(
     br_target_AGEX,
     branch_resolved,
     branch_taken,
-    pht_idx_agex
+    pht_idx_agex, 
+    PC_AGEX,
+    btb_target_AGEX
   } = from_AGEX_to_FE;
 
   always @ (posedge clk) begin
@@ -135,10 +159,13 @@ module FE_STAGE(
       PC_FE_latch <= br_target_AGEX;
     else if (stall_pipe_FE) 
       PC_FE_latch <= PC_FE_latch; 
-    else begin 
+    else if (btb_hit) begin
+      PC_FE_latch <= target_btb_pred;
+      inst_count_FE <= inst_count_FE + 1; 
+    end else begin 
       PC_FE_latch <= pcplus_FE;
       inst_count_FE <= inst_count_FE + 1; 
-      end 
+    end 
   end
   
 
@@ -230,5 +257,34 @@ module BTB (
   input wire [`DBITS-1:0] wr_data
 ); 
 //TODO: complete the BTB logic and its update
+
+reg [31:0] btb_target [0:15];
+reg [25:0] btb_tag [0:15];
+reg btb_valid [0:15];
+wire [3:0]  rd_index = rd_sel[5:2];
+wire [25:0] rd_tag   = rd_sel[31:6];
+
+wire [3:0]  wr_index = wr_sel[5:2];
+wire [25:0] wr_tag   = wr_sel[31:6];
+
+// read is combinational: hit shows up the same cycle rd_sel is driven
+assign outs_valid = rd_ena && btb_valid[rd_index] && (btb_tag[rd_index] == rd_tag);
+assign out_data   = outs_valid ? btb_target[rd_index] : 0;
+
+always @(posedge clk) begin
+  if (reset) begin
+    for (int i = 0; i < 16; i= i + 1) begin
+      btb_target[i] <= 0;
+      btb_tag[i] <= 0;
+      btb_valid[i] <= 0;
+    end
+  end else begin
+    if (wr_ena) begin
+      btb_target[wr_index] <= wr_data;
+      btb_tag[wr_index] <= wr_tag;
+      btb_valid[wr_index]  <= 1;
+    end
+  end
+end
 
 endmodule
