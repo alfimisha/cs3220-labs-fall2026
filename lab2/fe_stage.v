@@ -47,6 +47,38 @@ module FE_STAGE(
   wire stall_pipe_FE; // signal to indicate when a front-end needs to be stall
 
   // TODO Task 3: connect BHR and PHT to the pipeline.
+  wire [`PHT_BITS-1: 0] pht_idx_fe; // the xor thingy. btw read wants a pred right now. 
+  wire pht_prediction_FE; //taken or nah
+  wire [`BHR_WIDTH-1:0] bhr_fe;
+
+  
+
+  //stuff we need from agex//
+  wire [`PHT_BITS-1:0] pht_idx_agex; //when we write we need the branch pc which was sent in the pipeline to agex
+  //gotta use that to update. 
+  wire branch_resolved; //has the branch finished do we know the otucome
+  wire branch_taken; //was the branch taken or not
+
+  assign pht_idx_fe = (PC_FE_latch[9:2] ^ bhr_fe);
+
+  BHR bhr(
+    .clk(clk), 
+    .reset(reset), 
+    .wr_ena(branch_resolved), 
+    .wr_data(branch_taken), 
+    .out(bhr_fe)
+  );
+  PHT pht(
+    .clk(clk), 
+    .reset(reset), 
+    .rd_sel(pht_idx_fe), //for reading from here 
+    .out(pht_prediction_FE), 
+    .wr_sel(pht_idx_agex), 
+    .wr_data(branch_taken), //this is actually taken or not idk weird signal naming 
+    .wr_ena(branch_resolved)
+  );
+
+  
   
   wire [`FE_latch_WIDTH-1:0] FE_latch_contents;  // the signals that will be FE latch contents 
   
@@ -66,9 +98,10 @@ module FE_STAGE(
                                 inst_FE, 
                                 PC_FE_latch, 
                                 pcplus_FE, // please feel free to add more signals such as valid bits etc. 
-                                inst_count_FE
+                                inst_count_FE, 
+                                pht_idx_fe, 
+                                pht_prediction_FE
                                 // if you add more bits here, please increase the width of latch in VX_define.vh 
-
                                 };
                             
 
@@ -86,7 +119,10 @@ module FE_STAGE(
 
   assign {
     br_mispred_AGEX,
-    br_target_AGEX
+    br_target_AGEX,
+    branch_resolved,
+    branch_taken,
+    pht_idx_agex
   } = from_AGEX_to_FE;
 
   always @ (posedge clk) begin

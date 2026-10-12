@@ -49,6 +49,13 @@ module AGEX_STAGE(
   wire br_mispred_AGEX;
 
   // TODO Task 3: update BHR and PHT when branches resolve.
+  wire [`PHT_BITS-1:0] pht_idx_AGEX;
+  wire pht_prediction_AGEX;
+  wire branch_resolved_AGEX;
+  wire branch_taken_AGEX;
+
+  assign branch_resolved_AGEX = is_br_AGEX || is_jmp_AGEX;
+  assign branch_taken_AGEX = is_jmp_AGEX || br_cond_AGEX;
 
   
   // Calculate branch condition
@@ -149,8 +156,10 @@ module AGEX_STAGE(
                                   rd_mem_AGEX,
                                   wr_mem_AGEX,
                                   wr_reg_AGEX,
-                                  wregno_AGEX
-                                  } = from_DE_latch; 
+                                  wregno_AGEX,
+                                  pht_idx_AGEX,
+                                  pht_prediction_AGEX
+                                  } = from_DE_latch;
     
  
   assign AGEX_latch_contents = {
@@ -182,7 +191,10 @@ module AGEX_STAGE(
   // forward signals to FE stage
   assign from_AGEX_to_FE = { 
     br_mispred_AGEX,
-    br_target_AGEX
+    br_target_AGEX,
+    branch_resolved_AGEX,
+    branch_taken_AGEX,
+    pht_idx_AGEX
   };
 
   // forward signals to DE stage

@@ -19,9 +19,9 @@ class alignas(VL_CACHE_LINE_BYTES) Vtb_direction_AGEX_STAGE final : public Veril
     VL_IN8(__PVT__from_MEM_to_AGEX,0,0);
     VL_IN8(__PVT__from_WB_to_AGEX,0,0);
     VL_OUT8(__PVT__from_AGEX_to_DE,0,0);
-    CData/*0:0*/ __VdfgExtracted_h047d73e2__0;
-    CData/*0:0*/ __VdfgExtracted_h048118d3__0;
-    VL_INW(__PVT__from_DE_latch,240,0,8);
+    CData/*0:0*/ __PVT__br_cond_AGEX;
+    CData/*0:0*/ __PVT__branch_resolved_AGEX;
+    VL_INW(__PVT__from_DE_latch,249,0,8);
     VL_OUTW(__PVT__AGEX_latch_out,174,0,6);
     VlWide<6>/*174:0*/ __PVT__AGEX_latch;
     IData/*31:0*/ __PVT__aluout_AGEX;
@@ -29,7 +29,7 @@ class alignas(VL_CACHE_LINE_BYTES) Vtb_direction_AGEX_STAGE final : public Veril
     IData/*31:0*/ __PVT__br_target_AGEX;
     IData/*31:0*/ branch_count;
     IData/*31:0*/ correct_branch_count;
-    VL_OUT64(__PVT__from_AGEX_to_FE,32,0);
+    VL_OUT64(__PVT__from_AGEX_to_FE,42,0);
 
     // INTERNAL VARIABLES
     Vtb_direction__Syms* const vlSymsp;

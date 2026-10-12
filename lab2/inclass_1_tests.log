@@ -54,6 +54,12 @@ verilator --exe -cc --assert -Wno-fatal --unroll-count 1024 --trace --trace-stru
 	-I/home/hice1/araj92/cs3220/cs3220-labs-fall2026/lab2 /home/hice1/araj92/cs3220/cs3220-labs-fall2026/lab2/pipeline.v /home/hice1/araj92/cs3220/cs3220-labs-fall2026/lab2/fe_stage.v /home/hice1/araj92/cs3220/cs3220-labs-fall2026/lab2/de_stage.v /home/hice1/araj92/cs3220/cs3220-labs-fall2026/lab2/agex_stage.v /home/hice1/araj92/cs3220/cs3220-labs-fall2026/lab2/mem_stage.v /home/hice1/araj92/cs3220/cs3220-labs-fall2026/lab2/wb_stage.v \
 	test/inclass_1/task3/tb_direction.v /home/hice1/araj92/cs3220/cs3220-labs-fall2026/lab2/test/inclass_1/task3/sim_direction.cpp \
 	--Mdir obj_dir/task3 -CFLAGS '-DDPRINTF'
+%Warning-WIDTHEXPAND: /home/hice1/araj92/cs3220/cs3220-labs-fall2026/lab2/fe_stage.v:68:6: Input port connection 'wr_data' expects 32 bits on the pin connection, but pin connection's VARREF 'branch_taken' generates 1 bits.
+                                                                                         : ... In instance tb_direction.dut.my_FE_stage
+   68 |     .wr_data(branch_taken), 
+      |      ^~~~~~~
+                      ... For warning description see https://verilator.org/warn/WIDTHEXPAND?v=5.015
+                      ... Use "/* verilator lint_off WIDTHEXPAND */" and lint_on around source to disable this message.
 -- COMPILE -----------------
 make -j 4 -C obj_dir/task3 -f Vtb_direction.mk
 make[1]: Entering directory '/home/hice1/araj92/cs3220/cs3220-labs-fall2026/lab2/obj_dir/task3'
@@ -71,9 +77,7 @@ rm Vtb_direction__ALL.verilator_deplist.tmp
 make[1]: Leaving directory '/home/hice1/araj92/cs3220/cs3220-labs-fall2026/lab2/obj_dir/task3'
 -- RUN ---------------------
 obj_dir/task3/Vtb_direction 
-expected output: PHT read index=128
-actual output: PHT read index=0
-make: *** [Makefile:79: tests] Error 1
+Passed!
 TESTING: task3/bne
 mkdir -p "obj_dir/task3"
 cp "test/inclass_1/task3/bne.mem" "obj_dir/task3/program.mem"
@@ -89,9 +93,7 @@ make[1]: Nothing to be done for 'default'.
 make[1]: Leaving directory '/home/hice1/araj92/cs3220/cs3220-labs-fall2026/lab2/obj_dir/task3'
 -- RUN ---------------------
 obj_dir/task3/Vtb_direction 
-expected output: PHT read index=128
-actual output: PHT read index=0
-make: *** [Makefile:79: tests] Error 1
+Passed!
 TESTING: task3/blt
 mkdir -p "obj_dir/task3"
 cp "test/inclass_1/task3/blt.mem" "obj_dir/task3/program.mem"
@@ -107,9 +109,7 @@ make[1]: Nothing to be done for 'default'.
 make[1]: Leaving directory '/home/hice1/araj92/cs3220/cs3220-labs-fall2026/lab2/obj_dir/task3'
 -- RUN ---------------------
 obj_dir/task3/Vtb_direction 
-expected output: PHT read index=128
-actual output: PHT read index=0
-make: *** [Makefile:79: tests] Error 1
+Passed!
 TESTING: task3/bgeu
 mkdir -p "obj_dir/task3"
 cp "test/inclass_1/task3/bgeu.mem" "obj_dir/task3/program.mem"
@@ -125,9 +125,7 @@ make[1]: Nothing to be done for 'default'.
 make[1]: Leaving directory '/home/hice1/araj92/cs3220/cs3220-labs-fall2026/lab2/obj_dir/task3'
 -- RUN ---------------------
 obj_dir/task3/Vtb_direction 
-expected output: PHT read index=128
-actual output: PHT read index=0
-make: *** [Makefile:79: tests] Error 1
+Passed!
 TESTING: task3/predict
 mkdir -p "obj_dir/task3"
 cp "test/inclass_1/task3/predict.mem" "obj_dir/task3/program.mem"
@@ -143,6 +141,4 @@ make[1]: Nothing to be done for 'default'.
 make[1]: Leaving directory '/home/hice1/araj92/cs3220/cs3220-labs-fall2026/lab2/obj_dir/task3'
 -- RUN ---------------------
 obj_dir/task3/Vtb_direction 
-expected output: PHT read index=128
-actual output: PHT read index=0
-make: *** [Makefile:79: tests] Error 1
+Passed!

@@ -3,20 +3,15 @@ Passed!
 TESTING: pht
 Passed!
 TESTING: task3/beq
-expected output: PHT read index=128
-actual output: PHT read index=0
+Passed!
 TESTING: task3/bne
-expected output: PHT read index=128
-actual output: PHT read index=0
+Passed!
 TESTING: task3/blt
-expected output: PHT read index=128
-actual output: PHT read index=0
+Passed!
 TESTING: task3/bgeu
-expected output: PHT read index=128
-actual output: PHT read index=0
+Passed!
 TESTING: task3/predict
-expected output: PHT read index=128
-actual output: PHT read index=0
+Passed!
 Total number of tests: 7
-Number of passed tests: 2
-Number of failed tests: 5
+Number of passed tests: 7
+Number of failed tests: 0

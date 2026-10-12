@@ -141,7 +141,7 @@ void VPHT___024root___eval(VPHT___024root* vlSelf) {
 #ifdef VL_DEBUG
                 VPHT___024root___dump_triggers__ico(vlSelf);
 #endif
-                VL_FATAL_MT("/home/hice1/araj92/cs3220/cs3220-labs-fall2026/lab2/fe_stage.v", 147, "", "Input combinational region did not converge.");
+                VL_FATAL_MT("/home/hice1/araj92/cs3220/cs3220-labs-fall2026/lab2/fe_stage.v", 183, "", "Input combinational region did not converge.");
             }
             vlSelf->__VicoIterCount = ((IData)(1U) 
                                        + vlSelf->__VicoIterCount);
@@ -164,7 +164,7 @@ void VPHT___024root___eval(VPHT___024root* vlSelf) {
 #ifdef VL_DEBUG
                     VPHT___024root___dump_triggers__act(vlSelf);
 #endif
-                    VL_FATAL_MT("/home/hice1/araj92/cs3220/cs3220-labs-fall2026/lab2/fe_stage.v", 147, "", "Active region did not converge.");
+                    VL_FATAL_MT("/home/hice1/araj92/cs3220/cs3220-labs-fall2026/lab2/fe_stage.v", 183, "", "Active region did not converge.");
                 }
                 vlSelf->__VactIterCount = ((IData)(1U) 
                                            + vlSelf->__VactIterCount);
@@ -179,7 +179,7 @@ void VPHT___024root___eval(VPHT___024root* vlSelf) {
 #ifdef VL_DEBUG
                 VPHT___024root___dump_triggers__nba(vlSelf);
 #endif
-                VL_FATAL_MT("/home/hice1/araj92/cs3220/cs3220-labs-fall2026/lab2/fe_stage.v", 147, "", "NBA region did not converge.");
+                VL_FATAL_MT("/home/hice1/araj92/cs3220/cs3220-labs-fall2026/lab2/fe_stage.v", 183, "", "NBA region did not converge.");
             }
             __VnbaIterCount = ((IData)(1U) + __VnbaIterCount);
             VPHT___024root___eval_nba(vlSelf);

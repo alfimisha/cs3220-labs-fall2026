@@ -12,6 +12,4 @@ make[1]: Nothing to be done for 'default'.
 make[1]: Leaving directory '/home/hice1/araj92/cs3220/cs3220-labs-fall2026/lab2/obj_dir/task3'
 -- RUN ---------------------
 obj_dir/task3/Vtb_direction 
-expected output: PHT read index=128
-actual output: PHT read index=0
-make: *** [Makefile:79: tests] Error 1
+Passed!
