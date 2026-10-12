@@ -12,10 +12,9 @@ extern const VlWide<20>/*639:0*/ Vtb_direction__ConstPool__CONST_h137d40f9_0 = {
     0x65312f61, 0x2f686963, 0x686f6d65, 0x0000002f
 }};
 
-extern const VlWide<9>/*287:0*/ Vtb_direction__ConstPool__CONST_hbf00fadb_0 = {{
+extern const VlWide<8>/*255:0*/ Vtb_direction__ConstPool__CONST_h4c14edcc_0 = {{
     0x00000000, 0x00000000, 0x00000000, 0x00000000,
-    0x00000000, 0x00000000, 0x00000000, 0x00000000,
-    0x00000000
+    0x00000000, 0x00000000, 0x00000000, 0x00000000
 }};
 
 extern const VlUnpacked<CData/*0:0*/, 16> Vtb_direction__ConstPool__TABLE_h085e32d7_0 = {{

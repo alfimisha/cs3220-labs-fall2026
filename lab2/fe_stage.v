@@ -34,8 +34,6 @@ module FE_STAGE(
   /* pipeline latch */ 
   reg [`FE_latch_WIDTH-1:0] FE_latch;  // FE latch 
   wire valid_FE;
-  assign valid_FE = 1'b1;
-
    
   `UNUSED_VAR(valid_FE)
   reg [`DBITS-1:0] PC_FE_latch; // PC latch in the FE stage   // you could use a part of FE_latch as a PC latch as well 
@@ -49,61 +47,6 @@ module FE_STAGE(
   wire stall_pipe_FE; // signal to indicate when a front-end needs to be stall
 
   // TODO Task 3: connect BHR and PHT to the pipeline.
-  wire [`BHR_WIDTH-1:0] bhr_FE;
-  wire [`PHT_BITS-1:0] pht_index_FE;
-  wire pht_prediction_FE;
-
-  wire update_predictor_AGEX;
-  wire branch_result_AGEX;
-  wire [`PHT_BITS-1:0] pht_index_AGEX;
-
-  // Task 5: BTB lookup and next-PC prediction
-  wire btb_hit_FE;
-  wire [`DBITS-1:0] btb_target_FE;
-  wire [`DBITS-1:0] pred_next_pc_FE;
-
-  wire [`DBITS-1:0] btb_wr_pc_AGEX;
-  wire [`DBITS-1:0] btb_wr_target_AGEX;
-
-  // G-share
-  assign pht_index_FE = PC_FE_latch[9:2] ^ bhr_FE;
-
-  BHR bhr (
-      .clk(clk),
-      .reset(reset),
-      .wr_ena(update_predictor_AGEX),
-      .wr_data({31'b0, branch_result_AGEX}),
-      .out(bhr_FE)
-  );
-
-  PHT pht (
-      .clk(clk),
-      .reset(reset),
-
-      .rd_sel(pht_index_FE),
-      .out(pht_prediction_FE),
-
-      .wr_sel(pht_index_AGEX),
-      .wr_data(branch_result_AGEX),
-      .wr_ena(update_predictor_AGEX)
-  );
-
-  BTB btb (
-      .clk(clk),
-      .reset(reset),
-      .rd_ena(1'b1),
-      .rd_sel(PC_FE_latch),
-      .out_data(btb_target_FE),
-      .outs_valid(btb_hit_FE),
-      .wr_ena(update_predictor_AGEX),
-      .wr_sel(btb_wr_pc_AGEX),
-      .wr_data(btb_wr_target_AGEX)
-  );
-
-  // Predict taken only when the BTB knows the target and the PHT says taken
-  assign pred_next_pc_FE = (btb_hit_FE && pht_prediction_FE) ? btb_target_FE : pcplus_FE;
-  
-
   
   wire [`FE_latch_WIDTH-1:0] FE_latch_contents;  // the signals that will be FE latch contents 
   
@@ -123,11 +66,9 @@ module FE_STAGE(
                                 inst_FE, 
                                 PC_FE_latch, 
                                 pcplus_FE, // please feel free to add more signals such as valid bits etc. 
-                                inst_count_FE,
+                                inst_count_FE
                                 // if you add more bits here, please increase the width of latch in VX_define.vh 
-                                pht_index_FE,
-                                pht_prediction_FE,
-                                pred_next_pc_FE
+
                                 };
                             
 
@@ -145,12 +86,7 @@ module FE_STAGE(
 
   assign {
     br_mispred_AGEX,
-    br_target_AGEX,
-    update_predictor_AGEX,
-    branch_result_AGEX,
-    pht_index_AGEX,
-    btb_wr_pc_AGEX,
-    btb_wr_target_AGEX
+    br_target_AGEX
   } = from_AGEX_to_FE;
 
   always @ (posedge clk) begin
@@ -164,7 +100,7 @@ module FE_STAGE(
     else if (stall_pipe_FE) 
       PC_FE_latch <= PC_FE_latch; 
     else begin 
-      PC_FE_latch <= pred_next_pc_FE;
+      PC_FE_latch <= pcplus_FE;
       inst_count_FE <= inst_count_FE + 1; 
       end 
   end
@@ -191,16 +127,16 @@ endmodule
 module BHR (
   input wire clk,
   input wire reset,
-  input wire wr_ena,               
-  input wire [`DBITS-1:0] wr_data,   
-  output reg [`BHR_WIDTH-1:0] out    
+  input wire wr_ena,
+  input wire [`DBITS-1:0] wr_data,
+  output reg [`BHR_WIDTH-1:0] out
 );
 
 always @(posedge clk) begin
   if (reset) begin
     out <= {`BHR_WIDTH{1'b0}};
-  end else if (wr_ena) begin 
-    out <= {out[`BHR_WIDTH-2:0], wr_data[0]}; 
+  end else if (wr_ena) begin
+    out <= {out[`BHR_WIDTH-2:0], wr_data[0]};
   end
 end
 
@@ -212,7 +148,7 @@ module PHT (
   input wire clk,
   input wire reset,
   input wire [`PHT_BITS-1:0] rd_sel,
-  output wire out,                     
+  output wire out,
   input wire [`PHT_BITS-1:0] wr_sel,
   input wire wr_data,
   input wire wr_ena
@@ -224,16 +160,16 @@ reg [1:0] PHT [0:(1 << `PHT_BITS)-1];
 always @(posedge clk) begin
   if (reset) begin
     for (i = 0; i < (1 << `PHT_BITS); i = i + 1) begin
-      PHT[i] <= 2'b01; 
+      PHT[i] <= 2'b01;
     end
   end else if (wr_ena) begin
     if (wr_data == 1'b1) begin
       if (PHT[wr_sel] != 2'b11) begin
-        PHT[wr_sel] <= PHT[wr_sel] + 1'b1; 
+        PHT[wr_sel] <= PHT[wr_sel] + 1'b1;
       end
     end else begin
       if (PHT[wr_sel] != 2'b00) begin
-        PHT[wr_sel] <= PHT[wr_sel] - 1'b1; 
+        PHT[wr_sel] <= PHT[wr_sel] - 1'b1;
       end
     end
   end
@@ -257,30 +193,6 @@ module BTB (
   input wire [`DBITS-1:0] wr_sel,
   input wire [`DBITS-1:0] wr_data
 ); 
-
-  reg              btb_valid  [0:15];
-  reg [25:0]       btb_tag    [0:15];   // PC[31:6]
-  reg [`DBITS-1:0] btb_target [0:15];
-
-  integer i;
-
-  wire [3:0]  rd_idx = rd_sel[5:2];
-  wire [25:0] rd_tag = rd_sel[31:6];
-
-  assign outs_valid = rd_ena && btb_valid[rd_idx] && (btb_tag[rd_idx] == rd_tag);
-  assign out_data   = btb_target[rd_idx];
-
-  wire [3:0]  wr_idx = wr_sel[5:2];
-
-  always @(posedge clk) begin
-    if (reset) begin
-      for (i = 0; i < 16; i = i + 1)
-        btb_valid[i] <= 1'b0;
-    end else if (wr_ena) begin
-      btb_valid[wr_idx]  <= 1'b1;
-      btb_tag[wr_idx]    <= wr_sel[31:6];
-      btb_target[wr_idx] <= wr_data;
-    end
-  end
+//TODO: complete the BTB logic and its update
 
 endmodule

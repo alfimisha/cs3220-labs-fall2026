@@ -71,7 +71,9 @@ rm Vtb_direction__ALL.verilator_deplist.tmp
 make[1]: Leaving directory '/home/hice1/araj92/cs3220/cs3220-labs-fall2026/lab2/obj_dir/task3'
 -- RUN ---------------------
 obj_dir/task3/Vtb_direction 
-Passed!
+expected output: PHT read index=128
+actual output: PHT read index=0
+make: *** [Makefile:79: tests] Error 1
 TESTING: task3/bne
 mkdir -p "obj_dir/task3"
 cp "test/inclass_1/task3/bne.mem" "obj_dir/task3/program.mem"
@@ -87,7 +89,9 @@ make[1]: Nothing to be done for 'default'.
 make[1]: Leaving directory '/home/hice1/araj92/cs3220/cs3220-labs-fall2026/lab2/obj_dir/task3'
 -- RUN ---------------------
 obj_dir/task3/Vtb_direction 
-Passed!
+expected output: PHT read index=128
+actual output: PHT read index=0
+make: *** [Makefile:79: tests] Error 1
 TESTING: task3/blt
 mkdir -p "obj_dir/task3"
 cp "test/inclass_1/task3/blt.mem" "obj_dir/task3/program.mem"
@@ -103,7 +107,9 @@ make[1]: Nothing to be done for 'default'.
 make[1]: Leaving directory '/home/hice1/araj92/cs3220/cs3220-labs-fall2026/lab2/obj_dir/task3'
 -- RUN ---------------------
 obj_dir/task3/Vtb_direction 
-Passed!
+expected output: PHT read index=128
+actual output: PHT read index=0
+make: *** [Makefile:79: tests] Error 1
 TESTING: task3/bgeu
 mkdir -p "obj_dir/task3"
 cp "test/inclass_1/task3/bgeu.mem" "obj_dir/task3/program.mem"
@@ -119,7 +125,9 @@ make[1]: Nothing to be done for 'default'.
 make[1]: Leaving directory '/home/hice1/araj92/cs3220/cs3220-labs-fall2026/lab2/obj_dir/task3'
 -- RUN ---------------------
 obj_dir/task3/Vtb_direction 
-Passed!
+expected output: PHT read index=128
+actual output: PHT read index=0
+make: *** [Makefile:79: tests] Error 1
 TESTING: task3/predict
 mkdir -p "obj_dir/task3"
 cp "test/inclass_1/task3/predict.mem" "obj_dir/task3/program.mem"
@@ -135,4 +143,6 @@ make[1]: Nothing to be done for 'default'.
 make[1]: Leaving directory '/home/hice1/araj92/cs3220/cs3220-labs-fall2026/lab2/obj_dir/task3'
 -- RUN ---------------------
 obj_dir/task3/Vtb_direction 
-Passed!
+expected output: PHT read index=128
+actual output: PHT read index=0
+make: *** [Makefile:79: tests] Error 1
