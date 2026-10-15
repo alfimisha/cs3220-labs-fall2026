@@ -51,7 +51,7 @@ VL_ATTR_COLD void VPHT___024root___eval_settle(VPHT___024root* vlSelf) {
 #ifdef VL_DEBUG
                 VPHT___024root___dump_triggers__stl(vlSelf);
 #endif
-                VL_FATAL_MT("/home/hice1/araj92/cs3220/cs3220-labs-fall2026/lab2/fe_stage.v", 210, "", "Settle region did not converge.");
+                VL_FATAL_MT("/home/hice1/araj92/cs3220/cs3220-labs-fall2026/lab2/fe_stage.v", 212, "", "Settle region did not converge.");
             }
             vlSelf->__VstlIterCount = ((IData)(1U) 
                                        + vlSelf->__VstlIterCount);
@@ -139,13 +139,13 @@ VL_ATTR_COLD void VPHT___024root___ctor_var_reset(VPHT___024root* vlSelf) {
     // Body
     vlSelf->clk = VL_RAND_RESET_I(1);
     vlSelf->reset = VL_RAND_RESET_I(1);
-    vlSelf->rd_sel = VL_RAND_RESET_I(8);
+    vlSelf->rd_sel = VL_RAND_RESET_I(10);
     vlSelf->out = VL_RAND_RESET_I(1);
-    vlSelf->wr_sel = VL_RAND_RESET_I(8);
+    vlSelf->wr_sel = VL_RAND_RESET_I(10);
     vlSelf->wr_data = VL_RAND_RESET_I(1);
     vlSelf->wr_ena = VL_RAND_RESET_I(1);
     vlSelf->PHT__DOT__i = VL_RAND_RESET_I(32);
-    for (int __Vi0 = 0; __Vi0 < 256; ++__Vi0) {
+    for (int __Vi0 = 0; __Vi0 < 1024; ++__Vi0) {
         vlSelf->PHT__DOT__PHT[__Vi0] = VL_RAND_RESET_I(2);
     }
     vlSelf->__Vtrigprevexpr___TOP__clk__0 = VL_RAND_RESET_I(1);

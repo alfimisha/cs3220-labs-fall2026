@@ -33,14 +33,14 @@ VL_ATTR_COLD void Vtb_direction_pipeline___stl_sequent__TOP__tb_direction__dut__
     Vtb_direction__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
     VL_DEBUG_IF(VL_DBG_MSGF("+        Vtb_direction_pipeline___stl_sequent__TOP__tb_direction__dut__0\n"); );
     // Init
-    CData/*0:0*/ my_DE_stage__DOT____VdfgTmp_h8d6752e4__0;
-    my_DE_stage__DOT____VdfgTmp_h8d6752e4__0 = 0;
-    CData/*0:0*/ my_DE_stage__DOT____VdfgTmp_hb9e61cbc__0;
-    my_DE_stage__DOT____VdfgTmp_hb9e61cbc__0 = 0;
-    CData/*0:0*/ my_DE_stage__DOT____VdfgTmp_h6274e227__0;
-    my_DE_stage__DOT____VdfgTmp_h6274e227__0 = 0;
-    CData/*0:0*/ my_DE_stage__DOT____VdfgTmp_h68dd47d6__0;
-    my_DE_stage__DOT____VdfgTmp_h68dd47d6__0 = 0;
+    CData/*0:0*/ my_DE_stage__DOT____VdfgTmp_h9aae73f3__0;
+    my_DE_stage__DOT____VdfgTmp_h9aae73f3__0 = 0;
+    CData/*0:0*/ my_DE_stage__DOT____VdfgTmp_h476f3bef__0;
+    my_DE_stage__DOT____VdfgTmp_h476f3bef__0 = 0;
+    CData/*0:0*/ my_DE_stage__DOT____VdfgTmp_h7995c6be__0;
+    my_DE_stage__DOT____VdfgTmp_h7995c6be__0 = 0;
+    CData/*0:0*/ my_DE_stage__DOT____VdfgTmp_h1f31becc__0;
+    my_DE_stage__DOT____VdfgTmp_h1f31becc__0 = 0;
     CData/*5:0*/ __Vtableidx1;
     __Vtableidx1 = 0;
     CData/*3:0*/ __Vtableidx2;
@@ -48,10 +48,10 @@ VL_ATTR_COLD void Vtb_direction_pipeline___stl_sequent__TOP__tb_direction__dut__
     // Body
     vlSelf->my_DE_stage__DOT____VdfgExtracted_hee942bf4__0 
         = (((- (IData)((1U & (vlSelf->__PVT__my_FE_stage__DOT__FE_latch[5U] 
-                              >> 8U)))) << 0xbU) | 
-           (0x7ffU & ((vlSelf->__PVT__my_FE_stage__DOT__FE_latch[5U] 
-                       << 3U) | (vlSelf->__PVT__my_FE_stage__DOT__FE_latch[4U] 
-                                 >> 0x1dU))));
+                              >> 0xaU)))) << 0xbU) 
+           | (0x7ffU & ((vlSelf->__PVT__my_FE_stage__DOT__FE_latch[5U] 
+                         << 1U) | (vlSelf->__PVT__my_FE_stage__DOT__FE_latch[4U] 
+                                   >> 0x1fU))));
     vlSelf->__PVT__my_FE_stage__DOT__pcplus_FE = ((IData)(4U) 
                                                   + vlSelf->__PVT__my_FE_stage__DOT__PC_FE_latch);
     vlSelf->__PVT__my_FE_stage__DOT__inst_FE = vlSelf->__PVT__my_FE_stage__DOT__imem
@@ -59,236 +59,236 @@ VL_ATTR_COLD void Vtb_direction_pipeline___stl_sequent__TOP__tb_direction__dut__
                      >> 2U))];
     vlSelf->__PVT__my_FE_stage__DOT__is_btb_valid = 
         (vlSelf->__PVT__my_FE_stage__DOT__btb__DOT__btb_valid
-         [(0xfU & (vlSelf->__PVT__my_FE_stage__DOT__PC_FE_latch 
-                   >> 2U))] & (vlSelf->__PVT__my_FE_stage__DOT__btb__DOT__btb_tag
-                               [(0xfU & (vlSelf->__PVT__my_FE_stage__DOT__PC_FE_latch 
-                                         >> 2U))] == 
-                               (vlSelf->__PVT__my_FE_stage__DOT__PC_FE_latch 
-                                >> 6U)));
-    vlSelf->__PVT__my_FE_stage__DOT__pht_idx_fe = (0xffU 
+         [(0xffU & (vlSelf->__PVT__my_FE_stage__DOT__PC_FE_latch 
+                    >> 2U))] & (vlSelf->__PVT__my_FE_stage__DOT__btb__DOT__btb_tag
+                                [(0xffU & (vlSelf->__PVT__my_FE_stage__DOT__PC_FE_latch 
+                                           >> 2U))] 
+                                == (vlSelf->__PVT__my_FE_stage__DOT__PC_FE_latch 
+                                    >> 0xaU)));
+    vlSelf->__PVT__my_FE_stage__DOT__pht_idx_fe = (0x3ffU 
                                                    & ((vlSelf->__PVT__my_FE_stage__DOT__PC_FE_latch 
                                                        >> 2U) 
                                                       ^ (IData)(vlSelf->__PVT__my_FE_stage__DOT__bhr_fe)));
-    my_DE_stage__DOT____VdfgTmp_h8d6752e4__0 = (IData)(
-                                                       (0x6600U 
+    my_DE_stage__DOT____VdfgTmp_h9aae73f3__0 = (IData)(
+                                                       (0x19800U 
                                                         == 
-                                                        (0xe0fe00U 
+                                                        (0x383f800U 
                                                          & vlSelf->__PVT__my_FE_stage__DOT__FE_latch[4U])));
-    my_DE_stage__DOT____VdfgTmp_hb9e61cbc__0 = (IData)(
-                                                       (0xa06600U 
+    my_DE_stage__DOT____VdfgTmp_h476f3bef__0 = (IData)(
+                                                       (0x2819800U 
                                                         == 
-                                                        (0xe0fe00U 
+                                                        (0x383f800U 
                                                          & vlSelf->__PVT__my_FE_stage__DOT__FE_latch[4U])));
-    my_DE_stage__DOT____VdfgTmp_h6274e227__0 = (IData)(
-                                                       ((0x200000U 
+    my_DE_stage__DOT____VdfgTmp_h7995c6be__0 = (IData)(
+                                                       ((0x800000U 
                                                          == 
-                                                         (0xe00000U 
+                                                         (0x3800000U 
                                                           & vlSelf->__PVT__my_FE_stage__DOT__FE_latch[4U])) 
                                                         & (0U 
                                                            == 
-                                                           (0x1fcU 
+                                                           (0x7f0U 
                                                             & vlSelf->__PVT__my_FE_stage__DOT__FE_latch[5U]))));
-    my_DE_stage__DOT____VdfgTmp_h68dd47d6__0 = (IData)(
-                                                       (0xa02600U 
+    my_DE_stage__DOT____VdfgTmp_h1f31becc__0 = (IData)(
+                                                       (0x2809800U 
                                                         == 
-                                                        (0xe0fe00U 
+                                                        (0x383f800U 
                                                          & vlSelf->__PVT__my_FE_stage__DOT__FE_latch[4U])));
     vlSelf->__PVT__my_FE_stage__DOT__target_btb_pred 
         = ((IData)(vlSelf->__PVT__my_FE_stage__DOT__is_btb_valid)
             ? vlSelf->__PVT__my_FE_stage__DOT__btb__DOT__btb_target
-           [(0xfU & (vlSelf->__PVT__my_FE_stage__DOT__PC_FE_latch 
-                     >> 2U))] : 0U);
+           [(0xffU & (vlSelf->__PVT__my_FE_stage__DOT__PC_FE_latch 
+                      >> 2U))] : 0U);
     vlSelf->__PVT__my_FE_stage__DOT__pht_prediction_FE 
         = (1U & (vlSelf->__PVT__my_FE_stage__DOT__pht__DOT__PHT
                  [vlSelf->__PVT__my_FE_stage__DOT__pht_idx_fe] 
                  >> 1U));
-    vlSelf->__PVT__my_DE_stage__DOT__op_I_DE = (((IData)(my_DE_stage__DOT____VdfgTmp_h8d6752e4__0) 
+    vlSelf->__PVT__my_DE_stage__DOT__op_I_DE = (((IData)(my_DE_stage__DOT____VdfgTmp_h9aae73f3__0) 
                                                  & (0U 
                                                     == 
-                                                    (0x1fcU 
+                                                    (0x7f0U 
                                                      & vlSelf->__PVT__my_FE_stage__DOT__FE_latch[5U])))
                                                  ? 1U
                                                  : 
-                                                (((IData)(my_DE_stage__DOT____VdfgTmp_h8d6752e4__0) 
-                                                  & (0x80U 
+                                                (((IData)(my_DE_stage__DOT____VdfgTmp_h9aae73f3__0) 
+                                                  & (0x200U 
                                                      == 
-                                                     (0x1fcU 
+                                                     (0x7f0U 
                                                       & vlSelf->__PVT__my_FE_stage__DOT__FE_latch[5U])))
                                                   ? 2U
                                                   : 
                                                  ((IData)(
-                                                          ((0xe06600U 
+                                                          ((0x3819800U 
                                                             == 
-                                                            (0xe0fe00U 
+                                                            (0x383f800U 
                                                              & vlSelf->__PVT__my_FE_stage__DOT__FE_latch[4U])) 
                                                            & (0U 
                                                               == 
-                                                              (0x1fcU 
+                                                              (0x7f0U 
                                                                & vlSelf->__PVT__my_FE_stage__DOT__FE_latch[5U]))))
                                                    ? 3U
                                                    : 
                                                   ((IData)(
-                                                           ((0xc06600U 
+                                                           ((0x3019800U 
                                                              == 
-                                                             (0xe0fe00U 
+                                                             (0x383f800U 
                                                               & vlSelf->__PVT__my_FE_stage__DOT__FE_latch[4U])) 
                                                             & (0U 
                                                                == 
-                                                               (0x1fcU 
+                                                               (0x7f0U 
                                                                 & vlSelf->__PVT__my_FE_stage__DOT__FE_latch[5U]))))
                                                     ? 4U
                                                     : 
                                                    ((IData)(
-                                                            ((0x806600U 
+                                                            ((0x2019800U 
                                                               == 
-                                                              (0xe0fe00U 
+                                                              (0x383f800U 
                                                                & vlSelf->__PVT__my_FE_stage__DOT__FE_latch[4U])) 
                                                              & (0U 
                                                                 == 
-                                                                (0x1fcU 
+                                                                (0x7f0U 
                                                                  & vlSelf->__PVT__my_FE_stage__DOT__FE_latch[5U]))))
                                                      ? 5U
                                                      : 
                                                     ((IData)(
-                                                             ((0x406600U 
+                                                             ((0x1019800U 
                                                                == 
-                                                               (0xe0fe00U 
+                                                               (0x383f800U 
                                                                 & vlSelf->__PVT__my_FE_stage__DOT__FE_latch[4U])) 
                                                               & (0U 
                                                                  == 
-                                                                 (0x1fcU 
+                                                                 (0x7f0U 
                                                                   & vlSelf->__PVT__my_FE_stage__DOT__FE_latch[5U]))))
                                                       ? 6U
                                                       : 
                                                      ((IData)(
-                                                              ((0x606600U 
+                                                              ((0x1819800U 
                                                                 == 
-                                                                (0xe0fe00U 
+                                                                (0x383f800U 
                                                                  & vlSelf->__PVT__my_FE_stage__DOT__FE_latch[4U])) 
                                                                & (0U 
                                                                   == 
-                                                                  (0x1fcU 
+                                                                  (0x7f0U 
                                                                    & vlSelf->__PVT__my_FE_stage__DOT__FE_latch[5U]))))
                                                        ? 7U
                                                        : 
-                                                      (((IData)(my_DE_stage__DOT____VdfgTmp_hb9e61cbc__0) 
-                                                        & (0x80U 
+                                                      (((IData)(my_DE_stage__DOT____VdfgTmp_h476f3bef__0) 
+                                                        & (0x200U 
                                                            == 
-                                                           (0x1fcU 
+                                                           (0x7f0U 
                                                             & vlSelf->__PVT__my_FE_stage__DOT__FE_latch[5U])))
                                                         ? 8U
                                                         : 
-                                                       (((IData)(my_DE_stage__DOT____VdfgTmp_hb9e61cbc__0) 
+                                                       (((IData)(my_DE_stage__DOT____VdfgTmp_h476f3bef__0) 
                                                          & (0U 
                                                             == 
-                                                            (0x1fcU 
+                                                            (0x7f0U 
                                                              & vlSelf->__PVT__my_FE_stage__DOT__FE_latch[5U])))
                                                          ? 9U
                                                          : 
                                                         ((IData)(
-                                                                 ((0x6600U 
+                                                                 ((0x19800U 
                                                                    == 
-                                                                   (0xfe00U 
+                                                                   (0x3f800U 
                                                                     & vlSelf->__PVT__my_FE_stage__DOT__FE_latch[4U])) 
-                                                                  & (IData)(my_DE_stage__DOT____VdfgTmp_h6274e227__0)))
+                                                                  & (IData)(my_DE_stage__DOT____VdfgTmp_h7995c6be__0)))
                                                           ? 0xaU
                                                           : 
-                                                         (((IData)(my_DE_stage__DOT____VdfgTmp_h8d6752e4__0) 
-                                                           & (4U 
+                                                         (((IData)(my_DE_stage__DOT____VdfgTmp_h9aae73f3__0) 
+                                                           & (0x10U 
                                                               == 
-                                                              (0x1fcU 
+                                                              (0x7f0U 
                                                                & vlSelf->__PVT__my_FE_stage__DOT__FE_latch[5U])))
                                                            ? 0xbU
                                                            : 
                                                           ((IData)(
-                                                                   (0x2600U 
+                                                                   (0x9800U 
                                                                     == 
-                                                                    (0xe0fe00U 
+                                                                    (0x383f800U 
                                                                      & vlSelf->__PVT__my_FE_stage__DOT__FE_latch[4U])))
                                                             ? 0xcU
                                                             : 
                                                            ((IData)(
-                                                                    (0xe02600U 
+                                                                    (0x3809800U 
                                                                      == 
-                                                                     (0xe0fe00U 
+                                                                     (0x383f800U 
                                                                       & vlSelf->__PVT__my_FE_stage__DOT__FE_latch[4U])))
                                                              ? 0xdU
                                                              : 
                                                             ((IData)(
-                                                                     (0xc02600U 
+                                                                     (0x3009800U 
                                                                       == 
-                                                                      (0xe0fe00U 
+                                                                      (0x383f800U 
                                                                        & vlSelf->__PVT__my_FE_stage__DOT__FE_latch[4U])))
                                                               ? 0xeU
                                                               : 
                                                              ((IData)(
-                                                                      (0x802600U 
+                                                                      (0x2009800U 
                                                                        == 
-                                                                       (0xe0fe00U 
+                                                                       (0x383f800U 
                                                                         & vlSelf->__PVT__my_FE_stage__DOT__FE_latch[4U])))
                                                                ? 0xfU
                                                                : 
                                                               ((IData)(
-                                                                       (0x402600U 
+                                                                       (0x1009800U 
                                                                         == 
-                                                                        (0xe0fe00U 
+                                                                        (0x383f800U 
                                                                          & vlSelf->__PVT__my_FE_stage__DOT__FE_latch[4U])))
                                                                 ? 0x10U
                                                                 : 
                                                                ((IData)(
-                                                                        (0x602600U 
+                                                                        (0x1809800U 
                                                                          == 
-                                                                         (0xe0fe00U 
+                                                                         (0x383f800U 
                                                                           & vlSelf->__PVT__my_FE_stage__DOT__FE_latch[4U])))
                                                                  ? 0x11U
                                                                  : 
-                                                                (((IData)(my_DE_stage__DOT____VdfgTmp_h68dd47d6__0) 
-                                                                  & (0x80U 
+                                                                (((IData)(my_DE_stage__DOT____VdfgTmp_h1f31becc__0) 
+                                                                  & (0x200U 
                                                                      == 
-                                                                     (0x1fcU 
+                                                                     (0x7f0U 
                                                                       & vlSelf->__PVT__my_FE_stage__DOT__FE_latch[5U])))
                                                                   ? 0x12U
                                                                   : 
-                                                                 (((IData)(my_DE_stage__DOT____VdfgTmp_h68dd47d6__0) 
+                                                                 (((IData)(my_DE_stage__DOT____VdfgTmp_h1f31becc__0) 
                                                                    & (0U 
                                                                       == 
-                                                                      (0x1fcU 
+                                                                      (0x7f0U 
                                                                        & vlSelf->__PVT__my_FE_stage__DOT__FE_latch[5U])))
                                                                    ? 0x13U
                                                                    : 
                                                                   ((IData)(
-                                                                           ((0x2600U 
+                                                                           ((0x9800U 
                                                                              == 
-                                                                             (0xfe00U 
+                                                                             (0x3f800U 
                                                                               & vlSelf->__PVT__my_FE_stage__DOT__FE_latch[4U])) 
-                                                                            & (IData)(my_DE_stage__DOT____VdfgTmp_h6274e227__0)))
+                                                                            & (IData)(my_DE_stage__DOT____VdfgTmp_h7995c6be__0)))
                                                                     ? 0x14U
                                                                     : 
                                                                    ((0x37U 
                                                                      == 
                                                                      (0x7fU 
                                                                       & (vlSelf->__PVT__my_FE_stage__DOT__FE_latch[4U] 
-                                                                         >> 9U)))
+                                                                         >> 0xbU)))
                                                                      ? 0x15U
                                                                      : 
                                                                     ((0x17U 
                                                                       == 
                                                                       (0x7fU 
                                                                        & (vlSelf->__PVT__my_FE_stage__DOT__FE_latch[4U] 
-                                                                          >> 9U)))
+                                                                          >> 0xbU)))
                                                                       ? 0x16U
                                                                       : 
                                                                      ((IData)(
-                                                                              (0x400600U 
+                                                                              (0x1001800U 
                                                                                == 
-                                                                               (0xe0fe00U 
+                                                                               (0x383f800U 
                                                                                 & vlSelf->__PVT__my_FE_stage__DOT__FE_latch[4U])))
                                                                        ? 0x17U
                                                                        : 
                                                                       ((IData)(
-                                                                               (0x404600U 
+                                                                               (0x1011800U 
                                                                                 == 
-                                                                                (0xe0fe00U 
+                                                                                (0x383f800U 
                                                                                 & vlSelf->__PVT__my_FE_stage__DOT__FE_latch[4U])))
                                                                         ? 0x18U
                                                                         : 
@@ -296,69 +296,69 @@ VL_ATTR_COLD void Vtb_direction_pipeline___stl_sequent__TOP__tb_direction__dut__
                                                                          == 
                                                                          (0x7fU 
                                                                           & (vlSelf->__PVT__my_FE_stage__DOT__FE_latch[4U] 
-                                                                             >> 9U)))
+                                                                             >> 0xbU)))
                                                                          ? 0x19U
                                                                          : 
                                                                         ((IData)(
-                                                                                (0xce00U 
+                                                                                (0x33800U 
                                                                                 == 
-                                                                                (0xe0fe00U 
+                                                                                (0x383f800U 
                                                                                 & vlSelf->__PVT__my_FE_stage__DOT__FE_latch[4U])))
                                                                           ? 0x1bU
                                                                           : 
                                                                          ((IData)(
-                                                                                (0xc600U 
+                                                                                (0x31800U 
                                                                                 == 
-                                                                                (0xe0fe00U 
+                                                                                (0x383f800U 
                                                                                 & vlSelf->__PVT__my_FE_stage__DOT__FE_latch[4U])))
                                                                            ? 0x1cU
                                                                            : 
                                                                           ((IData)(
-                                                                                (0x20c600U 
+                                                                                (0x831800U 
                                                                                 == 
-                                                                                (0xe0fe00U 
+                                                                                (0x383f800U 
                                                                                 & vlSelf->__PVT__my_FE_stage__DOT__FE_latch[4U])))
                                                                             ? 0x1dU
                                                                             : 
                                                                            ((IData)(
-                                                                                (0x80c600U 
+                                                                                (0x2031800U 
                                                                                 == 
-                                                                                (0xe0fe00U 
+                                                                                (0x383f800U 
                                                                                 & vlSelf->__PVT__my_FE_stage__DOT__FE_latch[4U])))
                                                                              ? 0x1eU
                                                                              : 
                                                                             ((IData)(
-                                                                                (0xa0c600U 
+                                                                                (0x2831800U 
                                                                                 == 
-                                                                                (0xe0fe00U 
+                                                                                (0x383f800U 
                                                                                 & vlSelf->__PVT__my_FE_stage__DOT__FE_latch[4U])))
                                                                               ? 0x1fU
                                                                               : 
                                                                              ((IData)(
-                                                                                (0xc0c600U 
+                                                                                (0x3031800U 
                                                                                 == 
-                                                                                (0xe0fe00U 
+                                                                                (0x383f800U 
                                                                                 & vlSelf->__PVT__my_FE_stage__DOT__FE_latch[4U])))
                                                                                ? 0x20U
                                                                                : 
                                                                               ((IData)(
-                                                                                (0xe0c600U 
+                                                                                (0x3831800U 
                                                                                 == 
-                                                                                (0xe0fe00U 
+                                                                                (0x383f800U 
                                                                                 & vlSelf->__PVT__my_FE_stage__DOT__FE_latch[4U])))
                                                                                 ? 0x21U
                                                                                 : 
                                                                                ((IData)(
-                                                                                (0x40e600U 
+                                                                                (0x1039800U 
                                                                                 == 
-                                                                                (0xe0fe00U 
+                                                                                (0x383f800U 
                                                                                 & vlSelf->__PVT__my_FE_stage__DOT__FE_latch[4U])))
                                                                                  ? 0x22U
                                                                                  : 
                                                                                 ((IData)(
-                                                                                (0x20e600U 
+                                                                                (0x839800U 
                                                                                 == 
-                                                                                (0xe0fe00U 
+                                                                                (0x383f800U 
                                                                                 & vlSelf->__PVT__my_FE_stage__DOT__FE_latch[4U])))
                                                                                  ? 0x23U
                                                                                  : 0x25U))))))))))))))))))))))))))))))))));
@@ -421,7 +421,7 @@ VL_ATTR_COLD void Vtb_direction_pipeline___stl_sequent__TOP__tb_direction__dut__
                                                      != 
                                                      (0x1fU 
                                                       & (vlSelf->__PVT__my_FE_stage__DOT__FE_latch[4U] 
-                                                         >> 0x10U))));
+                                                         >> 0x12U))));
     __Vtableidx1 = vlSelf->__PVT__my_DE_stage__DOT__op_I_DE;
     vlSelf->__PVT__my_DE_stage__DOT__type_I_DE = Vtb_direction__ConstPool__TABLE_hcaa37eff_0
         [__Vtableidx1];
@@ -446,7 +446,7 @@ VL_ATTR_COLD void Vtb_direction_pipeline___ctor_var_reset(Vtb_direction_pipeline
     for (int __Vi0 = 0; __Vi0 < 16384; ++__Vi0) {
         vlSelf->__PVT__my_FE_stage__DOT__imem[__Vi0] = VL_RAND_RESET_I(32);
     }
-    VL_RAND_RESET_W(170, vlSelf->__PVT__my_FE_stage__DOT__FE_latch);
+    VL_RAND_RESET_W(172, vlSelf->__PVT__my_FE_stage__DOT__FE_latch);
     vlSelf->__PVT__my_FE_stage__DOT__valid_FE = VL_RAND_RESET_I(1);
     vlSelf->__PVT__my_FE_stage__DOT__PC_FE_latch = VL_RAND_RESET_I(32);
     vlSelf->__PVT__my_FE_stage__DOT__inst_count_FE = VL_RAND_RESET_I(32);
@@ -454,27 +454,27 @@ VL_ATTR_COLD void Vtb_direction_pipeline___ctor_var_reset(Vtb_direction_pipeline
     vlSelf->__PVT__my_FE_stage__DOT__inst_FE = VL_RAND_RESET_I(32);
     vlSelf->__PVT__my_FE_stage__DOT__pcplus_FE = VL_RAND_RESET_I(32);
     vlSelf->__PVT__my_FE_stage__DOT__stall_pipe_FE = VL_RAND_RESET_I(1);
-    vlSelf->__PVT__my_FE_stage__DOT__pht_idx_fe = VL_RAND_RESET_I(8);
+    vlSelf->__PVT__my_FE_stage__DOT__pht_idx_fe = VL_RAND_RESET_I(10);
     vlSelf->__PVT__my_FE_stage__DOT__pht_prediction_FE = VL_RAND_RESET_I(1);
     vlSelf->__PVT__my_FE_stage__DOT__bhr_fe = VL_RAND_RESET_I(8);
     vlSelf->__PVT__my_FE_stage__DOT__btb_hit = VL_RAND_RESET_I(1);
     vlSelf->__PVT__my_FE_stage__DOT__target_btb_pred = VL_RAND_RESET_I(32);
     vlSelf->__PVT__my_FE_stage__DOT__is_btb_valid = VL_RAND_RESET_I(1);
     vlSelf->__PVT__my_FE_stage__DOT__pht__DOT__i = VL_RAND_RESET_I(32);
-    for (int __Vi0 = 0; __Vi0 < 256; ++__Vi0) {
+    for (int __Vi0 = 0; __Vi0 < 1024; ++__Vi0) {
         vlSelf->__PVT__my_FE_stage__DOT__pht__DOT__PHT[__Vi0] = VL_RAND_RESET_I(2);
     }
-    for (int __Vi0 = 0; __Vi0 < 16; ++__Vi0) {
+    for (int __Vi0 = 0; __Vi0 < 256; ++__Vi0) {
         vlSelf->__PVT__my_FE_stage__DOT__btb__DOT__btb_target[__Vi0] = VL_RAND_RESET_I(32);
     }
-    for (int __Vi0 = 0; __Vi0 < 16; ++__Vi0) {
-        vlSelf->__PVT__my_FE_stage__DOT__btb__DOT__btb_tag[__Vi0] = VL_RAND_RESET_I(26);
+    for (int __Vi0 = 0; __Vi0 < 256; ++__Vi0) {
+        vlSelf->__PVT__my_FE_stage__DOT__btb__DOT__btb_tag[__Vi0] = VL_RAND_RESET_I(22);
     }
-    for (int __Vi0 = 0; __Vi0 < 16; ++__Vi0) {
+    for (int __Vi0 = 0; __Vi0 < 256; ++__Vi0) {
         vlSelf->__PVT__my_FE_stage__DOT__btb__DOT__btb_valid[__Vi0] = VL_RAND_RESET_I(1);
     }
     vlSelf->__PVT__my_FE_stage__DOT__btb__DOT__unnamedblk1__DOT__i = 0;
-    VL_RAND_RESET_W(282, vlSelf->__PVT__my_DE_stage__DOT__DE_latch);
+    VL_RAND_RESET_W(284, vlSelf->__PVT__my_DE_stage__DOT__DE_latch);
     for (int __Vi0 = 0; __Vi0 < 32; ++__Vi0) {
         vlSelf->__PVT__my_DE_stage__DOT__regs[__Vi0] = VL_RAND_RESET_I(32);
     }
@@ -490,7 +490,7 @@ VL_ATTR_COLD void Vtb_direction_pipeline___ctor_var_reset(Vtb_direction_pipeline
         vlSelf->__PVT__my_MEM_stage__DOT__dmem[__Vi0] = VL_RAND_RESET_I(32);
     }
     VL_RAND_RESET_W(173, vlSelf->__PVT__my_MEM_stage__DOT__MEM_latch);
-    VL_RAND_RESET_W(170, vlSelf->__Vdly__my_FE_stage__DOT__FE_latch);
+    VL_RAND_RESET_W(172, vlSelf->__Vdly__my_FE_stage__DOT__FE_latch);
     vlSelf->__Vdlyvdim0__my_MEM_stage__DOT__dmem__v0 = 0;
     vlSelf->__Vdlyvval__my_MEM_stage__DOT__dmem__v0 = VL_RAND_RESET_I(32);
     vlSelf->__Vdlyvset__my_MEM_stage__DOT__dmem__v0 = 0;

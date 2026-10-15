@@ -27,11 +27,11 @@ class alignas(VL_CACHE_LINE_BYTES) VPHT VL_NOT_FINAL : public VerilatedModel {
     // propagate new values into/out from the Verilated model.
     VL_IN8(&clk,0,0);
     VL_IN8(&reset,0,0);
-    VL_IN8(&rd_sel,7,0);
     VL_OUT8(&out,0,0);
-    VL_IN8(&wr_sel,7,0);
     VL_IN8(&wr_data,0,0);
     VL_IN8(&wr_ena,0,0);
+    VL_IN16(&rd_sel,9,0);
+    VL_IN16(&wr_sel,9,0);
 
     // CELLS
     // Public to allow access to /* verilator public */ items.

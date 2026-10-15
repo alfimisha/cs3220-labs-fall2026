@@ -213,6 +213,7 @@
 
   `define BTB_WIDTH 1
   `define BTB_BITS 8   // log2(BTB entries).
+  `define BTB_MODULE BTB   // BTB = direct mapped, BTB_2WAY = 16 entry 2 way (task 9)
   `define BTB_TAG_BITS (`DBITS - `BTB_BITS - 2)
 
 

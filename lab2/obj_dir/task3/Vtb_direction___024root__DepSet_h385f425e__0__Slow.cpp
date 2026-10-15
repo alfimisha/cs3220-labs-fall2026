@@ -141,8 +141,8 @@ VL_ATTR_COLD void Vtb_direction___024root___ctor_var_reset(Vtb_direction___024ro
     vlSelf->actual_pc = VL_RAND_RESET_I(32);
     vlSelf->retired_inst = VL_RAND_RESET_I(32);
     vlSelf->history = VL_RAND_RESET_I(8);
-    vlSelf->fetch_index = VL_RAND_RESET_I(8);
-    vlSelf->write_index = VL_RAND_RESET_I(8);
+    vlSelf->fetch_index = VL_RAND_RESET_I(10);
+    vlSelf->write_index = VL_RAND_RESET_I(10);
     vlSelf->prediction = VL_RAND_RESET_I(1);
     vlSelf->bhr_write = VL_RAND_RESET_I(1);
     vlSelf->pht_write = VL_RAND_RESET_I(1);

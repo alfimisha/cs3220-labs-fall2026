@@ -54,12 +54,16 @@ verilator --exe -cc --assert -Wno-fatal --unroll-count 1024 --trace --trace-stru
 	-I/home/hice1/araj92/cs3220/cs3220-labs-fall2026/lab2 /home/hice1/araj92/cs3220/cs3220-labs-fall2026/lab2/pipeline.v /home/hice1/araj92/cs3220/cs3220-labs-fall2026/lab2/fe_stage.v /home/hice1/araj92/cs3220/cs3220-labs-fall2026/lab2/de_stage.v /home/hice1/araj92/cs3220/cs3220-labs-fall2026/lab2/agex_stage.v /home/hice1/araj92/cs3220/cs3220-labs-fall2026/lab2/mem_stage.v /home/hice1/araj92/cs3220/cs3220-labs-fall2026/lab2/wb_stage.v \
 	test/inclass_1/task3/tb_direction.v /home/hice1/araj92/cs3220/cs3220-labs-fall2026/lab2/test/inclass_1/task3/sim_direction.cpp \
 	--Mdir obj_dir/task3 -CFLAGS '-DDPRINTF'
-%Warning-WIDTHEXPAND: /home/hice1/araj92/cs3220/cs3220-labs-fall2026/lab2/fe_stage.v:68:6: Input port connection 'wr_data' expects 32 bits on the pin connection, but pin connection's VARREF 'branch_taken' generates 1 bits.
-                                                                                         : ... In instance tb_direction.dut.my_FE_stage
-   68 |     .wr_data(branch_taken), 
-      |      ^~~~~~~
+%Warning-WIDTHEXPAND: /home/hice1/araj92/cs3220/cs3220-labs-fall2026/lab2/fe_stage.v:63:48: Operator COND expects 32 or 10 bits on the Conditional True, but Conditional True's VARREF 'bhr_fe' generates 8 bits.
+                                                                                          : ... In instance tb_direction.dut.my_FE_stage
+   63 |   assign pht_idx_fe = PC_FE_latch[10+1:2] ^ (1 ? bhr_fe : 0);
+      |                                                ^
                       ... For warning description see https://verilator.org/warn/WIDTHEXPAND?v=5.015
                       ... Use "/* verilator lint_off WIDTHEXPAND */" and lint_on around source to disable this message.
+%Warning-WIDTHEXPAND: /home/hice1/araj92/cs3220/cs3220-labs-fall2026/lab2/fe_stage.v:69:6: Input port connection 'wr_data' expects 32 bits on the pin connection, but pin connection's VARREF 'branch_taken' generates 1 bits.
+                                                                                         : ... In instance tb_direction.dut.my_FE_stage
+   69 |     .wr_data(branch_taken), 
+      |      ^~~~~~~
 -- COMPILE -----------------
 make -j 4 -C obj_dir/task3 -f Vtb_direction.mk
 make[1]: Entering directory '/home/hice1/araj92/cs3220/cs3220-labs-fall2026/lab2/obj_dir/task3'

@@ -53,23 +53,23 @@ VL_ATTR_COLD void Vtb_branch_predictor___024root___stl_sequent__TOP__0(Vtb_branc
                                           >> 0xcU));
     vlSelf->correct = vlSymsp->TOP__tb_branch_predictor__dut__my_AGEX_stage.correct_branch_count;
     vlSelf->branches = vlSymsp->TOP__tb_branch_predictor__dut__my_AGEX_stage.branch_count;
-    vlSelf->branch_flag = (IData)((0U != (0x60000U 
+    vlSelf->branch_flag = (IData)((0U != (0x180000U 
                                           & vlSymsp->TOP__tb_branch_predictor__dut.__PVT__my_DE_stage__DOT__DE_latch[1U])));
     vlSelf->operand2 = ((vlSymsp->TOP__tb_branch_predictor__dut.__PVT__my_DE_stage__DOT__DE_latch[3U] 
-                         << 0xdU) | (vlSymsp->TOP__tb_branch_predictor__dut.__PVT__my_DE_stage__DOT__DE_latch[2U] 
-                                     >> 0x13U));
+                         << 0xbU) | (vlSymsp->TOP__tb_branch_predictor__dut.__PVT__my_DE_stage__DOT__DE_latch[2U] 
+                                     >> 0x15U));
     vlSelf->operand1 = ((vlSymsp->TOP__tb_branch_predictor__dut.__PVT__my_DE_stage__DOT__DE_latch[4U] 
-                         << 0xdU) | (vlSymsp->TOP__tb_branch_predictor__dut.__PVT__my_DE_stage__DOT__DE_latch[3U] 
-                                     >> 0x13U));
+                         << 0xbU) | (vlSymsp->TOP__tb_branch_predictor__dut.__PVT__my_DE_stage__DOT__DE_latch[3U] 
+                                     >> 0x15U));
     vlSelf->branch_id = ((vlSymsp->TOP__tb_branch_predictor__dut.__PVT__my_DE_stage__DOT__DE_latch[5U] 
-                          << 0xdU) | (vlSymsp->TOP__tb_branch_predictor__dut.__PVT__my_DE_stage__DOT__DE_latch[4U] 
-                                      >> 0x13U));
+                          << 0xbU) | (vlSymsp->TOP__tb_branch_predictor__dut.__PVT__my_DE_stage__DOT__DE_latch[4U] 
+                                      >> 0x15U));
     vlSelf->branch_pc = ((vlSymsp->TOP__tb_branch_predictor__dut.__PVT__my_DE_stage__DOT__DE_latch[7U] 
-                          << 7U) | (vlSymsp->TOP__tb_branch_predictor__dut.__PVT__my_DE_stage__DOT__DE_latch[6U] 
-                                    >> 0x19U));
+                          << 5U) | (vlSymsp->TOP__tb_branch_predictor__dut.__PVT__my_DE_stage__DOT__DE_latch[6U] 
+                                    >> 0x1bU));
     vlSelf->inst = ((vlSymsp->TOP__tb_branch_predictor__dut.__PVT__my_DE_stage__DOT__DE_latch[8U] 
-                     << 7U) | (vlSymsp->TOP__tb_branch_predictor__dut.__PVT__my_DE_stage__DOT__DE_latch[7U] 
-                               >> 0x19U));
+                     << 5U) | (vlSymsp->TOP__tb_branch_predictor__dut.__PVT__my_DE_stage__DOT__DE_latch[7U] 
+                               >> 0x1bU));
     vlSelf->gp = vlSymsp->TOP__tb_branch_predictor__dut__my_WB_stage.last_WB_value[3U];
     vlSelf->fetch_id = vlSymsp->TOP__tb_branch_predictor__dut.__PVT__my_FE_stage__DOT__inst_count_FE;
     vlSelf->pc = vlSymsp->TOP__tb_branch_predictor__dut.__PVT__my_FE_stage__DOT__PC_FE_latch;
@@ -83,7 +83,7 @@ VL_ATTR_COLD void Vtb_branch_predictor___024root___stl_sequent__TOP__1(Vtb_branc
     vlSelf->fetch_inst = vlSymsp->TOP__tb_branch_predictor__dut.__PVT__my_FE_stage__DOT__inst_FE;
     vlSelf->actual_pc = vlSymsp->TOP__tb_branch_predictor__dut__my_AGEX_stage.__PVT__br_target_AGEX;
     vlSelf->redirect = (1U & (vlSymsp->TOP__tb_branch_predictor__dut__my_AGEX_stage.__PVT__from_AGEX_to_FE[3U] 
-                              >> 0xaU));
+                              >> 0xcU));
 }
 
 VL_ATTR_COLD void Vtb_branch_predictor_pipeline___stl_sequent__TOP__tb_branch_predictor__dut__0(Vtb_branch_predictor_pipeline* vlSelf);

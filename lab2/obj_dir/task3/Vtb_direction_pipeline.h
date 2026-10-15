@@ -23,7 +23,6 @@ class alignas(VL_CACHE_LINE_BYTES) Vtb_direction_pipeline final : public Verilat
     VL_IN8(__PVT__reset,0,0);
     CData/*0:0*/ __PVT__my_FE_stage__DOT__valid_FE;
     CData/*0:0*/ __PVT__my_FE_stage__DOT__stall_pipe_FE;
-    CData/*7:0*/ __PVT__my_FE_stage__DOT__pht_idx_fe;
     CData/*0:0*/ __PVT__my_FE_stage__DOT__pht_prediction_FE;
     CData/*7:0*/ __PVT__my_FE_stage__DOT__bhr_fe;
     CData/*0:0*/ __PVT__my_FE_stage__DOT__btb_hit;
@@ -35,9 +34,10 @@ class alignas(VL_CACHE_LINE_BYTES) Vtb_direction_pipeline final : public Verilat
     CData/*0:0*/ __PVT__my_DE_stage__DOT__use_rs1_DE;
     CData/*0:0*/ __PVT__my_DE_stage__DOT__use_rs2_DE;
     CData/*0:0*/ __Vdlyvset__my_MEM_stage__DOT__dmem__v0;
+    SData/*9:0*/ __PVT__my_FE_stage__DOT__pht_idx_fe;
     SData/*13:0*/ __Vdlyvdim0__my_MEM_stage__DOT__dmem__v0;
     IData/*31:0*/ __PVT__cycle_count;
-    VlWide<6>/*169:0*/ __PVT__my_FE_stage__DOT__FE_latch;
+    VlWide<6>/*171:0*/ __PVT__my_FE_stage__DOT__FE_latch;
     IData/*31:0*/ __PVT__my_FE_stage__DOT__PC_FE_latch;
     IData/*31:0*/ __PVT__my_FE_stage__DOT__inst_count_FE;
     IData/*31:0*/ __PVT__my_FE_stage__DOT__inst_count_AGEX;
@@ -46,17 +46,17 @@ class alignas(VL_CACHE_LINE_BYTES) Vtb_direction_pipeline final : public Verilat
     IData/*31:0*/ __PVT__my_FE_stage__DOT__target_btb_pred;
     IData/*31:0*/ __PVT__my_FE_stage__DOT__pht__DOT__i;
     IData/*31:0*/ __PVT__my_FE_stage__DOT__btb__DOT__unnamedblk1__DOT__i;
-    VlWide<9>/*281:0*/ __PVT__my_DE_stage__DOT__DE_latch;
+    VlWide<9>/*283:0*/ __PVT__my_DE_stage__DOT__DE_latch;
     IData/*31:0*/ __PVT__my_DE_stage__DOT__in_use_regs;
     IData/*31:0*/ my_DE_stage__DOT____VdfgExtracted_hee942bf4__0;
     VlWide<6>/*172:0*/ __PVT__my_MEM_stage__DOT__MEM_latch;
-    VlWide<6>/*169:0*/ __Vdly__my_FE_stage__DOT__FE_latch;
+    VlWide<6>/*171:0*/ __Vdly__my_FE_stage__DOT__FE_latch;
     IData/*31:0*/ __Vdlyvval__my_MEM_stage__DOT__dmem__v0;
     VlUnpacked<IData/*31:0*/, 16384> __PVT__my_FE_stage__DOT__imem;
-    VlUnpacked<CData/*1:0*/, 256> __PVT__my_FE_stage__DOT__pht__DOT__PHT;
-    VlUnpacked<IData/*31:0*/, 16> __PVT__my_FE_stage__DOT__btb__DOT__btb_target;
-    VlUnpacked<IData/*25:0*/, 16> __PVT__my_FE_stage__DOT__btb__DOT__btb_tag;
-    VlUnpacked<CData/*0:0*/, 16> __PVT__my_FE_stage__DOT__btb__DOT__btb_valid;
+    VlUnpacked<CData/*1:0*/, 1024> __PVT__my_FE_stage__DOT__pht__DOT__PHT;
+    VlUnpacked<IData/*31:0*/, 256> __PVT__my_FE_stage__DOT__btb__DOT__btb_target;
+    VlUnpacked<IData/*21:0*/, 256> __PVT__my_FE_stage__DOT__btb__DOT__btb_tag;
+    VlUnpacked<CData/*0:0*/, 256> __PVT__my_FE_stage__DOT__btb__DOT__btb_valid;
     VlUnpacked<IData/*31:0*/, 32> __PVT__my_DE_stage__DOT__regs;
     VlUnpacked<IData/*31:0*/, 16384> __PVT__my_MEM_stage__DOT__dmem;
 

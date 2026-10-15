@@ -18,7 +18,7 @@
 
 The predictor has three parts: a branch history register (BHR), a pattern
 history table (PHT) of 2-bit counters, and a direct-mapped branch target
-buffer (BTB). Fetch predicts taken only when the BTB hits \emph{and} the PHT
+buffer (BTB). Tasks 8 and 9 swap in a 1-bit PHT and a two-way BTB. Fetch predicts taken only when the BTB hits \emph{and} the PHT
 counter says taken. Otherwise it predicts PC+4. The BTB is written every time
 a branch or jump resolves, and it always stores the taken target.
 
@@ -94,19 +94,36 @@ of 128 for 1-bit (49\%), which matches the measurements.
 \section*{Task 9: Direct-mapped versus two-way BTB}
 
 Both runs use \texttt{btb.mem} with a 16-entry BTB. Only the BTB organisation
-changes.
+changes. The direction predictor is the same in both: 1024 two-bit counters
+indexed by PC XOR an 8-bit BHR.
 
 \begin{center}
 \begin{tabular}{lrrr}
 \toprule
 BTB & Branches & Correct & Accuracy \\
 \midrule
-Direct-mapped, 16 entries   & \todo{run} & \todo{run} & \todo{run} \\
-Two-way, 16 entries (8 sets) & \todo{run} & \todo{run} & \todo{run} \\
+Direct-mapped, 16 entries   & 16{,}475 & 176 & 1.07\% \\
+Two-way, 16 entries (8 sets) & 16{,}475 & 16{,}166 & 98.12\% \\
 \bottomrule
 \end{tabular}
 \end{center}
 
-\todo{state the other settings used and explain the effect of conflicts}
+The benchmark alternates between two taken branches that are 64 bytes apart.
+
+\textbf{Direct-mapped.} The index is PC[5:2], so two PCs that differ by 64
+bytes get the same index and only one of them fits. Each branch overwrites
+the other when it resolves, so every lookup misses and fetch predicts PC+4,
+which is wrong for a taken branch. Almost every prediction fails. CPI is 3.10.
+
+\textbf{Two-way.} There are 8 sets indexed by PC[4:2], and each set holds two
+tags. The two branches still land in the same set, but they sit in different
+ways and stop evicting each other. Accuracy goes to 98\% and CPI drops to
+1.96, with the same 16 entries of storage.
+
+The replacement policy matters. Each set has one LRU bit that points at the
+way written least recently. An earlier version always replaced way 0 when
+the set was full. A branch from the start-up code stayed in way 1 for the
+whole run, the two loop branches fought over way 0, and accuracy was about
+1\%, no better than direct-mapped.
 
 \end{document}

@@ -29,10 +29,9 @@ class alignas(VL_CACHE_LINE_BYTES) VBTB___024root final : public VerilatedModule
     IData/*31:0*/ __VstlIterCount;
     IData/*31:0*/ __VicoIterCount;
     IData/*31:0*/ __VactIterCount;
-    VlUnpacked<IData/*31:0*/, 16> BTB__DOT__btb_target;
-    VlUnpacked<IData/*25:0*/, 16> BTB__DOT__btb_tag;
-    VlUnpacked<CData/*0:0*/, 16> BTB__DOT__btb_valid;
-    VlUnpacked<CData/*0:0*/, 2> __Vm_traceActivity;
+    VlUnpacked<IData/*31:0*/, 256> BTB__DOT__btb_target;
+    VlUnpacked<IData/*21:0*/, 256> BTB__DOT__btb_tag;
+    VlUnpacked<CData/*0:0*/, 256> BTB__DOT__btb_valid;
     VlTriggerVec<1> __VstlTriggered;
     VlTriggerVec<1> __VicoTriggered;
     VlTriggerVec<1> __VactTriggered;

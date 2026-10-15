@@ -14,17 +14,18 @@ VL_INLINE_OPT void VBTB___024root___ico_sequent__TOP__0(VBTB___024root* vlSelf) 
     // Body
     vlSelf->outs_valid = ((IData)(vlSelf->rd_ena) & 
                           (vlSelf->BTB__DOT__btb_valid
-                           [(0xfU & (vlSelf->rd_sel 
-                                     >> 2U))] & (vlSelf->BTB__DOT__btb_tag
-                                                 [(0xfU 
+                           [(0xffU & (vlSelf->rd_sel 
+                                      >> 2U))] & (vlSelf->BTB__DOT__btb_tag
+                                                  [
+                                                  (0xffU 
                                                    & (vlSelf->rd_sel 
                                                       >> 2U))] 
-                                                 == 
-                                                 (vlSelf->rd_sel 
-                                                  >> 6U))));
+                                                  == 
+                                                  (vlSelf->rd_sel 
+                                                   >> 0xaU))));
     vlSelf->out_data = ((IData)(vlSelf->outs_valid)
                          ? vlSelf->BTB__DOT__btb_target
-                        [(0xfU & (vlSelf->rd_sel >> 2U))]
+                        [(0xffU & (vlSelf->rd_sel >> 2U))]
                          : 0U);
 }
 
@@ -51,133 +52,102 @@ VL_INLINE_OPT void VBTB___024root___nba_sequent__TOP__0(VBTB___024root* vlSelf) 
     // Init
     CData/*0:0*/ __Vdlyvset__BTB__DOT__btb_target__v0;
     __Vdlyvset__BTB__DOT__btb_target__v0 = 0;
-    CData/*3:0*/ __Vdlyvdim0__BTB__DOT__btb_target__v16;
-    __Vdlyvdim0__BTB__DOT__btb_target__v16 = 0;
-    IData/*31:0*/ __Vdlyvval__BTB__DOT__btb_target__v16;
-    __Vdlyvval__BTB__DOT__btb_target__v16 = 0;
-    CData/*0:0*/ __Vdlyvset__BTB__DOT__btb_target__v16;
-    __Vdlyvset__BTB__DOT__btb_target__v16 = 0;
+    IData/*31:0*/ __Vilp;
+    CData/*7:0*/ __Vdlyvdim0__BTB__DOT__btb_target__v256;
+    __Vdlyvdim0__BTB__DOT__btb_target__v256 = 0;
+    IData/*31:0*/ __Vdlyvval__BTB__DOT__btb_target__v256;
+    __Vdlyvval__BTB__DOT__btb_target__v256 = 0;
+    CData/*0:0*/ __Vdlyvset__BTB__DOT__btb_target__v256;
+    __Vdlyvset__BTB__DOT__btb_target__v256 = 0;
     CData/*0:0*/ __Vdlyvset__BTB__DOT__btb_tag__v0;
     __Vdlyvset__BTB__DOT__btb_tag__v0 = 0;
-    CData/*3:0*/ __Vdlyvdim0__BTB__DOT__btb_tag__v16;
-    __Vdlyvdim0__BTB__DOT__btb_tag__v16 = 0;
-    IData/*25:0*/ __Vdlyvval__BTB__DOT__btb_tag__v16;
-    __Vdlyvval__BTB__DOT__btb_tag__v16 = 0;
-    CData/*0:0*/ __Vdlyvset__BTB__DOT__btb_tag__v16;
-    __Vdlyvset__BTB__DOT__btb_tag__v16 = 0;
+    CData/*7:0*/ __Vdlyvdim0__BTB__DOT__btb_tag__v256;
+    __Vdlyvdim0__BTB__DOT__btb_tag__v256 = 0;
+    IData/*21:0*/ __Vdlyvval__BTB__DOT__btb_tag__v256;
+    __Vdlyvval__BTB__DOT__btb_tag__v256 = 0;
+    CData/*0:0*/ __Vdlyvset__BTB__DOT__btb_tag__v256;
+    __Vdlyvset__BTB__DOT__btb_tag__v256 = 0;
     CData/*0:0*/ __Vdlyvset__BTB__DOT__btb_valid__v0;
     __Vdlyvset__BTB__DOT__btb_valid__v0 = 0;
-    CData/*3:0*/ __Vdlyvdim0__BTB__DOT__btb_valid__v16;
-    __Vdlyvdim0__BTB__DOT__btb_valid__v16 = 0;
-    CData/*0:0*/ __Vdlyvset__BTB__DOT__btb_valid__v16;
-    __Vdlyvset__BTB__DOT__btb_valid__v16 = 0;
+    CData/*7:0*/ __Vdlyvdim0__BTB__DOT__btb_valid__v256;
+    __Vdlyvdim0__BTB__DOT__btb_valid__v256 = 0;
+    CData/*0:0*/ __Vdlyvset__BTB__DOT__btb_valid__v256;
+    __Vdlyvset__BTB__DOT__btb_valid__v256 = 0;
     // Body
     __Vdlyvset__BTB__DOT__btb_target__v0 = 0U;
-    __Vdlyvset__BTB__DOT__btb_target__v16 = 0U;
+    __Vdlyvset__BTB__DOT__btb_target__v256 = 0U;
     __Vdlyvset__BTB__DOT__btb_valid__v0 = 0U;
-    __Vdlyvset__BTB__DOT__btb_valid__v16 = 0U;
+    __Vdlyvset__BTB__DOT__btb_valid__v256 = 0U;
     __Vdlyvset__BTB__DOT__btb_tag__v0 = 0U;
-    __Vdlyvset__BTB__DOT__btb_tag__v16 = 0U;
+    __Vdlyvset__BTB__DOT__btb_tag__v256 = 0U;
     if (vlSelf->reset) {
-        vlSelf->BTB__DOT__unnamedblk1__DOT__i = 0x10U;
+        vlSelf->BTB__DOT__unnamedblk1__DOT__i = 0x100U;
         __Vdlyvset__BTB__DOT__btb_target__v0 = 1U;
         __Vdlyvset__BTB__DOT__btb_valid__v0 = 1U;
         __Vdlyvset__BTB__DOT__btb_tag__v0 = 1U;
     } else if (vlSelf->wr_ena) {
-        __Vdlyvval__BTB__DOT__btb_target__v16 = vlSelf->wr_data;
-        __Vdlyvset__BTB__DOT__btb_target__v16 = 1U;
-        __Vdlyvdim0__BTB__DOT__btb_target__v16 = (0xfU 
+        __Vdlyvval__BTB__DOT__btb_target__v256 = vlSelf->wr_data;
+        __Vdlyvset__BTB__DOT__btb_target__v256 = 1U;
+        __Vdlyvdim0__BTB__DOT__btb_target__v256 = (0xffU 
+                                                   & (vlSelf->wr_sel 
+                                                      >> 2U));
+        __Vdlyvset__BTB__DOT__btb_valid__v256 = 1U;
+        __Vdlyvdim0__BTB__DOT__btb_valid__v256 = (0xffU 
                                                   & (vlSelf->wr_sel 
                                                      >> 2U));
-        __Vdlyvset__BTB__DOT__btb_valid__v16 = 1U;
-        __Vdlyvdim0__BTB__DOT__btb_valid__v16 = (0xfU 
-                                                 & (vlSelf->wr_sel 
-                                                    >> 2U));
-        __Vdlyvval__BTB__DOT__btb_tag__v16 = (vlSelf->wr_sel 
-                                              >> 6U);
-        __Vdlyvset__BTB__DOT__btb_tag__v16 = 1U;
-        __Vdlyvdim0__BTB__DOT__btb_tag__v16 = (0xfU 
-                                               & (vlSelf->wr_sel 
-                                                  >> 2U));
+        __Vdlyvval__BTB__DOT__btb_tag__v256 = (vlSelf->wr_sel 
+                                               >> 0xaU);
+        __Vdlyvset__BTB__DOT__btb_tag__v256 = 1U;
+        __Vdlyvdim0__BTB__DOT__btb_tag__v256 = (0xffU 
+                                                & (vlSelf->wr_sel 
+                                                   >> 2U));
     }
     if (__Vdlyvset__BTB__DOT__btb_target__v0) {
-        vlSelf->BTB__DOT__btb_target[0U] = 0U;
-        vlSelf->BTB__DOT__btb_target[1U] = 0U;
-        vlSelf->BTB__DOT__btb_target[2U] = 0U;
-        vlSelf->BTB__DOT__btb_target[3U] = 0U;
-        vlSelf->BTB__DOT__btb_target[4U] = 0U;
-        vlSelf->BTB__DOT__btb_target[5U] = 0U;
-        vlSelf->BTB__DOT__btb_target[6U] = 0U;
-        vlSelf->BTB__DOT__btb_target[7U] = 0U;
-        vlSelf->BTB__DOT__btb_target[8U] = 0U;
-        vlSelf->BTB__DOT__btb_target[9U] = 0U;
-        vlSelf->BTB__DOT__btb_target[0xaU] = 0U;
-        vlSelf->BTB__DOT__btb_target[0xbU] = 0U;
-        vlSelf->BTB__DOT__btb_target[0xcU] = 0U;
-        vlSelf->BTB__DOT__btb_target[0xdU] = 0U;
-        vlSelf->BTB__DOT__btb_target[0xeU] = 0U;
-        vlSelf->BTB__DOT__btb_target[0xfU] = 0U;
+        __Vilp = 0U;
+        while ((__Vilp <= 0xffU)) {
+            vlSelf->BTB__DOT__btb_target[__Vilp] = 0U;
+            __Vilp = ((IData)(1U) + __Vilp);
+        }
     }
-    if (__Vdlyvset__BTB__DOT__btb_target__v16) {
-        vlSelf->BTB__DOT__btb_target[__Vdlyvdim0__BTB__DOT__btb_target__v16] 
-            = __Vdlyvval__BTB__DOT__btb_target__v16;
+    if (__Vdlyvset__BTB__DOT__btb_target__v256) {
+        vlSelf->BTB__DOT__btb_target[__Vdlyvdim0__BTB__DOT__btb_target__v256] 
+            = __Vdlyvval__BTB__DOT__btb_target__v256;
     }
     if (__Vdlyvset__BTB__DOT__btb_valid__v0) {
-        vlSelf->BTB__DOT__btb_valid[0U] = 0U;
-        vlSelf->BTB__DOT__btb_valid[1U] = 0U;
-        vlSelf->BTB__DOT__btb_valid[2U] = 0U;
-        vlSelf->BTB__DOT__btb_valid[3U] = 0U;
-        vlSelf->BTB__DOT__btb_valid[4U] = 0U;
-        vlSelf->BTB__DOT__btb_valid[5U] = 0U;
-        vlSelf->BTB__DOT__btb_valid[6U] = 0U;
-        vlSelf->BTB__DOT__btb_valid[7U] = 0U;
-        vlSelf->BTB__DOT__btb_valid[8U] = 0U;
-        vlSelf->BTB__DOT__btb_valid[9U] = 0U;
-        vlSelf->BTB__DOT__btb_valid[0xaU] = 0U;
-        vlSelf->BTB__DOT__btb_valid[0xbU] = 0U;
-        vlSelf->BTB__DOT__btb_valid[0xcU] = 0U;
-        vlSelf->BTB__DOT__btb_valid[0xdU] = 0U;
-        vlSelf->BTB__DOT__btb_valid[0xeU] = 0U;
-        vlSelf->BTB__DOT__btb_valid[0xfU] = 0U;
+        __Vilp = 0U;
+        while ((__Vilp <= 0xffU)) {
+            vlSelf->BTB__DOT__btb_valid[__Vilp] = 0U;
+            __Vilp = ((IData)(1U) + __Vilp);
+        }
     }
-    if (__Vdlyvset__BTB__DOT__btb_valid__v16) {
-        vlSelf->BTB__DOT__btb_valid[__Vdlyvdim0__BTB__DOT__btb_valid__v16] = 1U;
+    if (__Vdlyvset__BTB__DOT__btb_valid__v256) {
+        vlSelf->BTB__DOT__btb_valid[__Vdlyvdim0__BTB__DOT__btb_valid__v256] = 1U;
     }
     if (__Vdlyvset__BTB__DOT__btb_tag__v0) {
-        vlSelf->BTB__DOT__btb_tag[0U] = 0U;
-        vlSelf->BTB__DOT__btb_tag[1U] = 0U;
-        vlSelf->BTB__DOT__btb_tag[2U] = 0U;
-        vlSelf->BTB__DOT__btb_tag[3U] = 0U;
-        vlSelf->BTB__DOT__btb_tag[4U] = 0U;
-        vlSelf->BTB__DOT__btb_tag[5U] = 0U;
-        vlSelf->BTB__DOT__btb_tag[6U] = 0U;
-        vlSelf->BTB__DOT__btb_tag[7U] = 0U;
-        vlSelf->BTB__DOT__btb_tag[8U] = 0U;
-        vlSelf->BTB__DOT__btb_tag[9U] = 0U;
-        vlSelf->BTB__DOT__btb_tag[0xaU] = 0U;
-        vlSelf->BTB__DOT__btb_tag[0xbU] = 0U;
-        vlSelf->BTB__DOT__btb_tag[0xcU] = 0U;
-        vlSelf->BTB__DOT__btb_tag[0xdU] = 0U;
-        vlSelf->BTB__DOT__btb_tag[0xeU] = 0U;
-        vlSelf->BTB__DOT__btb_tag[0xfU] = 0U;
+        __Vilp = 0U;
+        while ((__Vilp <= 0xffU)) {
+            vlSelf->BTB__DOT__btb_tag[__Vilp] = 0U;
+            __Vilp = ((IData)(1U) + __Vilp);
+        }
     }
-    if (__Vdlyvset__BTB__DOT__btb_tag__v16) {
-        vlSelf->BTB__DOT__btb_tag[__Vdlyvdim0__BTB__DOT__btb_tag__v16] 
-            = __Vdlyvval__BTB__DOT__btb_tag__v16;
+    if (__Vdlyvset__BTB__DOT__btb_tag__v256) {
+        vlSelf->BTB__DOT__btb_tag[__Vdlyvdim0__BTB__DOT__btb_tag__v256] 
+            = __Vdlyvval__BTB__DOT__btb_tag__v256;
     }
     vlSelf->outs_valid = ((IData)(vlSelf->rd_ena) & 
                           (vlSelf->BTB__DOT__btb_valid
-                           [(0xfU & (vlSelf->rd_sel 
-                                     >> 2U))] & (vlSelf->BTB__DOT__btb_tag
-                                                 [(0xfU 
+                           [(0xffU & (vlSelf->rd_sel 
+                                      >> 2U))] & (vlSelf->BTB__DOT__btb_tag
+                                                  [
+                                                  (0xffU 
                                                    & (vlSelf->rd_sel 
                                                       >> 2U))] 
-                                                 == 
-                                                 (vlSelf->rd_sel 
-                                                  >> 6U))));
+                                                  == 
+                                                  (vlSelf->rd_sel 
+                                                   >> 0xaU))));
     vlSelf->out_data = ((IData)(vlSelf->outs_valid)
                          ? vlSelf->BTB__DOT__btb_target
-                        [(0xfU & (vlSelf->rd_sel >> 2U))]
+                        [(0xffU & (vlSelf->rd_sel >> 2U))]
                          : 0U);
 }
 
@@ -188,7 +158,6 @@ void VBTB___024root___eval_nba(VBTB___024root* vlSelf) {
     // Body
     if ((1ULL & vlSelf->__VnbaTriggered.word(0U))) {
         VBTB___024root___nba_sequent__TOP__0(vlSelf);
-        vlSelf->__Vm_traceActivity[1U] = 1U;
     }
 }
 
@@ -225,7 +194,7 @@ void VBTB___024root___eval(VBTB___024root* vlSelf) {
 #ifdef VL_DEBUG
                 VBTB___024root___dump_triggers__ico(vlSelf);
 #endif
-                VL_FATAL_MT("/home/hice1/araj92/cs3220/cs3220-labs-fall2026/lab2/fe_stage.v", 248, "", "Input combinational region did not converge.");
+                VL_FATAL_MT("/home/hice1/araj92/cs3220/cs3220-labs-fall2026/lab2/fe_stage.v", 250, "", "Input combinational region did not converge.");
             }
             vlSelf->__VicoIterCount = ((IData)(1U) 
                                        + vlSelf->__VicoIterCount);
@@ -248,7 +217,7 @@ void VBTB___024root___eval(VBTB___024root* vlSelf) {
 #ifdef VL_DEBUG
                     VBTB___024root___dump_triggers__act(vlSelf);
 #endif
-                    VL_FATAL_MT("/home/hice1/araj92/cs3220/cs3220-labs-fall2026/lab2/fe_stage.v", 248, "", "Active region did not converge.");
+                    VL_FATAL_MT("/home/hice1/araj92/cs3220/cs3220-labs-fall2026/lab2/fe_stage.v", 250, "", "Active region did not converge.");
                 }
                 vlSelf->__VactIterCount = ((IData)(1U) 
                                            + vlSelf->__VactIterCount);
@@ -263,7 +232,7 @@ void VBTB___024root___eval(VBTB___024root* vlSelf) {
 #ifdef VL_DEBUG
                 VBTB___024root___dump_triggers__nba(vlSelf);
 #endif
-                VL_FATAL_MT("/home/hice1/araj92/cs3220/cs3220-labs-fall2026/lab2/fe_stage.v", 248, "", "NBA region did not converge.");
+                VL_FATAL_MT("/home/hice1/araj92/cs3220/cs3220-labs-fall2026/lab2/fe_stage.v", 250, "", "NBA region did not converge.");
             }
             __VnbaIterCount = ((IData)(1U) + __VnbaIterCount);
             VBTB___024root___eval_nba(vlSelf);

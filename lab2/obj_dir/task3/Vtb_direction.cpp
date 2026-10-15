@@ -18,12 +18,12 @@ Vtb_direction::Vtb_direction(VerilatedContext* _vcontextp__, const char* _vcname
     , stall{vlSymsp->TOP.stall}
     , branch_flag{vlSymsp->TOP.branch_flag}
     , history{vlSymsp->TOP.history}
-    , fetch_index{vlSymsp->TOP.fetch_index}
-    , write_index{vlSymsp->TOP.write_index}
     , prediction{vlSymsp->TOP.prediction}
     , bhr_write{vlSymsp->TOP.bhr_write}
     , pht_write{vlSymsp->TOP.pht_write}
     , pht_data{vlSymsp->TOP.pht_data}
+    , fetch_index{vlSymsp->TOP.fetch_index}
+    , write_index{vlSymsp->TOP.write_index}
     , pc{vlSymsp->TOP.pc}
     , fetch_inst{vlSymsp->TOP.fetch_inst}
     , fetch_id{vlSymsp->TOP.fetch_id}

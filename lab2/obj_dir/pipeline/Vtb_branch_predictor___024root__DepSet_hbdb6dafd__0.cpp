@@ -87,23 +87,23 @@ VL_INLINE_OPT void Vtb_branch_predictor___024root___nba_sequent__TOP__2(Vtb_bran
     Vtb_branch_predictor__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vtb_branch_predictor___024root___nba_sequent__TOP__2\n"); );
     // Body
-    vlSelf->branch_flag = (IData)((0U != (0x60000U 
+    vlSelf->branch_flag = (IData)((0U != (0x180000U 
                                           & vlSymsp->TOP__tb_branch_predictor__dut.__PVT__my_DE_stage__DOT__DE_latch[1U])));
     vlSelf->operand2 = ((vlSymsp->TOP__tb_branch_predictor__dut.__PVT__my_DE_stage__DOT__DE_latch[3U] 
-                         << 0xdU) | (vlSymsp->TOP__tb_branch_predictor__dut.__PVT__my_DE_stage__DOT__DE_latch[2U] 
-                                     >> 0x13U));
+                         << 0xbU) | (vlSymsp->TOP__tb_branch_predictor__dut.__PVT__my_DE_stage__DOT__DE_latch[2U] 
+                                     >> 0x15U));
     vlSelf->operand1 = ((vlSymsp->TOP__tb_branch_predictor__dut.__PVT__my_DE_stage__DOT__DE_latch[4U] 
-                         << 0xdU) | (vlSymsp->TOP__tb_branch_predictor__dut.__PVT__my_DE_stage__DOT__DE_latch[3U] 
-                                     >> 0x13U));
+                         << 0xbU) | (vlSymsp->TOP__tb_branch_predictor__dut.__PVT__my_DE_stage__DOT__DE_latch[3U] 
+                                     >> 0x15U));
     vlSelf->branch_id = ((vlSymsp->TOP__tb_branch_predictor__dut.__PVT__my_DE_stage__DOT__DE_latch[5U] 
-                          << 0xdU) | (vlSymsp->TOP__tb_branch_predictor__dut.__PVT__my_DE_stage__DOT__DE_latch[4U] 
-                                      >> 0x13U));
+                          << 0xbU) | (vlSymsp->TOP__tb_branch_predictor__dut.__PVT__my_DE_stage__DOT__DE_latch[4U] 
+                                      >> 0x15U));
     vlSelf->branch_pc = ((vlSymsp->TOP__tb_branch_predictor__dut.__PVT__my_DE_stage__DOT__DE_latch[7U] 
-                          << 7U) | (vlSymsp->TOP__tb_branch_predictor__dut.__PVT__my_DE_stage__DOT__DE_latch[6U] 
-                                    >> 0x19U));
+                          << 5U) | (vlSymsp->TOP__tb_branch_predictor__dut.__PVT__my_DE_stage__DOT__DE_latch[6U] 
+                                    >> 0x1bU));
     vlSelf->inst = ((vlSymsp->TOP__tb_branch_predictor__dut.__PVT__my_DE_stage__DOT__DE_latch[8U] 
-                     << 7U) | (vlSymsp->TOP__tb_branch_predictor__dut.__PVT__my_DE_stage__DOT__DE_latch[7U] 
-                               >> 0x19U));
+                     << 5U) | (vlSymsp->TOP__tb_branch_predictor__dut.__PVT__my_DE_stage__DOT__DE_latch[7U] 
+                               >> 0x1bU));
 }
 
 VL_INLINE_OPT void Vtb_branch_predictor___024root___nba_sequent__TOP__3(Vtb_branch_predictor___024root* vlSelf) {
@@ -113,7 +113,7 @@ VL_INLINE_OPT void Vtb_branch_predictor___024root___nba_sequent__TOP__3(Vtb_bran
     // Body
     vlSelf->actual_pc = vlSymsp->TOP__tb_branch_predictor__dut__my_AGEX_stage.__PVT__br_target_AGEX;
     vlSelf->redirect = (1U & (vlSymsp->TOP__tb_branch_predictor__dut__my_AGEX_stage.__PVT__from_AGEX_to_FE[3U] 
-                              >> 0xaU));
+                              >> 0xcU));
 }
 
 VL_INLINE_OPT void Vtb_branch_predictor___024root___nba_sequent__TOP__4(Vtb_branch_predictor___024root* vlSelf) {

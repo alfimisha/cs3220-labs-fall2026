@@ -13,17 +13,17 @@ VL_ATTR_COLD void VPHT___024root__trace_init_sub__TOP__0(VPHT___024root* vlSelf,
     // Body
     tracep->declBit(c+1,"clk", false,-1);
     tracep->declBit(c+2,"reset", false,-1);
-    tracep->declBus(c+3,"rd_sel", false,-1, 7,0);
+    tracep->declBus(c+3,"rd_sel", false,-1, 9,0);
     tracep->declBit(c+4,"out", false,-1);
-    tracep->declBus(c+5,"wr_sel", false,-1, 7,0);
+    tracep->declBus(c+5,"wr_sel", false,-1, 9,0);
     tracep->declBit(c+6,"wr_data", false,-1);
     tracep->declBit(c+7,"wr_ena", false,-1);
     tracep->pushNamePrefix("PHT ");
     tracep->declBit(c+1,"clk", false,-1);
     tracep->declBit(c+2,"reset", false,-1);
-    tracep->declBus(c+3,"rd_sel", false,-1, 7,0);
+    tracep->declBus(c+3,"rd_sel", false,-1, 9,0);
     tracep->declBit(c+4,"out", false,-1);
-    tracep->declBus(c+5,"wr_sel", false,-1, 7,0);
+    tracep->declBus(c+5,"wr_sel", false,-1, 9,0);
     tracep->declBit(c+6,"wr_data", false,-1);
     tracep->declBit(c+7,"wr_ena", false,-1);
     tracep->declBus(c+8,"i", false,-1, 31,0);
@@ -72,9 +72,9 @@ VL_ATTR_COLD void VPHT___024root__trace_full_sub_0(VPHT___024root* vlSelf, Veril
     // Body
     bufp->fullBit(oldp+1,(vlSelf->clk));
     bufp->fullBit(oldp+2,(vlSelf->reset));
-    bufp->fullCData(oldp+3,(vlSelf->rd_sel),8);
+    bufp->fullSData(oldp+3,(vlSelf->rd_sel),10);
     bufp->fullBit(oldp+4,(vlSelf->out));
-    bufp->fullCData(oldp+5,(vlSelf->wr_sel),8);
+    bufp->fullSData(oldp+5,(vlSelf->wr_sel),10);
     bufp->fullBit(oldp+6,(vlSelf->wr_data));
     bufp->fullBit(oldp+7,(vlSelf->wr_ena));
     bufp->fullIData(oldp+8,(vlSelf->PHT__DOT__i),32);

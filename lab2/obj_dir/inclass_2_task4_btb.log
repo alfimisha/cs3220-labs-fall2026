@@ -20,4 +20,6 @@ rm VBTB__ALL.verilator_deplist.tmp
 make[1]: Leaving directory '/home/hice1/araj92/cs3220/cs3220-labs-fall2026/lab2/obj_dir/btb'
 -- RUN ---------------------
 obj_dir/btb/VBTB 
-Passed!
+expected output: valid=0
+actual output: valid=1
+make: *** [Makefile:78: tests] Error 1

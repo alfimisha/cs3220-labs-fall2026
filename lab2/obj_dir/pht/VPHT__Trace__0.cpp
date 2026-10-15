@@ -25,9 +25,9 @@ void VPHT___024root__trace_chg_sub_0(VPHT___024root* vlSelf, VerilatedVcd::Buffe
     // Body
     bufp->chgBit(oldp+0,(vlSelf->clk));
     bufp->chgBit(oldp+1,(vlSelf->reset));
-    bufp->chgCData(oldp+2,(vlSelf->rd_sel),8);
+    bufp->chgSData(oldp+2,(vlSelf->rd_sel),10);
     bufp->chgBit(oldp+3,(vlSelf->out));
-    bufp->chgCData(oldp+4,(vlSelf->wr_sel),8);
+    bufp->chgSData(oldp+4,(vlSelf->wr_sel),10);
     bufp->chgBit(oldp+5,(vlSelf->wr_data));
     bufp->chgBit(oldp+6,(vlSelf->wr_ena));
     bufp->chgIData(oldp+7,(vlSelf->PHT__DOT__i),32);

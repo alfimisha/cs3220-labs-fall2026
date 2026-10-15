@@ -13,11 +13,11 @@ VPHT::VPHT(VerilatedContext* _vcontextp__, const char* _vcname__)
     , vlSymsp{new VPHT__Syms(contextp(), _vcname__, this)}
     , clk{vlSymsp->TOP.clk}
     , reset{vlSymsp->TOP.reset}
-    , rd_sel{vlSymsp->TOP.rd_sel}
     , out{vlSymsp->TOP.out}
-    , wr_sel{vlSymsp->TOP.wr_sel}
     , wr_data{vlSymsp->TOP.wr_data}
     , wr_ena{vlSymsp->TOP.wr_ena}
+    , rd_sel{vlSymsp->TOP.rd_sel}
+    , wr_sel{vlSymsp->TOP.wr_sel}
     , rootp{&(vlSymsp->TOP)}
 {
     // Register model with the context

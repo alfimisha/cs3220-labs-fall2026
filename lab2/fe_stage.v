@@ -89,7 +89,8 @@ module FE_STAGE(
   wire [`DBITS-1:0] pred_pc_FE;
   assign pred_pc_FE = btb_hit ? target_btb_pred : pcplus_FE;
 
-  BTB btb(
+  // BTB_MODULE picks BTB (direct mapped) or BTB_2WAY (task 9), same ports
+  `BTB_MODULE btb(
     .clk(clk), 
     .reset(reset), 
     .rd_ena(1), 
@@ -325,4 +326,63 @@ always @(posedge clk) begin
   
 end
 assign out = PHT[rd_sel];
+endmodule
+
+module BTB_2WAY (
+  input wire clk,
+  input wire reset,
+  input wire rd_ena,
+  input wire [`DBITS-1:0] rd_sel,
+  output wire [`DBITS-1:0] out_data,
+  output wire outs_valid,
+  input wire wr_ena,
+  input wire [`DBITS-1:0] wr_sel,
+  input wire [`DBITS-1:0] wr_data
+); 
+//1 lru bit per set, it points at the way we replace next
+
+
+reg [31:0] btb_target_w0 [0:7];
+reg [31:0] btb_target_w1 [0:7];
+reg [26:0] btb_tag_w0 [0:7];
+reg [26:0] btb_tag_w1 [0:7];
+reg btb_valid_w0 [0:7];
+reg btb_valid_w1 [0:7];
+reg lru [0:7];
+wire [2:0] rd_index = rd_sel[4:2]; //set index
+wire [26:0] rd_tag = rd_sel[31:5];
+wire [2:0] wr_index = wr_sel[4:2]; //set index
+wire [26:0] wr_tag = wr_sel[31:5];
+// read is combinational: hit shows up the same cycle rd_sel is driven
+wire rd_hit_w0 = btb_valid_w0[rd_index] && (btb_tag_w0[rd_index] == rd_tag);
+wire rd_hit_w1 = btb_valid_w1[rd_index] && (btb_tag_w1[rd_index] == rd_tag);
+assign outs_valid = rd_ena && (rd_hit_w0 || rd_hit_w1);
+assign out_data   = !outs_valid ? 0 : rd_hit_w0 ? btb_target_w0[rd_index] : btb_target_w1[rd_index];
+wire wr_hit_w0 = btb_valid_w0[wr_index] && (btb_tag_w0[wr_index] == wr_tag);
+wire wr_hit_w1 = btb_valid_w1[wr_index] && (btb_tag_w1[wr_index] == wr_tag);
+
+wire wr_way = wr_hit_w0 ? 1'b0 : wr_hit_w1 ? 1'b1 : !btb_valid_w0[wr_index] ? 1'b0 : !btb_valid_w1[wr_index] ? 1'b1 : lru[wr_index];
+always @(posedge clk) begin
+  if (reset) begin
+    for (int i = 0; i < 8; i = i + 1) begin
+      btb_valid_w0[i] <= 0;
+      btb_valid_w1[i] <= 0;
+      lru[i] <= 0;
+    end
+  end else begin
+    if (wr_ena) begin
+      if (wr_way == 1'b0) begin
+        btb_target_w0[wr_index] <= wr_data;
+        btb_tag_w0[wr_index]    <= wr_tag;
+        btb_valid_w0[wr_index]  <= 1;
+      end else begin
+        btb_target_w1[wr_index] <= wr_data;
+        btb_tag_w1[wr_index]    <= wr_tag;
+        btb_valid_w1[wr_index]  <= 1;
+      end
+      lru[wr_index] <= ~wr_way; // we just wrote wr_way so the other one is older
+    end
+  end
+end
+
 endmodule

@@ -21,9 +21,9 @@ class alignas(VL_CACHE_LINE_BYTES) Vtb_branch_predictor_AGEX_STAGE final : publi
     VL_OUT8(__PVT__from_AGEX_to_DE,0,0);
     CData/*0:0*/ __PVT__br_cond_AGEX;
     CData/*0:0*/ __PVT__branch_resolved_AGEX;
-    VL_INW(__PVT__from_DE_latch,281,0,9);
+    VL_INW(__PVT__from_DE_latch,283,0,9);
     VL_OUTW(__PVT__AGEX_latch_out,174,0,6);
-    VL_OUTW(__PVT__from_AGEX_to_FE,106,0,4);
+    VL_OUTW(__PVT__from_AGEX_to_FE,108,0,4);
     VlWide<6>/*174:0*/ __PVT__AGEX_latch;
     IData/*31:0*/ __PVT__aluout_AGEX;
     IData/*31:0*/ __PVT__memaddr_AGEX;

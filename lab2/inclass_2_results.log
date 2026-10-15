@@ -1,5 +1,6 @@
 TESTING: task4/btb
-Passed!
+expected output: valid=0
+actual output: valid=1
 TESTING: task5/add
 Cycles=276
 Passed!
@@ -35,10 +36,10 @@ PredictedBranches=54
 Cycles=423
 Passed!
 TESTING: task6/towers
-Branches=992 Correct=371
-Accuracy=37.399194%
-Cycles=18574
+Branches=992 Correct=617
+Accuracy=62.197581%
+Cycles=18206
 Passed!
 Total number of tests: 13
-Number of passed tests: 13
-Number of failed tests: 0
+Number of passed tests: 12
+Number of failed tests: 1

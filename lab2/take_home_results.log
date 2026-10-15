@@ -1,5 +1,14 @@
+TESTING: task7/towers
+Branches=99635 Correct=98039
+KernelBranches=99351 KernelCorrect=97955
+Accuracy=98.40%
+KernelAccuracy=98.59%
+Cycles=211103 Instructions=201693 CPI=1.05
+Passed!
 TESTING: task8
 Passed!
-Total number of tests: 1
-Number of passed tests: 1
+TESTING: task9
+Passed!
+Total number of tests: 3
+Number of passed tests: 3
 Number of failed tests: 0

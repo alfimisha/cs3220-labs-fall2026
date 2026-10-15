@@ -16,18 +16,18 @@ class alignas(VL_CACHE_LINE_BYTES) VPHT___024root final : public VerilatedModule
     // DESIGN SPECIFIC STATE
     VL_IN8(clk,0,0);
     VL_IN8(reset,0,0);
-    VL_IN8(rd_sel,7,0);
     VL_OUT8(out,0,0);
-    VL_IN8(wr_sel,7,0);
     VL_IN8(wr_data,0,0);
     VL_IN8(wr_ena,0,0);
     CData/*0:0*/ __Vtrigprevexpr___TOP__clk__0;
     CData/*0:0*/ __VactContinue;
+    VL_IN16(rd_sel,9,0);
+    VL_IN16(wr_sel,9,0);
     IData/*31:0*/ PHT__DOT__i;
     IData/*31:0*/ __VstlIterCount;
     IData/*31:0*/ __VicoIterCount;
     IData/*31:0*/ __VactIterCount;
-    VlUnpacked<CData/*1:0*/, 256> PHT__DOT__PHT;
+    VlUnpacked<CData/*1:0*/, 1024> PHT__DOT__PHT;
     VlTriggerVec<1> __VstlTriggered;
     VlTriggerVec<1> __VicoTriggered;
     VlTriggerVec<1> __VactTriggered;

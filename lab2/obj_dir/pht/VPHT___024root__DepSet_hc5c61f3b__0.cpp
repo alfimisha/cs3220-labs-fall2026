@@ -40,59 +40,57 @@ VL_INLINE_OPT void VPHT___024root___nba_sequent__TOP__0(VPHT___024root* vlSelf) 
     CData/*0:0*/ __Vdlyvset__PHT__DOT__PHT__v0;
     __Vdlyvset__PHT__DOT__PHT__v0 = 0;
     IData/*31:0*/ __Vilp;
-    CData/*7:0*/ __Vdlyvdim0__PHT__DOT__PHT__v256;
-    __Vdlyvdim0__PHT__DOT__PHT__v256 = 0;
-    CData/*1:0*/ __Vdlyvval__PHT__DOT__PHT__v256;
-    __Vdlyvval__PHT__DOT__PHT__v256 = 0;
-    CData/*0:0*/ __Vdlyvset__PHT__DOT__PHT__v256;
-    __Vdlyvset__PHT__DOT__PHT__v256 = 0;
-    CData/*7:0*/ __Vdlyvdim0__PHT__DOT__PHT__v257;
-    __Vdlyvdim0__PHT__DOT__PHT__v257 = 0;
-    CData/*1:0*/ __Vdlyvval__PHT__DOT__PHT__v257;
-    __Vdlyvval__PHT__DOT__PHT__v257 = 0;
-    CData/*0:0*/ __Vdlyvset__PHT__DOT__PHT__v257;
-    __Vdlyvset__PHT__DOT__PHT__v257 = 0;
+    SData/*9:0*/ __Vdlyvdim0__PHT__DOT__PHT__v1024;
+    __Vdlyvdim0__PHT__DOT__PHT__v1024 = 0;
+    CData/*1:0*/ __Vdlyvval__PHT__DOT__PHT__v1024;
+    __Vdlyvval__PHT__DOT__PHT__v1024 = 0;
+    CData/*0:0*/ __Vdlyvset__PHT__DOT__PHT__v1024;
+    __Vdlyvset__PHT__DOT__PHT__v1024 = 0;
+    SData/*9:0*/ __Vdlyvdim0__PHT__DOT__PHT__v1025;
+    __Vdlyvdim0__PHT__DOT__PHT__v1025 = 0;
+    CData/*1:0*/ __Vdlyvval__PHT__DOT__PHT__v1025;
+    __Vdlyvval__PHT__DOT__PHT__v1025 = 0;
+    CData/*0:0*/ __Vdlyvset__PHT__DOT__PHT__v1025;
+    __Vdlyvset__PHT__DOT__PHT__v1025 = 0;
     // Body
     __Vdlyvset__PHT__DOT__PHT__v0 = 0U;
-    __Vdlyvset__PHT__DOT__PHT__v256 = 0U;
-    __Vdlyvset__PHT__DOT__PHT__v257 = 0U;
+    __Vdlyvset__PHT__DOT__PHT__v1024 = 0U;
+    __Vdlyvset__PHT__DOT__PHT__v1025 = 0U;
     if (vlSelf->reset) {
-        vlSelf->PHT__DOT__i = 0x100U;
+        vlSelf->PHT__DOT__i = 0x400U;
         __Vdlyvset__PHT__DOT__PHT__v0 = 1U;
     } else if (vlSelf->wr_ena) {
         if (vlSelf->wr_data) {
             if ((3U != vlSelf->PHT__DOT__PHT[vlSelf->wr_sel])) {
-                __Vdlyvval__PHT__DOT__PHT__v256 = (3U 
-                                                   & ((IData)(1U) 
-                                                      + 
-                                                      vlSelf->PHT__DOT__PHT
-                                                      [vlSelf->wr_sel]));
-                __Vdlyvset__PHT__DOT__PHT__v256 = 1U;
-                __Vdlyvdim0__PHT__DOT__PHT__v256 = vlSelf->wr_sel;
+                __Vdlyvval__PHT__DOT__PHT__v1024 = 
+                    (3U & ((IData)(1U) + vlSelf->PHT__DOT__PHT
+                           [vlSelf->wr_sel]));
+                __Vdlyvset__PHT__DOT__PHT__v1024 = 1U;
+                __Vdlyvdim0__PHT__DOT__PHT__v1024 = vlSelf->wr_sel;
             }
         } else if ((0U != vlSelf->PHT__DOT__PHT[vlSelf->wr_sel])) {
-            __Vdlyvval__PHT__DOT__PHT__v257 = (3U & 
-                                               (vlSelf->PHT__DOT__PHT
-                                                [vlSelf->wr_sel] 
-                                                - (IData)(1U)));
-            __Vdlyvset__PHT__DOT__PHT__v257 = 1U;
-            __Vdlyvdim0__PHT__DOT__PHT__v257 = vlSelf->wr_sel;
+            __Vdlyvval__PHT__DOT__PHT__v1025 = (3U 
+                                                & (vlSelf->PHT__DOT__PHT
+                                                   [vlSelf->wr_sel] 
+                                                   - (IData)(1U)));
+            __Vdlyvset__PHT__DOT__PHT__v1025 = 1U;
+            __Vdlyvdim0__PHT__DOT__PHT__v1025 = vlSelf->wr_sel;
         }
     }
     if (__Vdlyvset__PHT__DOT__PHT__v0) {
         __Vilp = 0U;
-        while ((__Vilp <= 0xffU)) {
+        while ((__Vilp <= 0x3ffU)) {
             vlSelf->PHT__DOT__PHT[__Vilp] = 1U;
             __Vilp = ((IData)(1U) + __Vilp);
         }
     }
-    if (__Vdlyvset__PHT__DOT__PHT__v256) {
-        vlSelf->PHT__DOT__PHT[__Vdlyvdim0__PHT__DOT__PHT__v256] 
-            = __Vdlyvval__PHT__DOT__PHT__v256;
+    if (__Vdlyvset__PHT__DOT__PHT__v1024) {
+        vlSelf->PHT__DOT__PHT[__Vdlyvdim0__PHT__DOT__PHT__v1024] 
+            = __Vdlyvval__PHT__DOT__PHT__v1024;
     }
-    if (__Vdlyvset__PHT__DOT__PHT__v257) {
-        vlSelf->PHT__DOT__PHT[__Vdlyvdim0__PHT__DOT__PHT__v257] 
-            = __Vdlyvval__PHT__DOT__PHT__v257;
+    if (__Vdlyvset__PHT__DOT__PHT__v1025) {
+        vlSelf->PHT__DOT__PHT[__Vdlyvdim0__PHT__DOT__PHT__v1025] 
+            = __Vdlyvval__PHT__DOT__PHT__v1025;
     }
     vlSelf->out = (1U & (vlSelf->PHT__DOT__PHT[vlSelf->rd_sel] 
                          >> 1U));
@@ -141,7 +139,7 @@ void VPHT___024root___eval(VPHT___024root* vlSelf) {
 #ifdef VL_DEBUG
                 VPHT___024root___dump_triggers__ico(vlSelf);
 #endif
-                VL_FATAL_MT("/home/hice1/araj92/cs3220/cs3220-labs-fall2026/lab2/fe_stage.v", 210, "", "Input combinational region did not converge.");
+                VL_FATAL_MT("/home/hice1/araj92/cs3220/cs3220-labs-fall2026/lab2/fe_stage.v", 212, "", "Input combinational region did not converge.");
             }
             vlSelf->__VicoIterCount = ((IData)(1U) 
                                        + vlSelf->__VicoIterCount);
@@ -164,7 +162,7 @@ void VPHT___024root___eval(VPHT___024root* vlSelf) {
 #ifdef VL_DEBUG
                     VPHT___024root___dump_triggers__act(vlSelf);
 #endif
-                    VL_FATAL_MT("/home/hice1/araj92/cs3220/cs3220-labs-fall2026/lab2/fe_stage.v", 210, "", "Active region did not converge.");
+                    VL_FATAL_MT("/home/hice1/araj92/cs3220/cs3220-labs-fall2026/lab2/fe_stage.v", 212, "", "Active region did not converge.");
                 }
                 vlSelf->__VactIterCount = ((IData)(1U) 
                                            + vlSelf->__VactIterCount);
@@ -179,7 +177,7 @@ void VPHT___024root___eval(VPHT___024root* vlSelf) {
 #ifdef VL_DEBUG
                 VPHT___024root___dump_triggers__nba(vlSelf);
 #endif
-                VL_FATAL_MT("/home/hice1/araj92/cs3220/cs3220-labs-fall2026/lab2/fe_stage.v", 210, "", "NBA region did not converge.");
+                VL_FATAL_MT("/home/hice1/araj92/cs3220/cs3220-labs-fall2026/lab2/fe_stage.v", 212, "", "NBA region did not converge.");
             }
             __VnbaIterCount = ((IData)(1U) + __VnbaIterCount);
             VPHT___024root___eval_nba(vlSelf);
@@ -197,6 +195,10 @@ void VPHT___024root___eval_debug_assertions(VPHT___024root* vlSelf) {
         Verilated::overWidthError("clk");}
     if (VL_UNLIKELY((vlSelf->reset & 0xfeU))) {
         Verilated::overWidthError("reset");}
+    if (VL_UNLIKELY((vlSelf->rd_sel & 0xfc00U))) {
+        Verilated::overWidthError("rd_sel");}
+    if (VL_UNLIKELY((vlSelf->wr_sel & 0xfc00U))) {
+        Verilated::overWidthError("wr_sel");}
     if (VL_UNLIKELY((vlSelf->wr_data & 0xfeU))) {
         Verilated::overWidthError("wr_data");}
     if (VL_UNLIKELY((vlSelf->wr_ena & 0xfeU))) {

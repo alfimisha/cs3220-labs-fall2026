@@ -34,12 +34,12 @@ class alignas(VL_CACHE_LINE_BYTES) Vtb_direction VL_NOT_FINAL : public Verilated
     VL_OUT8(&stall,0,0);
     VL_OUT8(&branch_flag,0,0);
     VL_OUT8(&history,7,0);
-    VL_OUT8(&fetch_index,7,0);
-    VL_OUT8(&write_index,7,0);
     VL_OUT8(&prediction,0,0);
     VL_OUT8(&bhr_write,0,0);
     VL_OUT8(&pht_write,0,0);
     VL_OUT8(&pht_data,0,0);
+    VL_OUT16(&fetch_index,9,0);
+    VL_OUT16(&write_index,9,0);
     VL_OUT(&pc,31,0);
     VL_OUT(&fetch_inst,31,0);
     VL_OUT(&fetch_id,31,0);
