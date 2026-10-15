@@ -194,15 +194,18 @@ module BHR (
   input wire clk,
   input wire reset,
   input wire wr_ena,
-  input wire [`DBITS-1:0] wr_data,
-  output reg [`BHR_WIDTH-1:0] out
+  input wire wr_data,
+  output wire [`BHR_WIDTH-1:0] out
 );
+
+reg [`BHR_WIDTH-1:0] history;
+assign out = history;
 
 always @(posedge clk) begin
   if (reset) begin
-    out <= {`BHR_WIDTH{1'b0}};
+    history <= {`BHR_WIDTH{1'b0}};
   end else if (wr_ena) begin
-    out <= {out[`BHR_WIDTH-2:0], wr_data[0]};
+    history <= {history[`BHR_WIDTH-2:0], wr_data};
   end
 end
 
@@ -213,7 +216,7 @@ endmodule
 module PHT (
   input wire clk,
   input wire reset,
-  input wire [`PHT_BITS-1:0] rd_sel,
+  input wire [`PHT_BITS-1:0] rd_sel, 
   output wire out,
   input wire [`PHT_BITS-1:0] wr_sel,
   input wire wr_data,
