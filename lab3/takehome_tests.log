@@ -1,0 +1,27 @@
+
+TESTING: /home/hice1/araj92/cs3220/cs3220-labs-fall2026/lab3/test/public/takehome/alutest1.mem
+-- VERILATE ----------------
+/home/hice1/araj92/cs3220/cs3220-labs-fall2026/lab3/test/public/takehome/alutest1.mem
+/home/hice1/araj92/cs3220/cs3220-labs-fall2026/lab3/define.vh
+sed -i 's|define IDMEMINITFILE.*|define IDMEMINITFILE "/home/hice1/araj92/cs3220/cs3220-labs-fall2026/lab3/test/public/takehome/alutest1.mem"|g'  /home/hice1/araj92/cs3220/cs3220-labs-fall2026/lab3/define.vh
+verilator --exe -cc pipeline.v --top-module pipeline --trace --trace-structs --assert -Wpedantic -Wno-DECLFILENAME -Wno-UNUSED --x-initial unique --x-assign unique sim_main.cpp fe_stage.v de_stage.v mem_stage.v wb_stage.v agex_stage.v divider.v external_alu_wrapper.v FU_stage.v multiplier.v -CFLAGS '-DIDMEMINITFILE=/home/hice1/araj92/cs3220/cs3220-labs-fall2026/lab3/test/public/takehome/alutest1.mem -DVCD_OUTPUT -DDPRINTF'
+make: verilator: No such file or directory
+make: *** [Makefile:65: tests] Error 127
+
+TESTING: /home/hice1/araj92/cs3220/cs3220-labs-fall2026/lab3/test/public/takehome/alutest2.mem
+-- VERILATE ----------------
+/home/hice1/araj92/cs3220/cs3220-labs-fall2026/lab3/test/public/takehome/alutest2.mem
+/home/hice1/araj92/cs3220/cs3220-labs-fall2026/lab3/define.vh
+sed -i 's|define IDMEMINITFILE.*|define IDMEMINITFILE "/home/hice1/araj92/cs3220/cs3220-labs-fall2026/lab3/test/public/takehome/alutest2.mem"|g'  /home/hice1/araj92/cs3220/cs3220-labs-fall2026/lab3/define.vh
+verilator --exe -cc pipeline.v --top-module pipeline --trace --trace-structs --assert -Wpedantic -Wno-DECLFILENAME -Wno-UNUSED --x-initial unique --x-assign unique sim_main.cpp fe_stage.v de_stage.v mem_stage.v wb_stage.v agex_stage.v divider.v external_alu_wrapper.v FU_stage.v multiplier.v -CFLAGS '-DIDMEMINITFILE=/home/hice1/araj92/cs3220/cs3220-labs-fall2026/lab3/test/public/takehome/alutest2.mem -DVCD_OUTPUT -DDPRINTF'
+make: verilator: No such file or directory
+make: *** [Makefile:65: tests] Error 127
+
+TESTING: /home/hice1/araj92/cs3220/cs3220-labs-fall2026/lab3/test/public/takehome/varied_ops.mem
+-- VERILATE ----------------
+/home/hice1/araj92/cs3220/cs3220-labs-fall2026/lab3/test/public/takehome/varied_ops.mem
+/home/hice1/araj92/cs3220/cs3220-labs-fall2026/lab3/define.vh
+sed -i 's|define IDMEMINITFILE.*|define IDMEMINITFILE "/home/hice1/araj92/cs3220/cs3220-labs-fall2026/lab3/test/public/takehome/varied_ops.mem"|g'  /home/hice1/araj92/cs3220/cs3220-labs-fall2026/lab3/define.vh
+verilator --exe -cc pipeline.v --top-module pipeline --trace --trace-structs --assert -Wpedantic -Wno-DECLFILENAME -Wno-UNUSED --x-initial unique --x-assign unique sim_main.cpp fe_stage.v de_stage.v mem_stage.v wb_stage.v agex_stage.v divider.v external_alu_wrapper.v FU_stage.v multiplier.v -CFLAGS '-DIDMEMINITFILE=/home/hice1/araj92/cs3220/cs3220-labs-fall2026/lab3/test/public/takehome/varied_ops.mem -DVCD_OUTPUT -DDPRINTF'
+make: verilator: No such file or directory
+make: *** [Makefile:65: tests] Error 127

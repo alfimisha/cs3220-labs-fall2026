@@ -245,6 +245,18 @@ module DE_STAGE(
   // Use the macros in define.vh (`ALUDATABITS, `ALUOPBITS, `ALUCSRINBITS,
   // `ALUCSROUTBITS) so widths stay consistent with FU_stage.v.
 
+  wire [`ALUDATABITS - 1:0] OP3_from_FU;
+  wire [`ALUCSROUTBITS - 1:0] CSR_ALU_OUT_from_FU;
+  reg [`ALUDATABITS-1:0] OP1_DE;
+  reg [`ALUDATABITS-1:0] OP2_DE;
+  reg [`ALUOPBITS-1:0] ALUOP_DE;
+  reg [`ALUCSRINBITS-1:0] CSR_ALU_IN_DE;
+
+  assign {
+    OP3_from_FU, 
+    CSR_ALU_OUT_from_FU
+  } = from_FU_to_DE;
+ 
 
 
   // Decode instruction registers
@@ -382,6 +394,7 @@ module DE_STAGE(
   //     mailbox sees the same stable regval_WB that just committed.
   //   • On reset: clear OP1/OP2/ALUOP; set CSR_ALU_IN to the ALU's starting
   //     state (study the waveform / README — look at CSR_ALU_IN right after reset).
+//DONE TILL HERE. 
   //   • When wr_reg_WB && wregno_WB matches a mailbox dest:
   //       ALUOP (`ALUOP_REG_IDX) → latch regval_WB into ALUOP; raise the
   //         "start/ack" side of CSR_ALU_IN (bit 0 on the waveform).
@@ -395,6 +408,28 @@ module DE_STAGE(
   //
   // TODO(bonus): Also ack a completed result when streaming without reloading
   // ALUOP (otherwise the ALU can deadlock waiting for CSR_ALU_IN[0]).
+  always @(negedge clk) begin
+    if (reset) begin
+      OP1_DE <= 0;
+      OP2_DE <= 0;
+      ALUOP_DE <= 0;
+      CSR_ALU_IN_DE <= 3'b001; // from the weaveform
+    end else begin
+      if (wr_reg_WB && (wregno_WB == `ALUOP_REG_IDX)) begin
+        //this is the aluop!
+        CSR_ALU_IN_DE <= {CSR_ALU_IN_DE[`ALUCSRINBITS - 1: 1], 1'b1};
+        ALUOP_DE <= regval_WB[`ALUOPBITS-1:0];
+      end else if (wr_reg_WB && (wregno_WB == `OP1_REG_IDX)) begin 
+        CSR_ALU_IN_DE <= {CSR_ALU_IN_DE[`ALUCSRINBITS - 1: 2], 2'b10};
+        OP1_DE <= regval_WB;
+      end else if (wr_reg_WB && (wregno_WB == `OP2_REG_IDX)) begin
+        CSR_ALU_IN_DE <= {1'b1, CSR_ALU_IN_DE[`ALUCSRINBITS - 2: 0]};
+        OP2_DE <= regval_WB;
+      end else begin
+        CSR_ALU_IN_DE <= {2'b00, CSR_ALU_IN_DE[0]};
+      end
+    end
+  end
 
 
 
@@ -407,7 +442,9 @@ module DE_STAGE(
   //   otherwise, use the original rs2_val_DE"
   //
   // Then plug that into DE_latch_contents below (SW of OP3 needs the live result).
-
+  wire [`ALUDATABITS-1:0] rs2_val_final_DE;
+  assign rs2_val_final_DE = (rs2_DE == `OP3_REG_IDX) ? OP3_from_FU :
+                            (rs2_DE == `CSR_OUT_REG_IDX) ? {29'b0, CSR_ALU_OUT_from_FU} : rs2_val_DE;
 
 
   // the order of latch contents should be matched in the AGEX stage when we extract the contents.
@@ -419,7 +456,7 @@ module DE_STAGE(
     pcnext_DE,
     op_I_DE,
     rs1_val_DE,
-    rs2_val_DE, // TODO(in-class): swap in your live OP3/CSR override
+    rs2_val_final_DE, // TODO(in-class): swap in your live OP3/CSR override
     sxt_imm_DE,
     is_br_DE,
     is_jmp_DE,
@@ -455,6 +492,11 @@ module DE_STAGE(
   // Suggestion: Pack from_DE_to_FU with OP1, OP2, ALUOP, CSR_ALU_IN
   // It's basically the same field order (and widths) as the unpack in FU_stage.v
 
-
+  assign from_DE_to_FU = {
+    OP1_DE, 
+    OP2_DE, 
+    ALUOP_DE, 
+    CSR_ALU_IN_DE
+  };
 
 endmodule
