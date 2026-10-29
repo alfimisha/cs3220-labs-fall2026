@@ -277,10 +277,22 @@ def rand_exact_op(rng):
          The comment is only for the .lst listing; human-readable is fine.
       5. Avoid 0 divisors; stick to positive ints so you do not fight NaN/Inf here.
 
+      
+
     Why this shape? The checker embeds expected_hex and compares the ALU's OP3
     store against it. If your floats are not exact, a correct HDL can still "fail".
     """
-    raise NotImplementedError("TODO: implement rand_exact_op")
+    if rng.random() < 0.5:
+        a = rng.randint(1, 1000)
+        b = rng.randint(1, 1000)
+        return (2, f2h(a), f2h(b), f2h(a * b), f"{a} * {b} = {a*b}")
+    else:
+        q = rng.randint(1, 1000)
+        d = rng.randint(1, 1000)
+        dividend = q * d
+        return (1, f2h(dividend), f2h(d), f2h(q), f"{dividend} / {d} = {q}")
+
+    #raise NotImplementedError("TODO: implement rand_exact_op")
 
 
 
@@ -302,7 +314,13 @@ def gen_random_stress(outdir, seed=3220, n_ops=10):
     You do not write assembly yourself (that would be awful); build_ops_test turns the op list into
     the LW/SW mailbox program and the self-check against expected_hex.
     """
-    raise NotImplementedError("TODO: implement gen_random_stress")
+    rng = random.Random(seed)
+    operations = []
+    for i in range(n_ops):
+        operations.append(rand_exact_op(rng))
+    build_ops_test("random_stress", operations, outdir, reuse_aluop=False, gap=0)
+    return operations
+    #raise NotImplementedError("TODO: implement gen_random_stress")
 
 
 

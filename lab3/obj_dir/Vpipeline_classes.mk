@@ -27,6 +27,7 @@ VM_CLASSES_FAST += \
 	Vpipeline___024root__DepSet_ha2aed019__0 \
 	Vpipeline___024root__DepSet_h0e89545c__0 \
 	Vpipeline_pipeline__DepSet_h4d7d4d0b__0 \
+	Vpipeline_pipeline__DepSet_ha3d9c74e__0 \
 	Vpipeline_WB_STAGE__DepSet_h58b40e1e__0 \
 
 # Generated module classes, non-fast-path, compile with low/medium optimization

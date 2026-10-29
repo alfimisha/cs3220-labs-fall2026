@@ -308,6 +308,20 @@ module DE_STAGE(
   // You mainly need these for take-home stalls; for in-class they still help
   // you reason about which instructions touch the ALU mailbox.
 
+  wire is_load_op1_DE;
+  assign is_load_op1_DE = valid_DE && (op_I_DE == `LW_I) && (rd_DE == `OP1_REG_IDX);
+  wire is_load_op2_DE;
+  assign is_load_op2_DE = valid_DE && (op_I_DE == `LW_I) && (rd_DE == `OP2_REG_IDX);
+  wire is_store_op3_DE;
+  assign is_store_op3_DE = valid_DE && (op_I_DE == `SW_I) && (rs2_DE == `OP3_REG_IDX);
+
+  wire alu_stall_DE;
+  assign alu_stall_DE = (is_load_op1_DE && !CSR_ALU_OUT_from_FU[0])
+                    || (is_load_op2_DE && !CSR_ALU_OUT_from_FU[1])
+                    || (is_store_op3_DE && !CSR_ALU_OUT_from_FU[2]);
+
+
+
 
 
   always @(*) begin 
@@ -357,7 +371,7 @@ module DE_STAGE(
 
 
 
-  assign pipeline_stall_DE = has_data_hazards || br_mispred_AGEX;
+  assign pipeline_stall_DE = has_data_hazards || br_mispred_AGEX || alu_stall_DE;
 
   always @(posedge clk) begin
     if (reset) begin
@@ -426,7 +440,7 @@ module DE_STAGE(
         CSR_ALU_IN_DE <= {1'b1, CSR_ALU_IN_DE[`ALUCSRINBITS - 2: 0]};
         OP2_DE <= regval_WB;
       end else begin
-        CSR_ALU_IN_DE <= {2'b00, CSR_ALU_IN_DE[0]};
+        CSR_ALU_IN_DE <= {2'b00, (CSR_ALU_IN_DE[0] | (is_store_op3_DE && !pipeline_stall_DE))};
       end
     end
   end

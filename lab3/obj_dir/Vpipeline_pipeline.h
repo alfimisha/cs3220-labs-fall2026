@@ -35,8 +35,13 @@ class alignas(VL_CACHE_LINE_BYTES) Vpipeline_pipeline final : public VerilatedMo
         CData/*0:0*/ __PVT__my_DE_stage__DOT__use_rs2_DE;
         CData/*3:0*/ __PVT__my_DE_stage__DOT__ALUOP_DE;
         CData/*2:0*/ __PVT__my_DE_stage__DOT__CSR_ALU_IN_DE;
+        CData/*0:0*/ __PVT__my_DE_stage__DOT__is_store_op3_DE;
+        CData/*0:0*/ my_DE_stage__DOT____VdfgTmp_hdcd90c43__0;
         CData/*0:0*/ my_AGEX_stage__DOT____VdfgExtracted_h047d73e2__0;
         CData/*0:0*/ my_AGEX_stage__DOT____VdfgExtracted_h048118d3__0;
+        CData/*0:0*/ __PVT__my_FU_stage__DOT__alu__DOT__ALU_ready_1;
+        CData/*0:0*/ __PVT__my_FU_stage__DOT__alu__DOT__ALU_ready_2;
+        CData/*0:0*/ __PVT__my_FU_stage__DOT__alu__DOT__ALU_resutls_valid;
         CData/*0:0*/ __PVT__my_FU_stage__DOT__alu__DOT__div0__DOT__s_output_z_stb;
         CData/*0:0*/ __PVT__my_FU_stage__DOT__alu__DOT__div0__DOT__s_input_a_ack;
         CData/*0:0*/ __PVT__my_FU_stage__DOT__alu__DOT__div0__DOT__s_input_b_ack;
@@ -78,13 +83,13 @@ class alignas(VL_CACHE_LINE_BYTES) Vpipeline_pipeline final : public VerilatedMo
         CData/*0:0*/ __Vdly__my_FU_stage__DOT__alu__DOT__mult0__DOT__z_s;
         CData/*0:0*/ __Vdly__my_FU_stage__DOT__alu__DOT__mult0__DOT__guard;
         CData/*0:0*/ __Vdly__my_FU_stage__DOT__alu__DOT__mult0__DOT__round_bit;
+    };
+    struct {
         CData/*0:0*/ __Vdly__my_FU_stage__DOT__alu__DOT__mult0__DOT__sticky;
         CData/*0:0*/ __Vdly__my_FU_stage__DOT__alu__DOT__mult0__DOT__s_output_z_stb;
         SData/*9:0*/ __PVT__my_FU_stage__DOT__alu__DOT__div0__DOT__a_e;
         SData/*9:0*/ __PVT__my_FU_stage__DOT__alu__DOT__div0__DOT__b_e;
         SData/*9:0*/ __PVT__my_FU_stage__DOT__alu__DOT__div0__DOT__z_e;
-    };
-    struct {
         SData/*9:0*/ __PVT__my_FU_stage__DOT__alu__DOT__mult0__DOT__a_e;
         SData/*9:0*/ __PVT__my_FU_stage__DOT__alu__DOT__mult0__DOT__b_e;
         SData/*9:0*/ __PVT__my_FU_stage__DOT__alu__DOT__mult0__DOT__z_e;
@@ -144,13 +149,13 @@ class alignas(VL_CACHE_LINE_BYTES) Vpipeline_pipeline final : public VerilatedMo
         IData/*23:0*/ __Vdly__my_FU_stage__DOT__alu__DOT__mult0__DOT__z_m;
         QData/*50:0*/ __PVT__my_FU_stage__DOT__alu__DOT__div0__DOT__quotient;
         QData/*50:0*/ __PVT__my_FU_stage__DOT__alu__DOT__div0__DOT__divisor;
+    };
+    struct {
         QData/*50:0*/ __PVT__my_FU_stage__DOT__alu__DOT__div0__DOT__dividend;
         QData/*50:0*/ __PVT__my_FU_stage__DOT__alu__DOT__div0__DOT__remainder;
         QData/*47:0*/ __PVT__my_FU_stage__DOT__alu__DOT__mult0__DOT__product;
         QData/*50:0*/ __Vdly__my_FU_stage__DOT__alu__DOT__div0__DOT__quotient;
         QData/*50:0*/ __Vdly__my_FU_stage__DOT__alu__DOT__div0__DOT__remainder;
-    };
-    struct {
         QData/*50:0*/ __Vdly__my_FU_stage__DOT__alu__DOT__div0__DOT__dividend;
         QData/*50:0*/ __Vdly__my_FU_stage__DOT__alu__DOT__div0__DOT__divisor;
         QData/*47:0*/ __Vdly__my_FU_stage__DOT__alu__DOT__mult0__DOT__product;
