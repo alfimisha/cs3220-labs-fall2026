@@ -101,6 +101,26 @@ reg [7:0] write_count_reg = 8'd0, write_count_next;
 reg [2:0] write_size_reg = 3'd0, write_size_next;
 reg [1:0] write_burst_reg = 2'd0, write_burst_next;
 
+reg [ADDR_WIDTH-1:0] write_wrap_mask_reg = {ADDR_WIDTH{1'b0}}, write_wrap_mask_next;
+reg [ADDR_WIDTH-1:0] read_wrap_mask_reg = {ADDR_WIDTH{1'b0}}, read_wrap_mask_next;
+
+
+function [ADDR_WIDTH-1:0] next_addr;
+    input [ADDR_WIDTH-1:0] addr;
+    input [2:0] size;
+    input [1:0] burst;
+    input [ADDR_WIDTH-1:0] wrap_mask;
+    reg [ADDR_WIDTH-1:0] incr;
+    begin
+        incr = (addr & ~(({ADDR_WIDTH{1'b0}} | (1 << size)) - 1)) + (1 << size);
+        case (burst)
+            2'b00: next_addr = addr;
+            2'b10: next_addr = (addr & ~wrap_mask) | (incr & wrap_mask);
+            default: next_addr = incr;
+        endcase
+    end
+endfunction
+
 reg s_axi_awready_reg = 1'b0, s_axi_awready_next;
 reg s_axi_wready_reg = 1'b0, s_axi_wready_next;
 reg [ID_WIDTH-1:0] s_axi_bid_reg = {ID_WIDTH{1'b0}}, s_axi_bid_next;
@@ -117,6 +137,11 @@ reg s_axi_rvalid_pipe_reg = 1'b0;
 
 // (* RAM_STYLE="BLOCK" *)
 reg [DATA_WIDTH-1:0] mem[(2**VALID_ADDR_WIDTH)-1:0];
+// one bit per word: set once the word has been written (not cleared by rst,
+// just like mem[]); reads of unwritten words return SLVERR
+reg [(2**VALID_ADDR_WIDTH)-1:0] mem_written = 0;
+reg [1:0] s_axi_rresp_reg = 2'b00;
+reg [1:0] s_axi_rresp_pipe_reg = 2'b00;
 wire [VALID_ADDR_WIDTH-1:0] s_axi_awaddr_valid = s_axi_awaddr >> (ADDR_WIDTH - VALID_ADDR_WIDTH);
 wire [VALID_ADDR_WIDTH-1:0] s_axi_araddr_valid = s_axi_araddr >> (ADDR_WIDTH - VALID_ADDR_WIDTH);
 wire [VALID_ADDR_WIDTH-1:0] read_addr_valid = read_addr_reg >> (ADDR_WIDTH - VALID_ADDR_WIDTH);
@@ -130,7 +155,7 @@ assign s_axi_bvalid = s_axi_bvalid_reg;
 assign s_axi_arready = s_axi_arready_reg;
 assign s_axi_rid = PIPELINE_OUTPUT ? s_axi_rid_pipe_reg : s_axi_rid_reg;
 assign s_axi_rdata = PIPELINE_OUTPUT ? s_axi_rdata_pipe_reg : s_axi_rdata_reg;
-assign s_axi_rresp = 2'b00;
+assign s_axi_rresp = PIPELINE_OUTPUT ? s_axi_rresp_pipe_reg : s_axi_rresp_reg;
 assign s_axi_rlast = PIPELINE_OUTPUT ? s_axi_rlast_pipe_reg : s_axi_rlast_reg;
 assign s_axi_rvalid = PIPELINE_OUTPUT ? s_axi_rvalid_pipe_reg : s_axi_rvalid_reg;
 
@@ -156,6 +181,7 @@ always @* begin
     write_count_next = write_count_reg;
     write_size_next = write_size_reg;
     write_burst_next = write_burst_reg;
+    write_wrap_mask_next = write_wrap_mask_reg;
 
     s_axi_awready_next = 1'b0;
     s_axi_wready_next = 1'b0;
@@ -164,7 +190,7 @@ always @* begin
 
     case (write_state_reg)
         WRITE_STATE_IDLE: begin
-            //TODO: Finish the following code 
+                        //TODO: Finish the following code 
             //prepare to accept write address
             //once condition is met 
             //  assign all the metadata e.g., write_id_next, write_addr_next, write_count_next, write_size_next, write_burst_next
@@ -172,7 +198,20 @@ always @* begin
             //  set the state to ready to accept write data
             //else:
             //  set the state to idle
-
+            s_axi_awready_next = !s_axi_bvalid_next;
+            if (s_axi_awready && s_axi_awvalid) begin
+                write_id_next = s_axi_awid;
+                write_addr_next = s_axi_awaddr;
+                write_count_next = s_axi_awlen;
+                write_size_next = s_axi_awsize < $clog2(STRB_WIDTH) ? s_axi_awsize : $clog2(STRB_WIDTH);
+                write_burst_next = s_axi_awburst;
+                write_wrap_mask_next = ((s_axi_awlen + 1) << (s_axi_awsize < $clog2(STRB_WIDTH) ? s_axi_awsize : $clog2(STRB_WIDTH))) - 1;
+                s_axi_awready_next = 1'b0;
+                s_axi_wready_next = 1'b1;
+                write_state_next = WRITE_STATE_WDATA;
+            end else begin
+                write_state_next = WRITE_STATE_IDLE;
+            end
         end
         WRITE_STATE_WDATA: begin
             //TODO: Finish the following code 
@@ -185,11 +224,39 @@ always @* begin
             //  otherwise go the response state t wait for response to be ready
             //Note: we don't do much about the response here, other than propagating the metadata in a synchronous manner
 
+            s_axi_wready_next = 1'b1;
+            if (s_axi_wready && s_axi_wvalid) begin
+                mem_wr_en = 1'b1;
+                write_addr_next = next_addr(write_addr_reg, write_size_reg, write_burst_reg, write_wrap_mask_reg);
+                write_count_next = write_count_reg - 1;
+                if (write_count_reg > 0) begin
+                    write_state_next = WRITE_STATE_WDATA;
+                end else begin
+                    // last beat
+                    s_axi_wready_next = 1'b0;
+                    if (s_axi_bready || !s_axi_bvalid) begin
+                        s_axi_bid_next = write_id_reg;
+                        s_axi_bvalid_next = 1'b1;
+                        s_axi_awready_next = 1'b0;
+                        write_state_next = WRITE_STATE_IDLE;
+                    end else begin
+                        write_state_next = WRITE_STATE_RESP;
+                    end
+                end
+            end else begin
+                write_state_next = WRITE_STATE_WDATA;
+            end
         end
         WRITE_STATE_RESP: begin
-            //TODO: Finish the following code
-            //Handle the response
-
+            // wait until the previous response is consumed
+            if (s_axi_bready || !s_axi_bvalid) begin
+                s_axi_bid_next = write_id_reg;
+                s_axi_bvalid_next = 1'b1;
+                s_axi_awready_next = 1'b0;
+                write_state_next = WRITE_STATE_IDLE;
+            end else begin
+                write_state_next = WRITE_STATE_RESP;
+            end
         end
     endcase
 end
@@ -202,11 +269,16 @@ always @(posedge clk) begin
     write_count_reg <= write_count_next;
     write_size_reg <= write_size_next;
     write_burst_reg <= write_burst_next;
+    write_wrap_mask_reg <= write_wrap_mask_next;
 
     s_axi_awready_reg <= s_axi_awready_next;
     s_axi_wready_reg <= s_axi_wready_next;
     s_axi_bid_reg <= s_axi_bid_next;
     s_axi_bvalid_reg <= s_axi_bvalid_next;
+
+    if (mem_wr_en && |s_axi_wstrb) begin
+        mem_written[write_addr_valid] <= 1'b1;
+    end
 
     for (i = 0; i < WORD_WIDTH; i = i + 1) begin
         if (mem_wr_en & s_axi_wstrb[i]) begin
@@ -237,6 +309,7 @@ always @* begin
     read_count_next = read_count_reg;
     read_size_next = read_size_reg;
     read_burst_next = read_burst_reg;
+    read_wrap_mask_next = read_wrap_mask_reg;
 
     s_axi_arready_next = 1'b0;
 
@@ -244,15 +317,39 @@ always @* begin
         READ_STATE_IDLE: begin
             //TODO: Finish the following code
             //similar manner as the write state machine
-
+            s_axi_arready_next = 1'b1;
+            if (s_axi_arready && s_axi_arvalid) begin
+                read_id_next = s_axi_arid;
+                read_addr_next = s_axi_araddr;
+                read_count_next = s_axi_arlen;
+                read_size_next = s_axi_arsize < $clog2(STRB_WIDTH) ? s_axi_arsize : $clog2(STRB_WIDTH);
+                read_burst_next = s_axi_arburst;
+                read_wrap_mask_next = ((s_axi_arlen + 1) << (s_axi_arsize < $clog2(STRB_WIDTH) ? s_axi_arsize : $clog2(STRB_WIDTH))) - 1;
+                s_axi_arready_next = 1'b0;
+                read_state_next = READ_STATE_RDATA;
+            end else begin
+                read_state_next = READ_STATE_IDLE;
+            end
         end
         READ_STATE_RDATA: begin
-            //TODO: Finish the following code
-            //similar manner as the write state machine
-
+            // issue a beat whenever the output register is free / being consumed
+            if (s_axi_rready || (PIPELINE_OUTPUT && !s_axi_rvalid_pipe_reg) || !s_axi_rvalid_reg) begin
+                mem_rd_en = 1'b1;
+                s_axi_rvalid_next = 1'b1;
+                s_axi_rid_next = read_id_reg;
+                s_axi_rlast_next = read_count_reg == 0;
+                read_addr_next = next_addr(read_addr_reg, read_size_reg, read_burst_reg, read_wrap_mask_reg);
+                read_count_next = read_count_reg - 1;
+                if (read_count_reg > 0) begin
+                    read_state_next = READ_STATE_RDATA;
+                end else begin
+                    s_axi_arready_next = 1'b1;
+                    read_state_next = READ_STATE_IDLE;
+                end
+            end else begin
+                read_state_next = READ_STATE_RDATA;
+            end
         end
-
-        //Note: don't worry about the read response for now. 
     endcase
 end
 
@@ -264,6 +361,7 @@ always @(posedge clk) begin
     read_count_reg <= read_count_next;
     read_size_reg <= read_size_next;
     read_burst_reg <= read_burst_next;
+    read_wrap_mask_reg <= read_wrap_mask_next;
 
     s_axi_arready_reg <= s_axi_arready_next;
     s_axi_rid_reg <= s_axi_rid_next;
@@ -272,11 +370,13 @@ always @(posedge clk) begin
 
     if (mem_rd_en) begin
         s_axi_rdata_reg <= mem[read_addr_valid];
+        s_axi_rresp_reg <= mem_written[read_addr_valid] ? 2'b00 : 2'b10;
     end
 
     if (!s_axi_rvalid_pipe_reg || s_axi_rready) begin
         s_axi_rid_pipe_reg <= s_axi_rid_reg;
         s_axi_rdata_pipe_reg <= s_axi_rdata_reg;
+        s_axi_rresp_pipe_reg <= s_axi_rresp_reg;
         s_axi_rlast_pipe_reg <= s_axi_rlast_reg;
         s_axi_rvalid_pipe_reg <= s_axi_rvalid_reg;
     end
