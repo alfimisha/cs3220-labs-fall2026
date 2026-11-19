@@ -106,8 +106,8 @@ module mac #(
     //     One side keeps the running sum (adder_out); the other side starts a new sum.
     //   • Check in trace.vcd: on the cycle rst_accumulator_in is high, adder_in_A should hold the
     //     FIRST product of the new dot product, and adder_out one cycle later should equal it.
-    assign adder_in_A = '0;   // TODO: replace '0
-    assign adder_in_B = '0;   // TODO: replace '0
+    assign adder_in_A = mult_out;   // TODO: replace '0
+    assign adder_in_B = (rst_accumulator_in) ? '0 : adder_out;   // TODO: replace '0
 
     adder #(
         .INPUT_A_WIDTH(IN_WIDTH),
@@ -145,6 +145,20 @@ module mac #(
     //   • Check in trace.vcd: PE(0,1).row_data_in should equal PE(0,0).row_data_in, one cycle later.
     //     PE(1,0).rst_accumulator_in should equal PE(0,0).rst_accumulator_in, one cycle later.
     // ------------------------------------------------------------------
+
+    always @(posedge clk) begin
+        if (rst) begin
+            row_data_out <= 0;
+            col_data_out <= 0;
+            rst_accumulator_out <= 0;
+            stream_out_rdy_out <= 0;
+        end else begin
+            row_data_out <= row_data_in;
+            col_data_out <= col_data_in;
+            rst_accumulator_out <= rst_accumulator_in;
+            stream_out_rdy_out <= stream_out_rdy_in;
+        end
+    end
 
 
 
@@ -208,11 +222,26 @@ module mac #(
     //   • It never returns to 0 after reset; it only stops the MAC from sending garbage before
     //     its first real result.
 
+    always @(posedge clk) begin
+        if (rst) begin
+            stream_started <= 0;
+        end else if (stream_out_rdy_in) begin
+            stream_started <= 1;
+        end
+    end
+
 
 
     //TODO [In-Class 1]: stream_out_rdy_in_reg
     // Suggestions [In-Class 1]:
     //   • A single flop: always @(posedge clk), 0 on rst, otherwise copy stream_out_rdy_in.
+    always @(posedge clk) begin
+        if (rst) begin
+            stream_out_rdy_in_reg <= 0;
+        end else begin
+            stream_out_rdy_in_reg <= stream_out_rdy_in;
+        end
+    end
 
 
 
@@ -228,6 +257,21 @@ module mac #(
     //   • Check in trace.vcd: after each stream_out_rdy_in pulse, bypass_en goes high 2 cycles later
     //     and stays high for COLS - 1 cycles.
 
+    assign bypass_en = (bypass_counter != 0) ? 1 : 0;
+    always @(posedge clk) begin
+        if (rst) begin
+            bypass_counter <= 0;
+        end else begin
+            if (bypass_counter == bypass_counter_max) begin
+                bypass_counter <= 0;
+            end else if (stream_out_rdy_in_reg || bypass_en) begin
+                bypass_counter <= bypass_counter + 1;
+            end else begin
+                bypass_counter <= 0;
+            end
+        end
+    end
+
 
 
     //TODO [In-Class 1]: Output mux (drive psum_out)
@@ -236,6 +280,21 @@ module mac #(
     //       rst → 0;  bypass_en → bypass_data_in;  stream_started → psum_reg;  otherwise → 0
     //   • Check in trace.vcd: PE(0,0).psum_out shows its own result, then PE(0,1)'s result on the
     //     next cycle. row_data_out row 0 should show C[0][0], then C[0][1], back to back.
+
+    always @(posedge clk) begin
+        if (rst) begin
+            psum_out <= 0;
+        end else begin
+            if (bypass_en) begin
+                psum_out <= bypass_data_in; 
+            end else if (stream_started) begin
+                psum_out <= psum_reg;
+            end else begin
+                psum_out <= 0;
+            end
+        end
+    end
+
 
 
 
