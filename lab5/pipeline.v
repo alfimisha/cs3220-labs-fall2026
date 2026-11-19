@@ -3,6 +3,7 @@
 module pipeline (
   input wire clk,
   input wire reset_n,
+  input wire [31:0] inst,
   output wire [31:0] out1,
   output wire [31:0] out2
 );
@@ -36,6 +37,7 @@ module pipeline (
   FE_STAGE my_FE_stage(
     .clk(clk), 
     .reset(reset), 
+    .inst(inst),
     .from_DE_to_FE(from_DE_to_FE),
     .from_AGEX_to_FE(from_AGEX_to_FE),
     .from_MEM_to_FE(from_MEM_to_FE),
